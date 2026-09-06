@@ -1,0 +1,35 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Nuxt
+.output
+.data
+.nuxt
+.nitro
+.cache
+
+# Sanity Studio
+.sanity
+
+# Build
+dist
+coverage
+
+# Logs
+logs
+*.log
+
+# Env
+.env
+.env.*
+!.env.example
+*.local
+*.pem
+
+# Misc
+.DS_Store
+.fleet
+.idea
+*.tsbuildinfo
