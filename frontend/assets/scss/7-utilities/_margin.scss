@@ -1,0 +1,58 @@
+@use "../1-variables/" as *;
+@use "../2-tools" as *;
+
+// ==================================================================
+// Utilities / Margin
+// ==================================================================
+
+// ==================================================================
+// Utilities / Margin / Spacings
+/*  These variables simply refer to the CSS variables in the config file.
+    If you want to add more spacing values, add them here and in
+    the CSS variables (../1-variables/_config.scss). */
+// ==================================================================
+
+$spacings: (
+  "0": 0,
+  "1": var(--space-1),
+  "2": var(--space-2),
+  "3": var(--space-3),
+  "4": var(--space-4),
+  "5": var(--space-5),
+  "6": var(--space-6),
+  "7": var(--space-7),
+  "8": var(--space-8),
+  "9": var(--space-9),
+  "10": var(--space-10),
+);
+
+// ==================================================================
+// Mixin for margin utilities
+// ==================================================================
+
+@mixin generate-margins($prefix, $min-width) {
+  @media (min-width: $min-width) {
+    @each $name, $value in $spacings {
+      .#{$prefix}\:mt-#{$name} {
+        margin-top: $value;
+      }
+
+      .#{$prefix}\:mb-#{$name} {
+        margin-bottom: $value;
+      }
+
+      .#{$prefix}\:my-#{$name} {
+        margin-top: $value;
+        margin-bottom: $value;
+      }
+    }
+  }
+}
+
+// ==================================================================
+// Loop through breakpoints map to generate margin classes
+// ==================================================================
+
+@each $prefix, $min-width in $breakpoints {
+  @include generate-margins($prefix, $min-width);
+}

@@ -1,0 +1,141 @@
+@use "../1-variables/" as *;
+@use "../2-tools" as *;
+
+// ==================================================================
+// Utilities / Demo
+// ==================================================================
+
+body.demo {
+  background: black;
+
+  [data-subgrid] {
+    outline: 1px solid white !important;
+  }
+
+  .section {
+    position: relative;
+    background: rgba(96, 96, 96, 0.125);
+    outline: 1px dashed rgba(255, 255, 255, 0.25);
+    &::before {
+      content: "S";
+      position: absolute;
+      inset: 8px auto auto 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+  }
+  .grid {
+    position: relative;
+    background: rgba(96, 96, 96, 0.125);
+    outline: 1px dashed rgba(255, 255, 255, 0.25);
+    &::before {
+      content: "G";
+      position: absolute;
+      inset: 8px auto auto 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+  }
+
+  .grid.--small {
+    opacity: 0.5;
+  }
+
+  .col {
+    position: relative;
+    background: rgba(96, 96, 96, 0.33);
+    outline: 1px dashed rgba(255, 255, 255, 0.5);
+    min-height: var(--space-6);
+    &::before {
+      content: "C";
+      position: absolute;
+      inset: 8px auto auto 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+  }
+
+  .header__section,
+  .header__grid,
+  .header__col {
+    outline: 0;
+    background: transparent;
+    min-height: 0 !important;
+    margin-top: var(--space-2);
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--space-8);
+    row-gap: var(--space-1);
+
+    font-size: var(--size-0);
+
+    a {
+      text-decoration: none;
+    }
+
+    @include bp(xs) {
+      font-size: var(--size-3);
+    }
+
+    @include bp(md) {
+      display: flex;
+      justify-content: space-between;
+      column-gap: var(--space-2);
+    }
+  }
+}
+
+.demo-grid {
+  position: fixed !important;
+  inset: 0 0 0 0 !important;
+  display: none;
+  margin: 0 !important;
+
+  &.--show {
+    display: block !important;
+    inset: 0 0 0 0 !important;
+  }
+}
+
+.demo-grid .col {
+  height: 100vh;
+  background: rgba(255, 0, 0, 0.15) !important;
+  outline: 0 !important;
+}
+
+.demo-grid .col,
+.demo-grid .grid,
+.demo-grid.section {
+  pointer-events: none !important;
+}
+
+.demo-grid-toggle {
+  position: fixed;
+  inset: auto var(--space-4) var(--space-4) auto;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.c-header__section,
+.c-header__grid,
+.c-header__grid .col {
+  background: transparent !important;
+  outline: 0 !important;
+  min-height: auto !important;
+  &::before {
+    display: none;
+  }
+}

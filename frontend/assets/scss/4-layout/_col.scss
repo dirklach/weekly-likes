@@ -1,0 +1,74 @@
+@use "../1-variables/" as *;
+@use "../2-tools" as *;
+
+// ==================================================================
+// Layout / Col (Refactored to use data-attributes)
+// ==================================================================
+
+/*
+Usage
+
+<section class="section">
+  <div class="grid">
+    <div data-grid="md:6 lg:4">…</div>
+    <div data-offset="md:2" data-grid="md:6 lg:4">…</div>
+  </div>
+</section>
+
+*/
+
+// Default grid column span (full width)
+.col {
+  grid-column: span 12 / span 12;
+}
+
+// ==================================================================
+// Mixin for data-attribute based grid system with hidden columns
+// ==================================================================
+@mixin generate-grid-data($prefix, $min-width) {
+  @media (min-width: $min-width) {
+    // Handle hiding columns (e.g. data-grid="md:0 lg:0")
+    [data-grid*="#{$prefix}\:0"] {
+      display: none;
+    }
+
+    // Handle column spans (e.g. data-grid="md:6 lg:4")
+    @for $i from 1 through 12 {
+      [data-grid*="#{$prefix}\:#{$i}"] {
+        grid-column: span #{$i} / span #{$i};
+      }
+    }
+
+    // Handle offsets (e.g. data-offset="md:2")
+    @for $i from 0 through 12 {
+      [data-offset*="#{$prefix}\:#{$i}"] {
+        grid-column-start: #{$i + 1};
+      }
+    }
+
+    // Handle grid area spans (e.g. data-grid="md:2-5 lg:4-10")
+    @for $start from 1 through 12 {
+      @for $end from ($start + 1) through 13 {
+        $end-grid-value: if($end == 13, 13, $end);
+
+        [data-grid*="#{$prefix}\:#{$start}-#{$end - 1}"] {
+          grid-column: #{$start} / #{$end-grid-value};
+        }
+      }
+    }
+
+    // Handle grid start (e.g. data-grid="md:start-2")
+    @for $start from 1 through 12 {
+      [data-grid*="#{$prefix}\:start-#{$start}"] {
+        grid-column-start: #{$start};
+      }
+    }
+  }
+}
+
+// ==================================================================
+// Loop through breakpoints map to generate grid and offset attributes
+// ==================================================================
+@each $prefix, $min-width in $breakpoints {
+  @include generate-grid-data($prefix, $min-width);
+}
