@@ -63,6 +63,13 @@ that are available throughout the project.
 
   // …
 
+  @font-face {
+    font-family: Suisse;
+    src: url(/font/SuisseIntl-Medium-WebM.woff2) format("woff2");
+    font-weight: 400;
+    font-style: normal;
+  }
+
   // ==================================================================
   // Font Sizes
   // ==================================================================

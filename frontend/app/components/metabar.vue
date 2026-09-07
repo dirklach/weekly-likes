@@ -52,7 +52,7 @@ onUnmounted(() => {
   <div class="metabar">
     <div v-if="showBack" class="button" @click="navigateTo('/')">(ESC) Back to overview</div>
     <div v-if="showCredits" class="button" @click="toggleCredits">
-      (C) {{ hideCredits ? "Show" : "Hide" }} Credits
+      (C) {{ hideCredits ? "Show" : "Hide" }} Info
     </div>
     <div class="button" @click="toggleDarkMode">(D) {{ darkMode ? "Light" : "Dark" }} Mode</div>
   </div>

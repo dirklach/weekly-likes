@@ -10,16 +10,18 @@ if (!edition.value) {
   throw createError({statusCode: 404, statusMessage: "Edition not found"})
 }
 
-const pick = computed(
-  () => edition.value?.picks?.find((item) => item._key === String(route.params.key)) ?? null,
-)
+const pick = computed(() => {
+  const picks = edition.value?.picks || []
+  const slug = String(route.params.slug)
+  return picks.find((item) => pickSlug(picks, item) === slug) ?? null
+})
 
 if (!pick.value) {
   throw createError({statusCode: 404, statusMessage: "Pick not found"})
 }
 
 const pickIndex = computed(() => {
-  const index = edition.value?.picks?.findIndex((item) => item._key === String(route.params.key)) ?? -1
+  const index = edition.value?.picks?.findIndex((item) => item._key === pick.value?._key) ?? -1
   return index >= 0 ? String(index + 1).padStart(2, "0") : "00"
 })
 </script>
@@ -83,10 +85,12 @@ const pickIndex = computed(() => {
       </div>
       <div class="pick__image | col" data-grid="df:12 md:6">
         <div class="pick-image__inner">
-          <SanityImage
+          <PickImage
             v-if="pick.image?.asset?._ref"
             :asset-id="pick.image.asset._ref"
             :alt="pick.image.alt || pick.title"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            loading="eager"
           />
         </div>
       </div>

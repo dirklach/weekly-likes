@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const route = useRoute()
-const isPick = computed(() => route.path === "/pick" || route.path.startsWith("/pick/"))
+const isPick = computed(() => /^\/\d{3}(\/|$)/.test(route.path))
 </script>
 
 <template>
