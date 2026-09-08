@@ -136,6 +136,8 @@ a {
   display: flex;
   flex-direction: column;
   margin-bottom: var(--space-2);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 280px;
 
   @include bp(sm) {
     margin-bottom: 0;

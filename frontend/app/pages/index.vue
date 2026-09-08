@@ -17,7 +17,7 @@ const {data: editions} = await useEditions()
           </div>
         </div>
         <NuxtLink
-          v-for="(pick, pickIndex) in edition.picks || []"
+          v-for="pick in edition.picks || []"
           :key="pick._key"
           :to="pickHref(edition, pick)"
           class="edition | col"
@@ -30,7 +30,7 @@ const {data: editions} = await useEditions()
               :alt="pick.image.alt || pick.title"
               class="edition-image"
               sizes="(min-width: 768px) 33vw, 100vw"
-              :loading="editionIndex === 0 && pickIndex === 0 ? 'eager' : 'lazy'"
+              :loading="editionIndex === 0 ? 'eager' : 'lazy'"
             />
           </div>
           <div class="edition-text" :class="{hide: hideCredits}">

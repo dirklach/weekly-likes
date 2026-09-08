@@ -40,12 +40,33 @@ const src = computed(() =>
     800,
   ),
 )
+
+const el = ref<HTMLImageElement | null>(null)
+const active = ref(props.loading === "eager")
+
+onMounted(() => {
+  if (active.value) return
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return
+      active.value = true
+      observer.disconnect()
+    },
+    {rootMargin: "600px 0px"},
+  )
+
+  if (el.value) observer.observe(el.value)
+  onUnmounted(() => observer.disconnect())
+})
+
 </script>
 
 <template>
   <img
-    :src="src"
-    :srcset="srcset"
+    ref="el"
+    :src="active ? src : undefined"
+    :srcset="active ? srcset : undefined"
     :sizes="sizes"
     :alt="alt"
     :width="parsed?.width"
