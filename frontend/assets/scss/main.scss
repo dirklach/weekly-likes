@@ -126,6 +126,7 @@ a {
   column-gap: var(--space-1);
   line-height: 1;
   font-size: 3rem;
+  margin-bottom: var(--space-1);
 
   &::before {
     --size: 10px;
