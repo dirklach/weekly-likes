@@ -4,8 +4,9 @@ const { data: editions } = await useEditions();
 </script>
 
 <template>
-  <NewsletterForm />
   <div>
+    <NewsletterForm />
+
     <p v-if="!editions?.length" class="section grid">
       <span class="col" data-grid="df:12">No editions yet.</span>
     </p>
