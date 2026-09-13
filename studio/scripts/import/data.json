@@ -1,0 +1,1338 @@
+{
+  "authors": [
+    {"id": "author-rejane-dal-bello", "name": "Rejane Dal Bello", "url": null},
+    {"id": "author-gbgt-box-bedow", "name": "GBGT Box / Bedow", "url": null},
+    {"id": "author-studio-rick-joy", "name": "Studio Rick Joy", "url": null},
+    {"id": "author-oooz", "name": "OOOZ", "url": null},
+    {"id": "author-anna-erdelen", "name": "Anna Erdelen", "url": null},
+    {"id": "author-standard-projects", "name": "Standard Projects", "url": null},
+    {"id": "author-ozon-studio", "name": "Ozon Studio", "url": null},
+    {"id": "author-sylvan-hillebrand", "name": "Sylvan Hillebrand", "url": null},
+    {"id": "author-studio-grau", "name": "Studio Grau", "url": null},
+    {"id": "author-studio-studio", "name": "Studio Studio", "url": null},
+    {"id": "author-garde-design", "name": "Gärde Design", "url": null},
+    {"id": "author-christopher-doyle-co", "name": "Christopher Doyle & Co.", "url": null},
+    {"id": "author-martin-cantonny", "name": "Martin Cantonny", "url": null},
+    {"id": "author-spassky-fischer", "name": "Spassky Fischer", "url": null},
+    {"id": "author-atelier-carle", "name": "Atelier Carle", "url": null},
+    {"id": "author-laura-clink", "name": "Laura Clink", "url": null},
+    {"id": "author-communion-studio", "name": "COMMUNION Studio", "url": null},
+    {"id": "author-josef-muller-brockmann", "name": "Josef Müller-Brockmann", "url": null},
+    {"id": "author-mouthwash-studio", "name": "Mouthwash Studio", "url": null},
+    {"id": "author-vrints-kolsteren", "name": "Vrints-Kolsteren", "url": null},
+    {"id": "author-elliott-routledge", "name": "Elliott Routledge", "url": null},
+    {"id": "author-huy-nguyen", "name": "Huy Nguyen", "url": null},
+    {"id": "author-holographik", "name": "Holographik", "url": null},
+    {"id": "author-ffforum", "name": "ffforum", "url": null},
+    {"id": "author-bbh-usa", "name": "BBH USA", "url": null},
+    {"id": "author-hymn-design", "name": "Hymn Design", "url": null},
+    {"id": "author-republique-studio", "name": "République Studio", "url": null},
+    {"id": "author-behind-creativity", "name": "Behind Creativity", "url": null},
+    {"id": "author-porto-rocha", "name": "Porto Rocha", "url": null},
+    {"id": "author-atipus-studio", "name": "Atipus Studio", "url": null},
+    {"id": "author-casa-axis", "name": "Casa Axis", "url": null},
+    {"id": "author-unknown", "name": "Unknown", "url": null},
+    {"id": "author-dash-digital-studio", "name": "Dash Digital Studio", "url": null},
+    {"id": "author-works", "name": "WØRKS", "url": null},
+    {"id": "author-gaa-design-studio", "name": "GAA Design Studio", "url": null},
+    {"id": "author-studio-south", "name": "Studio South", "url": null},
+    {"id": "author-made-by-six", "name": "Made by Six", "url": null},
+    {"id": "author-frost-type", "name": "Frost Type", "url": null},
+    {"id": "author-new-tendency", "name": "NEW TENDENCY", "url": null},
+    {"id": "author-hellome", "name": "HelloMe", "url": null},
+    {"id": "author-new-territory", "name": "New Territory", "url": null},
+    {"id": "author-koto", "name": "Koto", "url": null},
+    {"id": "author-soco-estudio", "name": "Soco Estudio", "url": null},
+    {"id": "author-baillat-studio", "name": "Baillat Studio", "url": null},
+    {"id": "author-luca-ricci", "name": "Luca Ricci", "url": null},
+    {"id": "author-carson-abraham", "name": "Carson Abraham", "url": null},
+    {"id": "author-studio-blackburn", "name": "Studio Blackburn", "url": null},
+    {"id": "author-studio-andrew-trotter", "name": "Studio Andrew Trotter", "url": null},
+    {"id": "author-mark-wilson", "name": "Mark Wilson", "url": null},
+    {"id": "author-only-studio", "name": "Only Studio", "url": null},
+    {"id": "author-todd-hido", "name": "Todd Hido", "url": null},
+    {"id": "author-malvah-studio", "name": "Malvah Studio", "url": null},
+    {"id": "author-michael-lumby", "name": "Michael Lumby", "url": null},
+    {"id": "author-nielson-jenkins", "name": "Nielson Jenkins", "url": null},
+    {"id": "author-atma-builders", "name": "ATMA Builders", "url": null},
+    {"id": "author-substance", "name": "Substance", "url": null},
+    {"id": "author-yujian-huang", "name": "Yujian Huang", "url": null},
+    {"id": "author-sophie-lovell", "name": "Sophie Lovell", "url": null},
+    {"id": "author-phaidon", "name": "Phaidon", "url": null},
+    {"id": "author-octaeve", "name": "Octaeve", "url": null},
+    {"id": "author-dkc-studio", "name": "DKC Studio", "url": null},
+    {"id": "author-mimosa-architects", "name": "Mimosa architects", "url": null},
+    {"id": "author-david-holland", "name": "David Holland", "url": null},
+    {"id": "author-ventura-foreman", "name": "Ventura Foreman", "url": null},
+    {"id": "author-montwood", "name": "山有木兮Montwood", "url": null},
+    {"id": "author-futurebrand", "name": "FutureBrand", "url": null},
+    {"id": "author-ashfall-studio", "name": "Ashfall Studio", "url": null},
+    {"id": "author-brbb-architects", "name": "BRBB Architects", "url": null},
+    {"id": "author-tiago-rodrigues", "name": "Tiago Rodrigues", "url": null},
+    {"id": "author-lotipa", "name": "Lotipa", "url": null},
+    {"id": "author-impepinable-studio", "name": "Impepinable Studio", "url": null},
+    {"id": "author-slaps-studios", "name": "SLAPS Studios", "url": null},
+    {
+      "id": "author-buchner-brundler-architekten",
+      "name": "Buchner Bründler Architekten",
+      "url": null
+    },
+    {"id": "author-studio-kiln", "name": "Studio Kiln", "url": null},
+    {"id": "author-studio-feixen", "name": "Studio Feixen", "url": null},
+    {"id": "author-brandon-nickerson", "name": "Brandon Nickerson", "url": null},
+    {"id": "author-greg-lalle", "name": "Greg Lallé", "url": null},
+    {"id": "author-studiopaack", "name": "StudioPaack", "url": null},
+    {"id": "author-thomas-monavon", "name": "Thomas Monavon", "url": null},
+    {"id": "author-transparent", "name": "Transparent", "url": null},
+    {"id": "author-smith-and-diction", "name": "Smith & Diction", "url": null},
+    {"id": "author-denomination", "name": "Denomination", "url": null},
+    {"id": "author-aim-architecture", "name": "AIM Architecture", "url": null},
+    {"id": "author-gil-huybrecht", "name": "Gil Huybrecht", "url": null},
+    {"id": "author-jesper-landberg", "name": "Jesper Landberg", "url": null},
+    {"id": "author-iban-ramon", "name": "Ibán Ramón", "url": null},
+    {"id": "author-osom-studios", "name": "Osom Studios", "url": null},
+    {"id": "author-alexander-lotersztain", "name": "Alexander Lotersztain", "url": null},
+    {"id": "author-virgil-abloh", "name": "Virgil Abloh", "url": null},
+    {"id": "author-armin-hofmann", "name": "Armin Hofmann", "url": null},
+    {"id": "author-too-gallus", "name": "Too Gallus", "url": null},
+    {"id": "author-klaus-klemp", "name": "Klaus Klemp", "url": null},
+    {"id": "author-allcaps", "name": "AllCaps", "url": null},
+    {"id": "author-keiji-ashizawa", "name": "Keiji Ashizawa", "url": null},
+    {"id": "author-carlo-vivarelli", "name": "Carlo Vivarelli", "url": null},
+    {"id": "author-hans-neuburg", "name": "Hans Neuburg", "url": null},
+    {"id": "author-richard-paul-lohse", "name": "Richard Paul Lohse", "url": null},
+    {"id": "author-shhh", "name": "Shhh", "url": null},
+    {"id": "author-metier-press", "name": "Metier Press", "url": null},
+    {"id": "author-auge-design", "name": "AUGE Design", "url": null},
+    {"id": "author-valerio-olgiati", "name": "Valerio Olgiati", "url": null},
+    {"id": "author-hw-studio", "name": "HW Studio", "url": null},
+    {"id": "author-studioenok", "name": "Studioenok", "url": null},
+    {"id": "author-regular-practice", "name": "Regular Practice", "url": null},
+    {"id": "author-victionary", "name": "viction:ary", "url": null},
+    {"id": "author-sho-shibuya", "name": "Sho Shibuya", "url": null},
+    {"id": "author-pangram-pangram", "name": "Pangram Pangram", "url": null},
+    {"id": "author-locomotive", "name": "Locomotive", "url": null},
+    {"id": "author-powell-studio", "name": "Powell Studio", "url": null},
+    {"id": "author-aristide-benoist", "name": "Aristide Benoist", "url": null},
+    {"id": "author-simon-walker", "name": "Simon Walker", "url": null},
+    {"id": "author-studio-woork", "name": "Studio Woork", "url": null},
+    {"id": "author-teenage-engineering", "name": "Teenage Engineering", "url": null},
+    {"id": "author-modestworks", "name": "ModestWorks", "url": null},
+    {"id": "author-stefan-marx", "name": "Stefan Marx", "url": null},
+    {"id": "author-annas-works", "name": "annas.works", "url": null},
+    {"id": "author-okey-studio", "name": "Okey Studio", "url": null},
+    {"id": "author-adrien-quechon", "name": "Adrien Quechon", "url": null},
+    {"id": "author-clarisse-michard", "name": "Clarisse Michard", "url": null},
+    {"id": "author-rob-smittenaar", "name": "Rob Smittenaar", "url": null},
+    {"id": "author-ruud-luijten", "name": "Ruud Luijten", "url": null},
+    {"id": "author-thomas-latyr-van-glabeke", "name": "Thomas Latyr Van Glabeke", "url": null},
+    {"id": "author-theo-favereau", "name": "Theo Favereau", "url": null},
+    {"id": "author-anoukia-perrey", "name": "Anoukia Perrey", "url": null},
+    {"id": "author-studio-iknoki", "name": "Studio Iknoki", "url": null},
+    {"id": "author-amplify", "name": "Amplify", "url": null},
+    {"id": "author-burocratik", "name": "Bürocratik", "url": null},
+    {"id": "author-anthony-burrill", "name": "Anthony Burrill", "url": null},
+    {"id": "author-the-new-company", "name": "The New Company", "url": null},
+    {"id": "author-d-and-ad", "name": "D&AD", "url": null},
+    {"id": "author-fffcorp", "name": "fffcorp", "url": null},
+    {"id": "author-eike-konig", "name": "Eike König", "url": null},
+    {"id": "author-rob-clarke", "name": "Rob Clarke", "url": null},
+    {"id": "author-nike", "name": "Nike", "url": null},
+    {"id": "author-icons", "name": "ICONS", "url": null},
+    {"id": "author-smorgasbord", "name": "Smörgåsbord", "url": null},
+    {"id": "author-order", "name": "Order", "url": null},
+    {"id": "author-rick-rubin", "name": "Rick Rubin", "url": null},
+    {"id": "author-c100-studio", "name": "C100 Studio", "url": null},
+    {"id": "author-off-brand", "name": "OFF+BRAND", "url": null},
+    {"id": "author-official-correspondence", "name": "Official Correspondence", "url": null},
+    {"id": "author-holographik-ilja-van-eck", "name": "Holographik, Ilja van Eck", "url": null},
+    {"id": "author-dixonbaxi", "name": "DixonBaxi", "url": null},
+    {"id": "author-peter-tarka", "name": "Peter Tarka", "url": null},
+    {"id": "author-found-studio", "name": "Found Studio", "url": null},
+    {"id": "author-objekte-unserer-tage", "name": "Objekte Unserer Tage", "url": null}
+  ],
+  "categories": [
+    {"id": "cat-visual-identity", "name": "Visual Identity"},
+    {"id": "cat-packaging-design", "name": "Packaging Design"},
+    {"id": "cat-architecture", "name": "Architecture"},
+    {"id": "cat-portfolio", "name": "Portfolio"},
+    {"id": "cat-brand-identity", "name": "Brand Identity"},
+    {"id": "cat-editorial-design", "name": "Editorial Design"},
+    {"id": "cat-poster-series-tool", "name": "Poster Series / Tool"},
+    {"id": "cat-book", "name": "Book"},
+    {"id": "cat-brand-identity-and-website", "name": "Brand Identity & Website"},
+    {"id": "cat-artwork", "name": "Artwork"},
+    {"id": "cat-website", "name": "Website"},
+    {"id": "cat-campaign", "name": "Campaign"},
+    {"id": "cat-interview", "name": "Interview"},
+    {"id": "cat-hand-painted-tennis-court", "name": "Hand-painted Tennis Court"},
+    {"id": "cat-typography-system", "name": "Typography System"},
+    {"id": "cat-designer", "name": "Designer"},
+    {"id": "cat-video", "name": "Video"},
+    {"id": "cat-interior", "name": "Interior"},
+    {"id": "cat-book-design", "name": "Book Design"},
+    {"id": "cat-architecture-and-interior", "name": "Architecture & Interior"},
+    {"id": "cat-brand-identity-and-packaging", "name": "Brand Identity & Packaging"},
+    {"id": "cat-logo", "name": "Logo"},
+    {"id": "cat-logo-design", "name": "Logo Design"},
+    {"id": "cat-product-design", "name": "Product Design"},
+    {"id": "cat-stamp-series", "name": "Stamp Series"},
+    {"id": "cat-art", "name": "Art"},
+    {"id": "cat-installation", "name": "Installation"},
+    {"id": "cat-poster", "name": "Poster"},
+    {"id": "cat-typeface", "name": "Typeface"},
+    {"id": "cat-magazine-cover", "name": "Magazine Cover"},
+    {"id": "cat-quote-book", "name": "Quote / Book"},
+    {"id": "cat-brand-design", "name": "Brand Design"},
+    {"id": "cat-painting", "name": "Painting"},
+    {"id": "cat-wall-painting", "name": "Wall Painting"},
+    {"id": "cat-design", "name": "Design"},
+    {"id": "cat-3d", "name": "3D"},
+    {"id": "cat-product", "name": "Product"},
+    {"id": "cat-book-cover", "name": "Book Cover"},
+    {"id": "cat-store-concept", "name": "Store Concept"},
+    {"id": "cat-chair", "name": "Chair"},
+    {"id": "cat-interior-and-furniture", "name": "Interior & Furniture"},
+    {"id": "cat-packaging", "name": "Packaging"}
+  ],
+  "editions": [
+    {
+      "number": "049",
+      "picks": [
+        {
+          "title": "Kieler Woche 2027",
+          "authors": ["author-rejane-dal-bello"],
+          "category": "cat-visual-identity",
+          "url": "https://www.instagram.com/p/Dc8BYUciGTG/?img_index=1"
+        },
+        {
+          "title": "A Lovely Atmosphere",
+          "authors": ["author-gbgt-box-bedow"],
+          "category": "cat-packaging-design",
+          "url": "https://www.bedow.se/work/gbgt-box/"
+        },
+        {
+          "title": "Tennyson 205",
+          "authors": ["author-studio-rick-joy"],
+          "category": "cat-architecture",
+          "url": "https://www.ignant.com/2020/01/13/studio-rick-joy-infuses-greenery-into-a-concrete-residence-in-mexico-city/"
+        }
+      ]
+    },
+    {
+      "number": "048",
+      "picks": [
+        {
+          "title": "Josselin",
+          "authors": ["author-oooz", "author-anna-erdelen"],
+          "category": "cat-portfolio",
+          "url": "https://josselin.de/"
+        },
+        {
+          "title": "Microdot",
+          "authors": ["author-standard-projects"],
+          "category": "cat-brand-identity",
+          "url": "https://www.standard-projects.com/microdot/"
+        },
+        {
+          "title": "Torso Electronics",
+          "authors": ["author-ozon-studio"],
+          "category": "cat-brand-identity",
+          "url": "https://ozon.studio/projects/torso-electronics"
+        }
+      ]
+    },
+    {
+      "number": "047",
+      "picks": [
+        {
+          "title": "Rembrandt Oil Paints",
+          "authors": ["author-sylvan-hillebrand"],
+          "category": "cat-brand-identity",
+          "url": "https://sylvanhillebrand.design/work/rembrandt-visual-identity"
+        },
+        {
+          "title": "Brocken Notebook",
+          "authors": ["author-studio-grau"],
+          "category": "cat-editorial-design",
+          "url": "https://www.studiograu.de/projekte/brocken"
+        },
+        {
+          "title": "3 Sec Gallery",
+          "authors": ["author-studio-studio"],
+          "category": "cat-poster-series-tool",
+          "url": "https://studiostudio.be/work/3sec-gallery/"
+        }
+      ]
+    },
+    {
+      "number": "046",
+      "picks": [
+        {
+          "title": "Aoto",
+          "authors": ["author-garde-design"],
+          "category": "cat-brand-identity",
+          "url": "https://www.gardedesign.com/work/aoto"
+        },
+        {
+          "title": "Machine",
+          "authors": ["author-christopher-doyle-co"],
+          "category": "cat-brand-identity",
+          "url": "https://christopherdoyle.co/projects/machine"
+        },
+        {
+          "title": "Cathy Dolle",
+          "authors": ["author-martin-cantonny"],
+          "category": "cat-portfolio",
+          "url": "https://www.cathydolle.com/"
+        }
+      ]
+    },
+    {
+      "number": "045",
+      "picks": [
+        {
+          "title": "In Search of a Language. A Journey into Peter Märkli's Imaginary",
+          "authors": ["author-spassky-fischer"],
+          "category": "cat-editorial-design",
+          "url": "https://page-spread.com/peter-markli-in-search-of-a-language/"
+        },
+        {
+          "title": "SONO Residence",
+          "authors": ["author-atelier-carle"],
+          "category": "cat-architecture",
+          "url": "https://ateliercarle.ca/en/sono/"
+        },
+        {
+          "title": "Snake Height",
+          "authors": ["author-laura-clink"],
+          "category": "cat-brand-identity",
+          "url": "https://www.lauraclink.com/work/snake-height"
+        }
+      ]
+    },
+    {
+      "number": "044",
+      "picks": [
+        {
+          "title": "FC Como Women",
+          "authors": ["author-communion-studio"],
+          "category": "cat-brand-identity",
+          "url": "https://www.thedca.co/work/fc-como-women"
+        },
+        {
+          "title": "Design Manual for the Swiss Federal Railways",
+          "authors": ["author-josef-muller-brockmann"],
+          "category": "cat-book",
+          "url": "https://www.lars-mueller-publishers.com/fahrgastinformationssystempassenger-information-system-0"
+        },
+        {
+          "title": "ARTWORLD",
+          "authors": ["author-mouthwash-studio"],
+          "category": "cat-brand-identity-and-website",
+          "url": "https://mouthwash.studio/project/artworld/"
+        }
+      ]
+    },
+    {
+      "number": "043",
+      "picks": [
+        {
+          "title": "Us by Night",
+          "authors": ["author-vrints-kolsteren"],
+          "category": "cat-brand-identity",
+          "url": "https://www.vrints-kolsteren.com/project/us-by-night"
+        },
+        {
+          "title": "Blue Stroke Triptych",
+          "authors": ["author-elliott-routledge"],
+          "category": "cat-artwork",
+          "url": "https://www.instagram.com/p/Da6xmd7D04p/?img_index=1"
+        },
+        {
+          "title": "MONOLOG",
+          "authors": ["author-huy-nguyen"],
+          "category": "cat-website",
+          "url": "https://bymonolog.com/"
+        }
+      ]
+    },
+    {
+      "number": "042",
+      "picks": [
+        {
+          "title": "Paul Kalkbrenner",
+          "authors": ["author-holographik"],
+          "category": "cat-website",
+          "url": "https://www.paulkalkbrenner.net/"
+        },
+        {
+          "title": "The North Face",
+          "authors": ["author-ffforum"],
+          "category": "cat-campaign",
+          "url": "https://ffforum.site/projects/hike-ss26"
+        },
+        {
+          "title": "Cooper Tires",
+          "authors": ["author-bbh-usa"],
+          "category": "cat-brand-identity",
+          "url": "https://www.instagram.com/p/DWXIskbFL2I/?img_index=1"
+        }
+      ]
+    },
+    {
+      "number": "041",
+      "picks": [
+        {
+          "title": "BBAU",
+          "authors": ["author-hymn-design"],
+          "category": "cat-brand-identity",
+          "url": "https://www.hymn.design/en/projets/bbau"
+        },
+        {
+          "title": "Topographie(s) Artificielle(s)",
+          "authors": ["author-republique-studio"],
+          "category": "cat-editorial-design",
+          "url": "https://www.republique.studio/projects/topographies-artificielles"
+        },
+        {
+          "title": "Inside the iconic Pentagram Design studio in New York",
+          "authors": ["author-behind-creativity"],
+          "category": "cat-interview",
+          "url": "https://www.youtube.com/watch?v=I9znlwQ7JTQ"
+        }
+      ]
+    },
+    {
+      "number": "040",
+      "picks": [
+        {
+          "title": "NIKE Run",
+          "authors": ["author-porto-rocha"],
+          "category": "cat-brand-identity",
+          "url": "https://www.portorocha.com/nikerun"
+        },
+        {
+          "title": "Casa Llimona",
+          "authors": ["author-atipus-studio"],
+          "category": "cat-brand-identity",
+          "url": "https://atipus.com/en/projects/casa-llimona/"
+        },
+        {
+          "title": "Lucas Benarroch (MRKA)",
+          "authors": ["author-casa-axis"],
+          "category": "cat-hand-painted-tennis-court",
+          "url": "https://www.casaaxis.com/pages/mrka"
+        }
+      ]
+    },
+    {
+      "number": "039",
+      "picks": [
+        {
+          "title": "STAGECREW",
+          "authors": ["author-unknown"],
+          "category": "cat-website",
+          "url": "https://stagecrew.studio/"
+        },
+        {
+          "title": "WhatRemains",
+          "authors": ["author-dash-digital-studio"],
+          "category": "cat-brand-identity",
+          "url": "https://www.instagram.com/p/DaNWVW_DMvJ/?img_index=1"
+        },
+        {
+          "title": "JORDAN",
+          "authors": ["author-works"],
+          "category": "cat-brand-identity",
+          "url": "https://works.studio/work/jordan-visual-identity"
+        }
+      ]
+    },
+    {
+      "number": "038",
+      "picks": [
+        {
+          "title": "EAS",
+          "authors": ["author-gaa-design-studio"],
+          "category": "cat-brand-identity",
+          "url": "https://www.gaadesign.studio/work/eas"
+        },
+        {
+          "title": "Moments in Time",
+          "authors": ["author-studio-south"],
+          "category": "cat-book",
+          "url": "https://shop.studiosouth.co.nz/"
+        },
+        {
+          "title": "Rapha",
+          "authors": ["author-made-by-six", "author-frost-type"],
+          "category": "cat-typography-system",
+          "url": "https://the-brandidentity.com/typeface/six-and-frost-re-establish-rapha-as-the-voice-of-cycling-through-type"
+        }
+      ]
+    },
+    {
+      "number": "037",
+      "picks": [
+        {
+          "title": "RAW ESSENTIALS",
+          "authors": ["author-new-tendency", "author-hellome"],
+          "category": "cat-editorial-design",
+          "url": "https://hellome.studio/new-tendency-raw-essentials/"
+        },
+        {
+          "title": "Gert van Duinen - Cresk Design",
+          "authors": ["author-unknown"],
+          "category": "cat-designer",
+          "url": "https://dribbble.com/cresk"
+        },
+        {
+          "title": "Simon James",
+          "authors": ["author-new-territory"],
+          "category": "cat-website",
+          "url": "https://simonjames.co.nz/"
+        }
+      ]
+    },
+    {
+      "number": "036",
+      "picks": [
+        {
+          "title": "The Norton Museum of Art",
+          "authors": ["author-koto"],
+          "category": "cat-brand-identity",
+          "url": "https://koto.com/projects/the-norton-museum-of-art"
+        },
+        {
+          "title": "Casa Iriarte",
+          "authors": ["author-soco-estudio"],
+          "category": "cat-architecture",
+          "url": "https://socoestudio.com/cia_02"
+        },
+        {
+          "title": "Age of Union",
+          "authors": ["author-baillat-studio"],
+          "category": "cat-editorial-design",
+          "url": "https://baillatstudio.com/fr/projet/age-of-union-livre-d-art-livre-grand-public"
+        }
+      ]
+    },
+    {
+      "number": "035",
+      "picks": [
+        {
+          "title": "Rick Rubin on Finding Your Life's Work",
+          "authors": ["author-unknown"],
+          "category": "cat-video",
+          "url": "https://www.youtube.com/watch?v=g6MEDOY7tHo"
+        },
+        {
+          "title": "Plissé Block",
+          "authors": ["author-luca-ricci"],
+          "category": "cat-interior",
+          "url": "https://www.instagram.com/p/DYPqJUBiNf2/?img_index=1"
+        },
+        {
+          "title": "Cameron Jones",
+          "authors": ["author-carson-abraham"],
+          "category": "cat-website",
+          "url": "https://camjones.work/"
+        }
+      ]
+    },
+    {
+      "number": "034",
+      "picks": [
+        {
+          "title": "Hélio Teles",
+          "authors": ["author-unknown"],
+          "category": "cat-website",
+          "url": "https://helioteles.com/"
+        },
+        {
+          "title": "Modern Buildings of Blackheath and Greenwich",
+          "authors": ["author-studio-blackburn"],
+          "category": "cat-book",
+          "url": "https://studioblackburn.com/work/modern-buildings"
+        },
+        {
+          "title": "Casa Maiora",
+          "authors": ["author-studio-andrew-trotter"],
+          "category": "cat-architecture",
+          "url": "https://www.andrew-trotter.com/casa-maiora/10"
+        }
+      ]
+    },
+    {
+      "number": "033",
+      "picks": [
+        {
+          "title": "James Walsh",
+          "authors": ["author-mark-wilson"],
+          "category": "cat-website",
+          "url": "https://www.jameswalsh.studio/"
+        },
+        {
+          "title": "Palais",
+          "authors": ["author-only-studio"],
+          "category": "cat-brand-identity",
+          "url": "https://www.onlystudio.com/work/palais"
+        },
+        {
+          "title": "House Hunting",
+          "authors": ["author-todd-hido"],
+          "category": "cat-book",
+          "url": "http://www.toddhido.com/househunting"
+        }
+      ]
+    },
+    {
+      "number": "032",
+      "picks": [
+        {
+          "title": "Odd Ritual",
+          "authors": ["author-malvah-studio"],
+          "category": "cat-brand-identity-and-website",
+          "url": "https://oddritualgolf.com/"
+        },
+        {
+          "title": "Merricks Farmhouse",
+          "authors": ["author-michael-lumby", "author-nielson-jenkins", "author-atma-builders"],
+          "category": "cat-architecture",
+          "url": "https://www.atmabuilders.com.au/projects/merricks-farmhouse"
+        },
+        {
+          "title": "Obsidian",
+          "authors": ["author-substance"],
+          "category": "cat-brand-identity",
+          "url": "https://www.instagram.com/p/DRkEJ43jBPW/?img_index=1"
+        }
+      ]
+    },
+    {
+      "number": "031",
+      "picks": [
+        {
+          "title": "ATIO Studio",
+          "authors": ["author-unknown"],
+          "category": "cat-website",
+          "url": "https://atio.studio/"
+        },
+        {
+          "title": "Yohji Yamamoto",
+          "authors": ["author-yujian-huang"],
+          "category": "cat-brand-identity",
+          "url": "https://www.instagram.com/p/C9QOpOHSQ35/?img_index=1"
+        },
+        {
+          "title": "Dieter Rams: As Little Design as Possible",
+          "authors": ["author-sophie-lovell", "author-phaidon"],
+          "category": "cat-book",
+          "url": "https://www.phaidon.com/en-eu/products/dieter-rams-as-little-design-as-possible"
+        }
+      ]
+    },
+    {
+      "number": "030",
+      "picks": [
+        {
+          "title": "AND2ES",
+          "authors": ["author-octaeve"],
+          "category": "cat-website",
+          "url": "https://www.and2es.com/"
+        },
+        {
+          "title": "The City is a Synthesis",
+          "authors": ["author-dkc-studio"],
+          "category": "cat-book-design",
+          "url": "https://www.instagram.com/p/C3Pg2dTNqjj/?img_index=1"
+        },
+        {
+          "title": "Sázava River Cabin",
+          "authors": ["author-mimosa-architects"],
+          "category": "cat-architecture",
+          "url": "https://petrpolakstudio.cz/chata-v-prosecnici"
+        }
+      ]
+    },
+    {
+      "number": "029",
+      "picks": [
+        {
+          "title": "Ventura Foreman",
+          "authors": ["author-david-holland", "author-ventura-foreman"],
+          "category": "cat-website",
+          "url": "https://venturaforeman.com/"
+        },
+        {
+          "title": "Making a Wooden Armchair",
+          "authors": ["author-montwood"],
+          "category": "cat-video",
+          "url": "https://www.youtube.com/watch?v=r1HjeV-rtqM"
+        },
+        {
+          "title": "The Brazilian Amazon",
+          "authors": ["author-futurebrand"],
+          "category": "cat-brand-identity",
+          "url": "https://www.futurebrand.com/our-work/amazonia"
+        }
+      ]
+    },
+    {
+      "number": "028",
+      "picks": [
+        {
+          "title": "Tekuma",
+          "authors": ["author-ashfall-studio"],
+          "category": "cat-brand-identity",
+          "url": "https://ashfall.studio/work/tekuma"
+        },
+        {
+          "title": "Shin-Dae-Ri House",
+          "authors": ["author-brbb-architects"],
+          "category": "cat-architecture",
+          "url": "https://www.designboom.com/architecture/home-korea-twin-timber-gables-concrete-base-brbb-architects-shin-dae-ri/"
+        },
+        {
+          "title": "Tomás Ramos",
+          "authors": ["author-tiago-rodrigues"],
+          "category": "cat-website",
+          "url": "https://www.tomas-ramos.com/en"
+        }
+      ]
+    },
+    {
+      "number": "027",
+      "picks": [
+        {
+          "title": "OBYS",
+          "authors": ["author-unknown"],
+          "category": "cat-website",
+          "url": "https://obys.agency/"
+        },
+        {
+          "title": "Mamedes & Gasch",
+          "authors": ["author-lotipa"],
+          "category": "cat-brand-design",
+          "url": "https://pangrampangram.com/blogs/font-in-use/mamedes-gasch"
+        },
+        {
+          "title": "Agrosemillas Offices",
+          "authors": ["author-impepinable-studio"],
+          "category": "cat-architecture",
+          "url": "https://www.designboom.com/architecture/repurposed-shipping-containers-colorful-workspaces-impepinable-studio-spain-madrid-agrosemillas-offices/"
+        }
+      ]
+    },
+    {
+      "number": "026",
+      "picks": [
+        {
+          "title": "AM Club",
+          "authors": ["author-slaps-studios"],
+          "category": "cat-packaging-design",
+          "url": "https://www.instagram.com/p/DWRoR2IDJjD/?img_index=1"
+        },
+        {
+          "title": "Wohnhaus Missionsstrasse, Basel",
+          "authors": ["author-buchner-brundler-architekten"],
+          "category": "cat-architecture",
+          "url": "https://bbarc.ch/umbau-wohnhaus-missionsstrasse"
+        },
+        {
+          "title": "Sony Mini Disc",
+          "authors": ["author-unknown"],
+          "category": "cat-product-design",
+          "url": "https://x.com/ObsoleteSony/status/2037136985626730580"
+        }
+      ]
+    },
+    {
+      "number": "025",
+      "picks": [
+        {
+          "title": "SMITH&SAINT",
+          "authors": ["author-studio-kiln"],
+          "category": "cat-brand-identity",
+          "url": "https://www.instagram.com/p/DVy2WqYjJJX/?hl=de&img_index=1"
+        },
+        {
+          "title": "Tom Beton",
+          "authors": ["author-unknown"],
+          "category": "cat-art",
+          "url": "https://www.instagram.com/tombeton.insta/"
+        },
+        {
+          "title": "Swiss Stamps",
+          "authors": ["author-studio-feixen"],
+          "category": "cat-stamp-series",
+          "url": "https://www.studiofeixen.ch/swiss-stamps/"
+        }
+      ]
+    },
+    {
+      "number": "024",
+      "picks": [
+        {
+          "title": "Nomade Moderne",
+          "authors": ["author-brandon-nickerson"],
+          "category": "cat-logo-design",
+          "url": "https://www.instagram.com/p/DVrkyvPGMX1/?hl=de&img_index=1"
+        },
+        {
+          "title": "Telha Clarke",
+          "authors": ["author-greg-lalle", "author-studiopaack", "author-thomas-monavon"],
+          "category": "cat-website",
+          "url": "https://telhaclarke.com.au/"
+        },
+        {
+          "title": "Transparent Turntable",
+          "authors": ["author-transparent"],
+          "category": "cat-product-design",
+          "url": "https://transpa.rent/de/turntable-black"
+        }
+      ]
+    },
+    {
+      "number": "023",
+      "picks": [
+        {
+          "title": "Minted",
+          "authors": ["author-smith-and-diction"],
+          "category": "cat-brand-identity",
+          "url": "https://www.instagram.com/p/C9zvArYJbJh/?img_index=1"
+        },
+        {
+          "title": "Cape Hauy Whisky",
+          "authors": ["author-denomination"],
+          "category": "cat-brand-identity-and-packaging",
+          "url": "https://denomination.com/projects/cape-hauy-whisky"
+        },
+        {
+          "title": "HARMAY store (Beijing)",
+          "authors": ["author-aim-architecture"],
+          "category": "cat-architecture-and-interior",
+          "url": "https://superfuture.com/2026/03/new-shops/beijing-harmay-store-opening-3/"
+        }
+      ]
+    },
+    {
+      "number": "022",
+      "picks": [
+        {
+          "title": "THE LOOKBACK (Better Off)",
+          "authors": ["author-gil-huybrecht", "author-jesper-landberg"],
+          "category": "cat-website",
+          "url": "https://tlb.betteroff.studio/"
+        },
+        {
+          "title": "Flowninja",
+          "authors": ["author-unknown"],
+          "category": "cat-logo",
+          "url": "https://www.flowninja.com/"
+        },
+        {
+          "title": "Escenas del diseño valenciano",
+          "authors": ["author-iban-ramon"],
+          "category": "cat-book-design",
+          "url": "https://www.ibanramon.com/en/proyecto/escenas-del-diseno-valenciano/"
+        }
+      ]
+    },
+    {
+      "number": "021",
+      "picks": [
+        {
+          "title": "Ultrace",
+          "authors": ["author-osom-studios"],
+          "category": "cat-brand-identity",
+          "url": "https://www.instagram.com/p/DUSvvNvDAov/?img_index=1"
+        },
+        {
+          "title": "Ben Mingo",
+          "authors": ["author-unknown"],
+          "category": "cat-portfolio",
+          "url": "https://benmingo.com/"
+        },
+        {
+          "title": "Powerhouse",
+          "authors": ["author-alexander-lotersztain"],
+          "category": "cat-interior-and-furniture",
+          "url": "https://www.alexanderlotersztain.com/powerhouse/"
+        }
+      ]
+    },
+    {
+      "number": "020",
+      "picks": [
+        {
+          "title": "\"Question everything\"",
+          "authors": ["author-virgil-abloh"],
+          "category": "cat-installation",
+          "url": "https://www.brooklynmuseum.org/exhibitions/virgil_abloh"
+        },
+        {
+          "title": "Aeschbacher Bill Müller Linck",
+          "authors": ["author-armin-hofmann"],
+          "category": "cat-poster",
+          "url": "https://en.wikipedia.org/wiki/Swiss_Style_(design)"
+        },
+        {
+          "title": "Sonas",
+          "authors": ["author-too-gallus"],
+          "category": "cat-brand-identity",
+          "url": "https://toogallus.com/project/sonas"
+        }
+      ]
+    },
+    {
+      "number": "019",
+      "picks": [
+        {
+          "title": "Braun: Designed to Keep",
+          "authors": ["author-klaus-klemp"],
+          "category": "cat-book",
+          "url": "https://www.phaidon.com/en-eu/products/braun-designed-to-keep"
+        },
+        {
+          "title": "BANDIT",
+          "authors": ["author-allcaps"],
+          "category": "cat-typeface",
+          "url": "https://www.allcapstype.com/typefaces/bandit"
+        },
+        {
+          "title": "Karimoku Research Center",
+          "authors": ["author-keiji-ashizawa"],
+          "category": "cat-architecture",
+          "url": "https://www.thisispaper.com/mag/karimoku-research-center-keiji-ashizawa"
+        }
+      ]
+    },
+    {
+      "number": "018",
+      "picks": [
+        {
+          "title": "Neue Grafik / New Graphic Design / Graphisme Actuel - No.05 (1960)",
+          "authors": [
+            "author-carlo-vivarelli",
+            "author-hans-neuburg",
+            "author-josef-muller-brockmann",
+            "author-richard-paul-lohse"
+          ],
+          "category": "cat-magazine-cover",
+          "url": "https://designreviewed.com/artefacts/neue-grafik-new-graphic-design-graphisme-actuel-no-05-1960/"
+        },
+        {
+          "title": "SOIL",
+          "authors": ["author-shhh"],
+          "category": "cat-website",
+          "url": "https://soil-net.jp/"
+        },
+        {
+          "title": "The Sun Also Rises",
+          "authors": ["author-metier-press"],
+          "category": "cat-book-design",
+          "url": "https://www.metierpress.com/"
+        }
+      ]
+    },
+    {
+      "number": "017",
+      "picks": [
+        {
+          "title": "Armin Hofmann",
+          "authors": ["author-unknown"],
+          "category": "cat-quote-book",
+          "url": "https://www.logodesignlove.com/armin-hofmann"
+        },
+        {
+          "title": "IL CAPO",
+          "authors": ["author-auge-design"],
+          "category": "cat-brand-identity",
+          "url": "https://auge-design.com/works/ilcapo-production"
+        },
+        {
+          "title": "Villa Além",
+          "authors": ["author-valerio-olgiati"],
+          "category": "cat-architecture",
+          "url": "https://www.ignant.com/2019/02/20/villa-alem-valerio-olgiatis-own-concrete-ark-in-alentejo/"
+        }
+      ]
+    },
+    {
+      "number": "016",
+      "picks": [
+        {
+          "title": "Locomotive Scroll",
+          "authors": ["author-unknown"],
+          "category": "cat-website",
+          "url": "https://scroll.locomotive.ca/"
+        },
+        {
+          "title": "Casa Tao",
+          "authors": ["author-hw-studio"],
+          "category": "cat-architecture",
+          "url": "https://divisare.com/projects/540827-hw-studio-gustavo-quiroz-hugo-tirso-dominguez-cesar-belio-casa-tao"
+        },
+        {
+          "title": "Random Anxiety",
+          "authors": ["author-studioenok"],
+          "category": "cat-brand-identity",
+          "url": "https://studioenok.com/Random-Anxiety"
+        }
+      ]
+    },
+    {
+      "number": "015",
+      "picks": [
+        {
+          "title": "SIGMA BF",
+          "authors": ["author-unknown"],
+          "category": "cat-product-design",
+          "url": "https://www.sigma-global.com/en/cameras/bf/"
+        },
+        {
+          "title": "FORM Cookware",
+          "authors": ["author-regular-practice"],
+          "category": "cat-brand-identity",
+          "url": "https://www.instagram.com/p/DJpIvfuCqtt/"
+        },
+        {
+          "title": "New York City Transit Authority: Objects",
+          "authors": ["author-unknown"],
+          "category": "cat-book",
+          "url": "https://standardsmanual.com/products/objects"
+        }
+      ]
+    },
+    {
+      "number": "014",
+      "picks": [
+        {
+          "title": "Code Crafted",
+          "authors": ["author-victionary"],
+          "category": "cat-book-design",
+          "url": "https://victionary.com/products/codecrafted"
+        },
+        {
+          "title": "Sunrise From a Small Window",
+          "authors": ["author-sho-shibuya"],
+          "category": "cat-painting",
+          "url": "https://www.instagram.com/shoshibuya"
+        },
+        {
+          "title": "PP Fragment",
+          "authors": ["author-pangram-pangram", "author-locomotive"],
+          "category": "cat-website",
+          "url": "https://pp-fragment.com/"
+        }
+      ]
+    },
+    {
+      "number": "013",
+      "picks": [
+        {
+          "title": "Maison Sonics",
+          "authors": ["author-powell-studio", "author-aristide-benoist"],
+          "category": "cat-website",
+          "url": "https://maisonsonics.com/"
+        },
+        {
+          "title": "Smith & Diction",
+          "authors": ["author-simon-walker"],
+          "category": "cat-logo",
+          "url": "https://www.simonletters.com/identity"
+        },
+        {
+          "title": "A Guide to Measure Life in Points: The Second Edition",
+          "authors": ["author-studio-woork"],
+          "category": "cat-book-design",
+          "url": "https://www.dandad.org/work/d-ad-awards-archive/a-guide-to-measure-life-in-points-the-second-edition"
+        }
+      ]
+    },
+    {
+      "number": "012",
+      "picks": [
+        {
+          "title": "Teenage Engineering EP–133 K.O. II",
+          "authors": ["author-teenage-engineering"],
+          "category": "cat-product-design",
+          "url": "https://teenage.engineering/store/ep-133"
+        },
+        {
+          "title": "Artiom Yakushev",
+          "authors": ["author-unknown"],
+          "category": "cat-website",
+          "url": "https://www.art-yakushev.com/"
+        },
+        {
+          "title": "Atlético Dallas",
+          "authors": ["author-modestworks"],
+          "category": "cat-brand-identity",
+          "url": "https://www.modestworks.com/work/atletico-dallas"
+        }
+      ]
+    },
+    {
+      "number": "011",
+      "picks": [
+        {
+          "title": "IDK What's Going On But It's A Lot",
+          "authors": ["author-stefan-marx"],
+          "category": "cat-artwork",
+          "url": "https://www.hatjecantz.de/blogs/events/stefan-marx-im-bahnhof-hansaplatz"
+        },
+        {
+          "title": "Iconoclast Brasil / mu540",
+          "authors": ["author-annas-works"],
+          "category": "cat-packaging",
+          "url": "https://www.instagram.com/p/DRLE6Q7jl2W/?img_index=1"
+        },
+        {
+          "title": "Our Revolution",
+          "authors": ["author-unknown"],
+          "category": "cat-website",
+          "url": "https://our-revolution.com/"
+        }
+      ]
+    },
+    {
+      "number": "010",
+      "picks": [
+        {
+          "title": "NASA Graphics Standards Manual",
+          "authors": ["author-unknown"],
+          "category": "cat-book",
+          "url": "https://standardsmanual.com/products/nasa-graphics-standards-manual"
+        },
+        {
+          "title": "Inertia Studios",
+          "authors": ["author-okey-studio", "author-adrien-quechon", "author-clarisse-michard"],
+          "category": "cat-website",
+          "url": "https://www.weareinertia.com/"
+        },
+        {
+          "title": "Schulz Stuhl",
+          "authors": ["author-objekte-unserer-tage"],
+          "category": "cat-chair",
+          "url": "https://objekteunserertage.com/products/schulz-chair-by-out"
+        }
+      ]
+    },
+    {
+      "number": "009",
+      "picks": [
+        {
+          "title": "Clay Boan",
+          "authors": [
+            "author-rob-smittenaar",
+            "author-ruud-luijten",
+            "author-thomas-latyr-van-glabeke",
+            "author-theo-favereau",
+            "author-anoukia-perrey"
+          ],
+          "category": "cat-website",
+          "url": "https://www.clayboan.com/"
+        },
+        {
+          "title": "PAO XVIII",
+          "authors": ["author-studio-iknoki"],
+          "category": "cat-book-cover",
+          "url": "https://www.instagram.com/p/C3GDJkKsu_x/?img_index=1"
+        },
+        {
+          "title": "Nike Area 72",
+          "authors": ["author-amplify"],
+          "category": "cat-store-concept",
+          "url": "https://venier.co.uk/project/nike-area-72/"
+        }
+      ]
+    },
+    {
+      "number": "008",
+      "picks": [
+        {
+          "title": "18 Years of Büro",
+          "authors": ["author-burocratik"],
+          "category": "cat-website",
+          "url": "https://18.burocratik.com/"
+        },
+        {
+          "title": "Grid systems in Graphic Design",
+          "authors": ["author-josef-muller-brockmann"],
+          "category": "cat-book",
+          "url": "https://amzn.to/4p97QXB"
+        },
+        {
+          "title": "Joy in Life",
+          "authors": ["author-anthony-burrill"],
+          "category": "cat-wall-painting",
+          "url": "https://anthonyburrill.com/showcase/joy-in-life/"
+        }
+      ]
+    },
+    {
+      "number": "007",
+      "picks": [
+        {
+          "title": "ONE Burger",
+          "authors": ["author-the-new-company"],
+          "category": "cat-design",
+          "url": "https://www.thenewcompany.com/project/one-burger"
+        },
+        {
+          "title": "New York City Transit Authority Graphics Standards Manual",
+          "authors": ["author-unknown"],
+          "category": "cat-book",
+          "url": "https://standardsmanual.com/products/nyctacompactedition"
+        },
+        {
+          "title": "Creativity: Dead or Alive?",
+          "authors": ["author-d-and-ad"],
+          "category": "cat-design",
+          "url": "https://www.dandad.org/alive"
+        }
+      ]
+    },
+    {
+      "number": "006",
+      "picks": [
+        {
+          "title": "Product Sticker Exploration",
+          "authors": ["author-fffcorp"],
+          "category": "cat-design",
+          "url": "https://www.instagram.com/fffcorp/"
+        },
+        {
+          "title": "Dieter Rams: The Complete Works",
+          "authors": ["author-unknown"],
+          "category": "cat-book",
+          "url": "https://amzn.to/43uazCb"
+        },
+        {
+          "title": "IF THEN",
+          "authors": ["author-eike-konig"],
+          "category": "cat-artwork",
+          "url": "https://eikekonig.com/"
+        }
+      ]
+    },
+    {
+      "number": "005",
+      "picks": [
+        {
+          "title": "Affinity",
+          "authors": ["author-rob-clarke"],
+          "category": "cat-logo",
+          "url": "https://robclarke.com/work/affinity/"
+        },
+        {
+          "title": "Something's Off",
+          "authors": ["author-virgil-abloh", "author-nike", "author-icons"],
+          "category": "cat-book",
+          "url": "https://amzn.to/4hL91JX"
+        },
+        {
+          "title": "YARD",
+          "authors": ["author-unknown"],
+          "category": "cat-architecture",
+          "url": "https://www.llllitl.fr/2025/10/yard-bureaux-montreuil/"
+        }
+      ]
+    },
+    {
+      "number": "004",
+      "picks": [
+        {
+          "title": "AFC Ajax Amsterdam",
+          "authors": ["author-smorgasbord"],
+          "category": "cat-design",
+          "url": "https://the-brandidentity.com/project/how-did-smörgåsbord-rebrand-one-of-footballs-most-revered-clubs"
+        },
+        {
+          "title": "HermanMiller",
+          "authors": ["author-order"],
+          "category": "cat-design",
+          "url": "https://order.design/project/herman-miller"
+        },
+        {
+          "title": "The Creative Act: A Way of Being",
+          "authors": ["author-rick-rubin"],
+          "category": "cat-book",
+          "url": "https://amzn.to/438t5jg"
+        }
+      ]
+    },
+    {
+      "number": "003",
+      "picks": [
+        {
+          "title": "André Josselin: Future Nostalgia",
+          "authors": ["author-c100-studio"],
+          "category": "cat-book",
+          "url": "https://www.dearjosselin.com/future-nostalgia"
+        },
+        {
+          "title": "www.landonorris.com",
+          "authors": ["author-off-brand"],
+          "category": "cat-website",
+          "url": "https://landonorris.com/"
+        },
+        {
+          "title": "Tyler, The Creator All Star Series, Paris",
+          "authors": ["author-unknown"],
+          "category": "cat-interview",
+          "url": "https://www.youtube.com/watch?v=Z90f1-zWg0c"
+        }
+      ]
+    },
+    {
+      "number": "002",
+      "picks": [
+        {
+          "title": "The Virgil Abloh Archive",
+          "authors": ["author-official-correspondence"],
+          "category": "cat-logo",
+          "url": "https://virgilabloh.com/"
+        },
+        {
+          "title": "www.davidalaba.com",
+          "authors": ["author-holographik-ilja-van-eck"],
+          "category": "cat-website",
+          "url": "https://davidalaba.com"
+        },
+        {
+          "title": "TP–7 aluminum",
+          "authors": ["author-teenage-engineering"],
+          "category": "cat-product",
+          "url": "https://teenage.engineering/products/tp-7"
+        }
+      ]
+    },
+    {
+      "number": "001",
+      "picks": [
+        {
+          "title": "Be Brave V2",
+          "authors": ["author-dixonbaxi"],
+          "category": "cat-quote-book",
+          "url": "https://bebrave.dixonbaxi.com/"
+        },
+        {
+          "title": "MX Master",
+          "authors": ["author-peter-tarka"],
+          "category": "cat-3d",
+          "url": "https://www.instagram.com/petertarka"
+        },
+        {
+          "title": "Intelligent Beauty",
+          "authors": ["author-found-studio"],
+          "category": "cat-book",
+          "url": "https://www.found-studio.com/work/intelligent-beauty/"
+        }
+      ]
+    }
+  ]
+}

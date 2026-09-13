@@ -1,17 +1,26 @@
 <script setup lang="ts">
-const {hideCredits} = useSitePrefs()
-const {data: editions} = await useEditions()
+const { hideCredits } = useSitePrefs();
+const { data: editions } = await useEditions();
 </script>
 
 <template>
+  <NewsletterForm />
   <div>
     <p v-if="!editions?.length" class="section grid">
       <span class="col" data-grid="df:12">No editions yet.</span>
     </p>
 
-    <section v-for="(edition, editionIndex) in editions || []" :key="edition._id" class="section">
+    <section
+      v-for="(edition, editionIndex) in editions || []"
+      :key="edition._id"
+      class="section"
+    >
       <div class="edition-group | grid">
-        <div class="edition-group__title | col" data-grid="df:12" :class="{hide: hideCredits}">
+        <div
+          class="edition-group__title | col"
+          data-grid="df:12"
+          :class="{ hide: hideCredits }"
+        >
           <div class="edition-group__title-inner">
             Edition {{ edition.number }}
           </div>
@@ -33,7 +42,7 @@ const {data: editions} = await useEditions()
               :loading="editionIndex === 0 ? 'eager' : 'lazy'"
             />
           </div>
-          <div class="edition-text" :class="{hide: hideCredits}">
+          <div class="edition-text" :class="{ hide: hideCredits }">
             <div class="edition-text__inner">
               <span class="edition-name">{{ pick.title }}</span>
               <span class="edition-author">{{ authorNames(pick) }}</span>

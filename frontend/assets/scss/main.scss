@@ -7,6 +7,11 @@
 @use "7-utilities" as *;
 @use "8-themes" as *;
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 a {
   text-decoration: none;
 }
@@ -138,10 +143,19 @@ a {
   margin-bottom: var(--space-2);
   content-visibility: auto;
   contain-intrinsic-size: auto 280px;
+  transition: 0.5s ease color;
 
   @include bp(sm) {
     margin-bottom: 0;
   }
+}
+
+.edition:hover {
+  color: blue;
+}
+
+html.dark .edition:hover {
+  color: yellow;
 }
 
 .edition-image-container {
@@ -157,8 +171,8 @@ a {
 
 .edition-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 90%;
+  object-fit: contain;
   background: var(--color-edition-image);
   transition: background-color 0.5s ease-out;
 }

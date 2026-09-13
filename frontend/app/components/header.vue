@@ -1,26 +1,31 @@
 <script setup lang="ts">
-const header = ref<HTMLElement | null>(null)
+const header = ref<HTMLElement | null>(null);
+const newsletterDrawer = ref<{ open: () => void } | null>(null);
+
+function openNewsletter() {
+  newsletterDrawer.value?.open();
+}
 
 onMounted(() => {
-  const el = header.value
-  if (!el) return
+  const el = header.value;
+  if (!el) return;
 
   const setHeight = () => {
     document.documentElement.style.setProperty(
       "--header-height",
       `${el.offsetHeight}px`,
-    )
-  }
+    );
+  };
 
-  setHeight()
-  const observer = new ResizeObserver(setHeight)
-  observer.observe(el)
+  setHeight();
+  const observer = new ResizeObserver(setHeight);
+  observer.observe(el);
 
   onUnmounted(() => {
-    observer.disconnect()
-    document.documentElement.style.removeProperty("--header-height")
-  })
-})
+    observer.disconnect();
+    document.documentElement.style.removeProperty("--header-height");
+  });
+});
 </script>
 
 <template>
@@ -33,10 +38,16 @@ onMounted(() => {
         Featuring selected work in Design, Art, Photography, and Architecture.
       </div>
       <div class="col" data-grid="lg:1"></div>
-      <div class="header__meta | col" data-grid="df:12 sm:6 md:2">Selected by Dirk Lach</div>
+      <div class="header__meta | col" data-grid="df:12 sm:6 md:2">
+        Selected by Dirk Lach
+      </div>
       <div class="header__cta | col" data-grid="df:12 sm:6 md:2 lg:2">
-        <a href="#" class="text-link">Subscribe Newsletter</a>
+        <button type="button" class="text-link" @click="openNewsletter">
+          Subscribe Newsletter
+        </button>
       </div>
     </div>
   </section>
+
+  <NewsletterDrawer ref="newsletterDrawer" />
 </template>

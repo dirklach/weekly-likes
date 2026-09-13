@@ -11,6 +11,9 @@ importers:
       '@nuxtjs/sanity':
         specifier: ^2.5.0
         version: 2.5.0(@oclif/core@4.14.0)(@sanity/cli-core@2.8.1(esbuild@0.28.2)(sass@1.103.1)(supports-color@8.1.1)(terser@5.51.2))(@sanity/types@5.31.2(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.2)(magic-string@1.2.3)(magicast@0.5.4)(rolldown@1.2.6)(rollup@4.63.1)(supports-color@8.1.1)(unplugin@3.3.0(esbuild@0.28.2)(rolldown@1.2.6)(rollup@4.63.1)(vite@8.2.2(esbuild@0.28.2)(jiti@2.7.0)(sass@1.103.1)(terser@5.51.2)(tsx@4.23.13)))(vite@8.2.2(esbuild@0.28.2)(jiti@2.7.0)(sass@1.103.1)(terser@5.51.2)(tsx@4.23.13))(vue@3.5.42)
+      gsap:
+        specifier: ^3.15.0
+        version: 3.15.0
       lenis:
         specifier: ^1.3.26
         version: 1.3.26(@nuxt/kit@4.5.2(magic-string@1.2.3)(magicast@0.5.4)(rolldown@1.2.6)(unplugin@3.3.0(esbuild@0.28.2)(rolldown@1.2.6)(rollup@4.63.1)(vite@8.2.2(esbuild@0.28.2)(jiti@2.7.0)(sass@1.103.1)(terser@5.51.2)(tsx@4.23.13))))(vue@3.5.42)
@@ -2632,6 +2635,9 @@ packages:
   groq@6.12.0:
     resolution: {integrity: sha512-fVdjBJIkclwZELjt214C0/E+j6GlLHf7wooYBzfQyxUEJ82ej+c2eyFRL+GzDEqIyaAwPqUUpv2zDeuSttRHAw==}
     engines: {node: '>=22.12'}
+
+  gsap@3.15.0:
+    resolution: {integrity: sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==}
 
   gzip-size@7.0.0:
     resolution: {integrity: sha512-O1Ld7Dr+nqPnmGpdhzLmMTQ4vAsD+rHwMm1NLUmoUFFymBOMKxCCrtDxqdBRYXdeEPEi3SyoR4TizJLQrnKBNA==}
@@ -7445,6 +7451,8 @@ snapshots:
   groq@5.31.2: {}
 
   groq@6.12.0: {}
+
+  gsap@3.15.0: {}
 
   gzip-size@7.0.0:
     dependencies:
