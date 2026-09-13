@@ -42,9 +42,7 @@ onMounted(() => {
         Selected by Dirk Lach
       </div>
       <div class="header__cta | col" data-grid="df:12 sm:6 md:2 lg:2">
-        <button type="button" class="text-link" @click="openNewsletter">
-          Subscribe Newsletter
-        </button>
+        <NewsletterForm />
       </div>
     </div>
   </section>

@@ -4,6 +4,10 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
     layoutTransition: false,
+    head: {
+      title:
+        "Weekly Likes | Design, Art, Photography, Architecture | Selected by Dirk Lach",
+    },
   },
   sanity: {
     projectId: "bl19dtug",
