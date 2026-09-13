@@ -125,9 +125,10 @@ a {
   align-items: center;
   column-gap: var(--space-1);
   line-height: 1;
+  font-size: 3rem;
 
   &::before {
-    --size: 4px;
+    --size: 10px;
     content: "";
     display: inline-block;
     width: var(--size);
@@ -182,7 +183,7 @@ html.dark .edition:hover {
   grid-template-rows: 1fr;
   min-height: 0;
   margin-top: var(--space-1);
-  padding-bottom: var(--space-5);
+  padding-bottom: var(--space-1);
   transition:
     grid-template-rows 0.75s cubic-bezier(0.625, 0.05, 0, 1),
     margin-top 0.75s cubic-bezier(0.625, 0.05, 0, 1),
