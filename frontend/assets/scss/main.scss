@@ -79,7 +79,7 @@ a {
 }
 
 .page {
-  padding-top: clamp(15dvh, 6rem, 20dvh);
+  padding-top: clamp(20dvh, 8rem, 25dvh);
 }
 .header__desc {
   max-width: 80vw;
@@ -140,13 +140,13 @@ a {
   align-items: center;
   column-gap: var(--space-1);
   line-height: 1;
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: var(--space-1);
 
   &::before {
-    --size: 10px;
+    --size: 8px;
     content: "";
-    display: inline-block;
+    display: none;
     width: var(--size);
     height: var(--size);
     background: var(--color-primary);
@@ -161,25 +161,25 @@ a {
   content-visibility: auto;
   contain-intrinsic-size: auto 280px;
   transition: 0.5s ease color;
-
+  color: var(--color-edition);
   @include bp(sm) {
     margin-bottom: 0;
   }
 }
 
 .edition:hover {
-  color: blue;
+  color: #000;
 }
 
 html.dark .edition:hover {
-  color: yellow;
+  color: #fff;
 }
 
 .edition-image-container {
   aspect-ratio: 16 / 9;
   width: 100%;
   background: var(--color-edition-image);
-  transition: background-color 0.5s ease-out;
+  transition: background-color 0.75s ease-out;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -276,13 +276,15 @@ html.dark .edition:hover {
 .pick__main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: var(--space-8);
+  text-wrap: balance;
 }
 
 .pick-meta {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: 4px;
+  font-size: 2rem;
 }
 
 .pick-key-value {
@@ -301,14 +303,22 @@ html.dark .edition:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: var(--color-edition-image);
+  transition: 0.5s ease background-color;
 
   img {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: 90%;
     object-fit: cover;
   }
 }
 
 .edition-group.zoom-out {
   max-width: 300px;
+}
+
+.pick-title {
+  font-size: 2rem;
 }

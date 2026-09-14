@@ -23,7 +23,7 @@ const { data: editions } = await useEditions();
           :class="{ hide: creditsHidden }"
         >
           <div class="edition-group__title-inner">
-            Edition {{ edition.number }}
+            Week {{ edition.number }}
           </div>
         </div>
         <NuxtLink

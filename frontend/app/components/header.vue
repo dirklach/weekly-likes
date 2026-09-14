@@ -1,10 +1,5 @@
 <script setup lang="ts">
 const header = ref<HTMLElement | null>(null);
-const newsletterDrawer = ref<{ open: () => void } | null>(null);
-
-function openNewsletter() {
-  newsletterDrawer.value?.open();
-}
 
 onMounted(() => {
   const el = header.value;
@@ -46,6 +41,4 @@ onMounted(() => {
       </div>
     </div>
   </section>
-
-  <NewsletterDrawer ref="newsletterDrawer" />
 </template>
