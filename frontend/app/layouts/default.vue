@@ -1,8 +1,3 @@
-<script setup lang="ts">
-const route = useRoute()
-const isPick = computed(() => /^\/\d{3}(\/|$)/.test(route.path))
-</script>
-
 <template>
   <div>
     <DemoGrid />
@@ -13,6 +8,6 @@ const isPick = computed(() => /^\/\d{3}(\/|$)/.test(route.path))
       <slot />
     </main>
 
-    <Metabar :show-credits="!isPick" :show-back="isPick" />
+    <Metabar :show-credits="true" :show-back="false" />
   </div>
 </template>

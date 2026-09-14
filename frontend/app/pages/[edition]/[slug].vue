@@ -1,34 +1,44 @@
 <script setup lang="ts">
-const route = useRoute()
-const {data: editions} = await useEditions()
+definePageMeta({
+  layout: "pick",
+});
+
+const route = useRoute();
+const { data: editions } = await useEditions();
 
 const edition = computed(
-  () => editions.value?.find((item) => item.number === String(route.params.edition)) ?? null,
-)
+  () =>
+    editions.value?.find(
+      (item) => item.number === String(route.params.edition),
+    ) ?? null,
+);
 
 if (!edition.value) {
-  throw createError({statusCode: 404, statusMessage: "Edition not found"})
+  throw createError({ statusCode: 404, statusMessage: "Edition not found" });
 }
 
 const pick = computed(() => {
-  const picks = edition.value?.picks || []
-  const slug = String(route.params.slug)
-  return picks.find((item) => pickSlug(picks, item) === slug) ?? null
-})
+  const picks = edition.value?.picks || [];
+  const slug = String(route.params.slug);
+  return picks.find((item) => pickSlug(picks, item) === slug) ?? null;
+});
 
 if (!pick.value) {
-  throw createError({statusCode: 404, statusMessage: "Pick not found"})
+  throw createError({ statusCode: 404, statusMessage: "Pick not found" });
 }
 
 const pickIndex = computed(() => {
-  const index = edition.value?.picks?.findIndex((item) => item._key === pick.value?._key) ?? -1
-  return index >= 0 ? String(index + 1).padStart(2, "0") : "00"
-})
+  const index =
+    edition.value?.picks?.findIndex((item) => item._key === pick.value?._key) ??
+    -1;
+  return index >= 0 ? String(index + 1).padStart(2, "0") : "00";
+});
 </script>
 
 <template>
+  <Metabar :show-credits="false" show-back />
   <section class="section">
-    <div class="grid">
+    <div class="pick-detail | grid">
       <div class="pick__main | col" data-grid="df:12 md:6">
         <div class="pick-title">
           {{ pick.title }}
@@ -44,7 +54,10 @@ const pickIndex = computed(() => {
             <div class="pick-key-value">
               <div class="pick-key">By</div>
               <div class="pick-value">
-                <template v-for="author in pick.authors || []" :key="author._id">
+                <template
+                  v-for="author in pick.authors || []"
+                  :key="author._id"
+                >
                   <a
                     v-if="author.url"
                     class="text-link"

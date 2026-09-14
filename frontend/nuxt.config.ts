@@ -2,7 +2,7 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/sanity", "lenis/nuxt"],
   css: ["lenis/dist/lenis.css", "~~/assets/scss/main.scss"],
   app: {
-    pageTransition: { name: "page", mode: "out-in" },
+    pageTransition: false,
     layoutTransition: false,
     head: {
       title:
