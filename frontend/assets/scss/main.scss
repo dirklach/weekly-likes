@@ -260,7 +260,7 @@ html.dark .edition:hover {
 .pick__main {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: var(--space-6);
   text-wrap: balance;
 }
 
@@ -268,7 +268,6 @@ html.dark .edition:hover {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 2rem;
 }
 
 .pick-key-value {
