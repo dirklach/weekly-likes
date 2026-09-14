@@ -1,8 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: "pick",
-});
-
 const route = useRoute();
 const { data: editions } = await useEditions();
 
@@ -36,7 +32,6 @@ const pickIndex = computed(() => {
 </script>
 
 <template>
-  <Metabar :show-credits="false" show-back />
   <section class="section">
     <div class="pick-detail | grid">
       <div class="pick__main | col" data-grid="df:12 md:6">

@@ -12,6 +12,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scrollbar-width: none;
+} /* Firefox */
+body {
+  -ms-overflow-style: none;
+} /* IE and Edge */
+body::-webkit-scrollbar,
+body::-webkit-scrollbar-button {
+  display: none;
+} /* Chrome */
+
 a {
   text-decoration: none;
 }
@@ -72,7 +83,7 @@ a {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 20;
+  z-index: 101;
   margin: 0;
   padding: var(--default-margin-y) 0;
   transition: background-color 0.5s ease-out;
@@ -257,6 +268,15 @@ html.dark .edition:hover {
   padding-top: clamp(5dvh, 7rem, 25dvh);
 }
 
+.dimmer {
+  position: fixed;
+  inset: 0;
+  background: var(--color-secondary);
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+}
+
 .pick__main {
   display: flex;
   flex-direction: column;
@@ -304,4 +324,13 @@ html.dark .edition:hover {
 
 .pick-title {
   font-size: 2rem;
+}
+
+.dimmer {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 99;
+  pointer-events: none;
+  opacity: 0;
 }

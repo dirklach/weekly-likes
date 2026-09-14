@@ -3,7 +3,6 @@ export default defineNuxtConfig({
   css: ["lenis/dist/lenis.css", "~~/assets/scss/main.scss"],
   app: {
     pageTransition: false,
-    layoutTransition: false,
     head: {
       title:
         "Weekly Likes | Design, Art, Photography, Architecture | Selected by Dirk Lach",

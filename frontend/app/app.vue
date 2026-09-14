@@ -1,13 +1,32 @@
 <script setup lang="ts">
-const route = useRoute();
-const lenis = useLenis();
+import { gsap } from "gsap";
 
-watch(
-  () => route.fullPath,
-  () => {
-    lenis.value?.scrollTo(0, { immediate: true });
-  },
-);
+const lenis = useLenis();
+const router = useRouter();
+
+function getDimmer() {
+  return document.getElementById("page-dimmer");
+}
+
+router.beforeEach(() => {
+  return new Promise<void>((resolve) => {
+    gsap.to(getDimmer(), {
+      opacity: 1,
+      duration: 0.35,
+      ease: "power2.inOut",
+      onComplete: resolve,
+    });
+  });
+});
+
+router.afterEach(() => {
+  lenis.value?.scrollTo(0, { immediate: true });
+  gsap.to(getDimmer(), {
+    opacity: 0,
+    duration: 0.35,
+    ease: "power2.inOut",
+  });
+});
 </script>
 
 <template>
