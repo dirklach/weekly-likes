@@ -1,10 +1,11 @@
 <script setup lang="ts">
-const { hideCredits } = useSitePrefs();
+const { hideCredits, zoomedOut } = useSitePrefs();
+const creditsHidden = computed(() => hideCredits.value || zoomedOut.value);
 const { data: editions } = await useEditions();
 </script>
 
 <template>
-  <div>
+  <div :class="{ 'is-zoomed-out': zoomedOut }">
     <p v-if="!editions?.length" class="section grid">
       <span class="col" data-grid="df:12">No editions yet.</span>
     </p>
@@ -12,13 +13,14 @@ const { data: editions } = await useEditions();
     <section
       v-for="(edition, editionIndex) in editions || []"
       :key="edition._id"
-      class="section"
+      class="section edition-section"
+      :class="{ 'edition-section--zoomed-out': zoomedOut }"
     >
       <div class="edition-group | grid">
         <div
           class="edition-group__title | col"
           data-grid="df:12"
-          :class="{ hide: hideCredits }"
+          :class="{ hide: creditsHidden }"
         >
           <div class="edition-group__title-inner">
             Edition {{ edition.number }}
@@ -41,7 +43,7 @@ const { data: editions } = await useEditions();
               :loading="editionIndex === 0 ? 'eager' : 'lazy'"
             />
           </div>
-          <div class="edition-text" :class="{ hide: hideCredits }">
+          <div class="edition-text" :class="{ hide: creditsHidden }">
             <div class="edition-text__inner">
               <span class="edition-name">{{ pick.title }}</span>
               <span class="edition-author">{{ authorNames(pick) }}</span>

@@ -1,5 +1,12 @@
 <script setup lang="ts">
-const { hideCredits, darkMode, toggleCredits, toggleDarkMode } = useSitePrefs();
+const {
+  hideCredits,
+  darkMode,
+  zoomedOut,
+  toggleCredits,
+  toggleDarkMode,
+  toggleZoom,
+} = useSitePrefs();
 
 const props = withDefaults(
   defineProps<{
@@ -37,6 +44,12 @@ function onMetabarKeydown(event: KeyboardEvent) {
   if (event.key === "d" || event.key === "D") {
     event.preventDefault();
     toggleDarkMode();
+    return;
+  }
+
+  if (props.showCredits && (event.key === "z" || event.key === "Z")) {
+    event.preventDefault();
+    toggleZoom();
   }
 }
 
@@ -56,6 +69,9 @@ onUnmounted(() => {
     </div>
     <div v-if="showCredits" class="button" @click="toggleCredits">
       (C) {{ hideCredits ? "Show" : "Hide" }} Info
+    </div>
+    <div v-if="showCredits" class="button" @click="toggleZoom">
+      (Z) {{ zoomedOut ? "Zoom in" : "Zoom out" }}
     </div>
     <div class="button" @click="toggleDarkMode">
       (D) {{ darkMode ? "Light" : "Dark" }} Mode
