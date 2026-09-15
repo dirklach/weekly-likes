@@ -28,7 +28,6 @@ onMounted(() => {
     <div class="header | grid">
       <div class="header__logo | col" data-grid="sm:6  lg:4">
         <NuxtLink to="/">Aetyc</NuxtLink><br />
-        <span>(Dirk Lach)</span>
       </div>
       <div class="header__desc | col" data-grid="df:12 sm:6 lg:2">
         A weekly showcase of exceptional Design, Art, Photography, and

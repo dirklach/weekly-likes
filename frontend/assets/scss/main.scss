@@ -79,7 +79,10 @@ a {
 // ==================================================================
 
 .page {
-  padding-top: clamp(15dvh, 25rem, 10dvh);
+  padding-top: 10vh;
+  @include bp(sm) {
+    padding-top: 15vh;
+  }
 }
 
 .header {
@@ -89,6 +92,8 @@ a {
 
   @include bp(sm) {
     display: grid;
+    position: fixed;
+    z-index: 9999;
   }
 }
 
