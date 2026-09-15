@@ -16,6 +16,17 @@ const props = withDefaults(
   { showCredits: true, showBack: false },
 );
 
+const route = useRoute();
+const cameFromOverview = useState("cameFromOverview", () => false);
+
+function goBackToOverview() {
+  const edition = route.params.edition;
+  if (cameFromOverview.value && typeof edition === "string" && edition) {
+    return navigateTo({ path: "/", hash: `#${edition}` });
+  }
+  return navigateTo("/");
+}
+
 useHead({
   htmlAttrs: {
     class: computed(() => (darkMode.value ? "dark" : undefined)),
@@ -31,7 +42,7 @@ function onMetabarKeydown(event: KeyboardEvent) {
 
   if (props.showBack && event.key === "Escape") {
     event.preventDefault();
-    navigateTo("/");
+    goBackToOverview();
     return;
   }
 
@@ -64,7 +75,7 @@ onUnmounted(() => {
 
 <template>
   <div class="metabar">
-    <div v-if="showBack" class="button" @click="navigateTo('/')">
+    <div v-if="showBack" class="button" @click="goBackToOverview">
       (ESC) Back to overview
     </div>
     <div v-if="showCredits" class="button" @click="toggleCredits">

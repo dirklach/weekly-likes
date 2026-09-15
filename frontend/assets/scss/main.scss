@@ -134,6 +134,7 @@ a {
 
 .edition-group {
   margin-bottom: var(--space-1);
+  scroll-margin-top: var(--overview-anchor-offset);
   transition: row-gap 0.75s cubic-bezier(0.625, 0.05, 0, 1);
 
   &:has(.edition-group__title.hide) {

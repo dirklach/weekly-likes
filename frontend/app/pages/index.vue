@@ -16,7 +16,7 @@ const { data: editions } = await useEditions();
       class="section edition-section"
       :class="{ 'edition-section--zoomed-out': zoomedOut }"
     >
-      <div class="edition-group | grid">
+      <div class="edition-group | grid" :id="edition.number">
         <div
           class="edition-group__title | col"
           data-grid="df:12"

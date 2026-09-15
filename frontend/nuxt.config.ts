@@ -4,8 +4,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: false,
     head: {
-      title:
-        "Weekly Likes | Design, Art, Photography, Architecture | Selected by Dirk Lach",
+      title: "Aetyc | Weekly Design Inspiration by Dirk Lach",
     },
   },
   sanity: {
