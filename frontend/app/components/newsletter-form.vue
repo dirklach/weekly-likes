@@ -30,17 +30,20 @@ async function submit() {
     @submit.prevent="submit"
   >
     <div class="newsletter-form__row">
-      <input
-        v-model="email"
-        class="newsletter-form__input"
-        type="email"
-        placeholder="Your email"
-        required
-        :disabled="state === 'loading'"
-        autocomplete="email"
-      />
+      <div class="newsletter-form__label">Newsletter</div>
+      <div class="newsletter-form__input-wrapper">
+        <input
+          v-model="email"
+          class="newsletter-form__input"
+          type="email"
+          placeholder="Your Email Address"
+          required
+          :disabled="state === 'loading'"
+          autocomplete="email"
+        />
+      </div>
       <button
-        class="newsletter-form__btn"
+        class="newsletter-form__btn text-link"
         type="submit"
         :disabled="state === 'loading'"
       >
