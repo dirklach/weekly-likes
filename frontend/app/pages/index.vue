@@ -8,9 +8,9 @@ const { data: editions } = await useEditions();
   <div class="intro | grid">
     <div class="col">
       <h1 class="heading-2">
-        A weekly updated catalog of selected works across design, architecture,
-        photography, and art. Subscribe to receive updates straight to your
-        inbox. Three beautiful picks per week.
+        A weekly updated catalog of selected works in design, architecture,
+        photography, and art. Subscribe to receive three beautiful picks in your
+        inbox each week.
       </h1>
     </div>
   </div>
