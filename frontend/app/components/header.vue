@@ -25,19 +25,22 @@ onMounted(() => {
 
 <template>
   <section ref="header" class="header-section | section">
-    <div class="header | grid">
-      <div class="header__logo | col" data-grid="sm:6  lg:4">
+    <div class="grid">
+      <div class="header__logo | col" data-grid="sm:6 md:2">
         <NuxtLink to="/">Aetyc</NuxtLink><br />
       </div>
-      <div class="header__desc | col" data-grid="df:12 sm:6 lg:2">
-        A weekly showcase of exceptional Design, Art, Photography, and
-        Architecture.
+      <div class="header__desc | col" data-grid="df:12 sm:6 md:2">
+        Driven by good design.
       </div>
-      <div class="header__offset | col" data-grid="lg:1"></div>
-      <div class="header__meta | col" data-grid="df:12 sm:6lg:3">
-        Selected by Dirk Lach
+      <div class="header__meta | col" data-grid="df:12 sm:6 md:5">
+        <div class="menu">
+          <a href="#" class="menu-item | menu-link --active">Weekly</a
+          ><span>, </span> <a href="#" class="menu-item | menu-link">Supply</a
+          ><span>, </span>
+          <a href="#" class="menu-item | menu-link">About</a>
+        </div>
       </div>
-      <div class="header__cta | col" data-grid="df:12 sm:6 md:3 lg:2">
+      <div class="header__cta | col" data-grid="df:12 sm:6 md:3">
         <NewsletterForm />
       </div>
     </div>

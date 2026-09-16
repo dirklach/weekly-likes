@@ -5,6 +5,15 @@ const { data: editions } = await useEditions();
 </script>
 
 <template>
+  <div class="intro | grid">
+    <div class="col">
+      <h1 class="heading-2">
+        A weekly updated catalog of selected works across design, architecture,
+        photography, and art. Subscribe to receive updates straight to your
+        inbox. Three beautiful picks per week.
+      </h1>
+    </div>
+  </div>
   <div :class="{ 'is-zoomed-out': zoomedOut }">
     <p v-if="!editions?.length" class="section grid">
       <span class="col" data-grid="df:12">No editions yet.</span>
