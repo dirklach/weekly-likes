@@ -488,5 +488,6 @@ input::placeholder {
 
 .intro {
   font-size: 2rem;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-3);
+  text-wrap: balance;
 }

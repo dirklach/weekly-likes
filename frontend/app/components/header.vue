@@ -26,10 +26,10 @@ onMounted(() => {
 <template>
   <section ref="header" class="header-section | section">
     <div class="grid">
-      <div class="header__logo | col" data-grid="sm:6 md:2">
+      <div class="header__logo | col" data-grid="sm:6 md:1">
         <NuxtLink to="/">Aetyc</NuxtLink><br />
       </div>
-      <div class="header__desc | col" data-grid="df:12 sm:6 md:2">
+      <div class="header__desc | col" data-grid="df:12 sm:6 md:3">
         Driven by good design.
       </div>
       <div class="header__meta | col" data-grid="df:12 sm:6 md:5">
