@@ -30,14 +30,15 @@ onMounted(() => {
         <NuxtLink to="/">Aetyc</NuxtLink><br />
       </div>
       <div class="header__desc | col" data-grid="df:12 sm:6 md:3">
-        Driven by good design.
+        A catalog of visual culture
       </div>
       <div class="header__meta | col" data-grid="df:12 sm:6 md:5">
         <div class="menu">
-          <a href="#" class="menu-item | menu-link --active">Weekly</a
-          ><span>, </span> <a href="#" class="menu-item | menu-link">Supply</a
-          ><span>, </span>
-          <a href="#" class="menu-item | menu-link">About</a>
+          <a href="#" class="menu-item | menu-link">Info</a>
+          <span>, </span>
+          <a href="#" class="menu-item | menu-link --active"
+            >The Weekly Likes</a
+          >
         </div>
       </div>
       <div class="header__cta | col" data-grid="df:12 sm:6 md:3">
