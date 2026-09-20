@@ -1,12 +1,13 @@
 <script setup lang="ts">
 const route = useRoute();
+const { zoomedOut } = useSitePrefs();
 const isPick = computed(() =>
   route.name?.toString().startsWith("edition-slug"),
 );
 </script>
 
 <template>
-  <div>
+  <div :class="{ 'is-zoomed-out': zoomedOut && !isPick }">
     <div id="page-dimmer" class="dimmer"></div>
 
     <DemoGrid />

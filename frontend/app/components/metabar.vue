@@ -81,7 +81,12 @@ onUnmounted(() => {
     <div v-if="showCredits" class="button" @click="toggleCredits">
       (C) {{ hideCredits ? "Show" : "Hide" }} Info
     </div>
-    <div v-if="showCredits" class="button" @click="toggleZoom">
+    <div
+      v-if="showCredits"
+      class="button button--zoom"
+      :class="{ active: zoomedOut }"
+      @click="toggleZoom"
+    >
       (Z) {{ zoomedOut ? "Zoom in" : "Zoom out" }}
     </div>
     <div class="button" @click="toggleDarkMode">

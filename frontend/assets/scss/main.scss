@@ -122,12 +122,26 @@ a {
 
 .page {
   padding-top: 10vh;
+  transition: padding-top 0.75s cubic-bezier(0.625, 0.05, 0, 1);
   @include bp(sm) {
     padding-top: 15vh;
   }
 }
 
 .header-section {
+  display: grid;
+  grid-template-rows: 1fr;
+  min-height: 0;
+  transition:
+    grid-template-rows 0.75s cubic-bezier(0.625, 0.05, 0, 1),
+    margin 0.75s cubic-bezier(0.625, 0.05, 0, 1);
+
+  > .grid {
+    overflow: hidden;
+    min-height: 0;
+    transition: opacity 0.1s ease;
+  }
+
   @include bp(md) {
     position: fixed;
     inset: 0 0 auto 0;
@@ -177,7 +191,9 @@ a {
   transition: width 0.75s cubic-bezier(0.625, 0.05, 0, 1);
 
   &.edition-section--zoomed-out {
-    width: 300px;
+    @include bp(sm) {
+      width: 400px;
+    }
   }
 }
 
@@ -189,11 +205,6 @@ a {
   &:has(.edition-group__title.hide) {
     row-gap: 0;
   }
-}
-
-.is-zoomed-out > section:last-child {
-  padding-bottom: var(--space-5);
-  transition: padding-bottom 0.75s cubic-bezier(0.625, 0.05, 0, 1);
 }
 
 .edition-group__title {
@@ -282,17 +293,6 @@ html.dark .edition:hover {
   grid-template-rows: 0fr;
   margin-top: 0;
   padding-bottom: 0;
-}
-
-// In zoomed-out state: fade content out instantly, then collapse
-.is-zoomed-out .edition-text__inner {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.is-zoomed-out .edition-group__title-inner {
-  opacity: 0;
-  transition: opacity 0.1s ease;
 }
 
 .edition-text__inner {
@@ -490,4 +490,90 @@ input::placeholder {
 .intro {
   font-size: 2rem;
   margin-bottom: var(--space-5);
+  grid-template-rows: 1fr;
+  min-height: 0;
+  transition:
+    grid-template-rows 0.75s cubic-bezier(0.625, 0.05, 0, 1),
+    margin-bottom 0.75s cubic-bezier(0.625, 0.05, 0, 1);
+
+  > .col {
+    overflow: hidden;
+    min-height: 0;
+    transition: opacity 0.1s ease;
+  }
+}
+
+.button--zoom {
+  display: none;
+
+  @include bp(sm) {
+    display: block;
+  }
+
+  &.active {
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+
+    &:hover {
+      background-color: var(--color-primary);
+    }
+  }
+}
+
+@include bp(sm) {
+  .is-zoomed-out {
+    --overview-anchor-offset: var(--space-1);
+
+    .page {
+      padding-top: 0;
+    }
+
+    .header-section {
+      grid-template-rows: 0fr;
+      margin: 0;
+      pointer-events: none;
+
+      > .grid {
+        opacity: 0;
+      }
+    }
+
+    .intro {
+      grid-template-rows: 0fr;
+      margin-bottom: 0;
+
+      > .col {
+        opacity: 0;
+      }
+    }
+
+    .edition-section:last-child {
+      padding-bottom: var(--space-2);
+      transition: padding-bottom 0.75s cubic-bezier(0.625, 0.05, 0, 1);
+    }
+
+    .edition-group {
+      row-gap: 0;
+    }
+
+    .edition-group__title {
+      grid-template-rows: 0fr;
+    }
+
+    .edition-group__title-inner {
+      opacity: 0;
+      transition: opacity 0.1s ease;
+    }
+
+    .edition-text {
+      grid-template-rows: 0fr;
+      margin-top: 0;
+      padding-bottom: 0;
+    }
+
+    .edition-text__inner {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+  }
 }

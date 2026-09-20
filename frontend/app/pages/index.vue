@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { hideCredits, zoomedOut } = useSitePrefs();
-const creditsHidden = computed(() => hideCredits.value || zoomedOut.value);
+const creditsHidden = computed(() => hideCredits.value);
 const { data: editions } = await useEditions();
 </script>
 
@@ -14,7 +14,7 @@ const { data: editions } = await useEditions();
       </h1>
     </div>
   </div>
-  <div :class="{ 'is-zoomed-out': zoomedOut }">
+  <div>
     <p v-if="!editions?.length" class="section grid">
       <span class="col" data-grid="df:12">No editions yet.</span>
     </p>
