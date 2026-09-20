@@ -1,11 +1,10 @@
 <script setup lang="ts">
 const route = useRoute();
 const { zoomedOut, canZoom } = useSitePrefs();
+const isOverview = computed(() => route.path === "/");
+const isInfo = computed(() => route.path === "/info");
 const collapsed = computed(
-  () =>
-    canZoom.value &&
-    zoomedOut.value &&
-    !route.name?.toString().startsWith("edition-slug"),
+  () => canZoom.value && zoomedOut.value && isOverview.value,
 );
 const header = ref<HTMLElement | null>(null);
 
@@ -47,11 +46,21 @@ onMounted(() => {
       </div>
       <div class="header__meta | col" data-grid="df:12 sm:6 md:5">
         <div class="menu">
-          <a href="#" class="menu-item | menu-link">Info</a>
-          <span>, </span>
-          <a href="#" class="menu-item | menu-link --active"
-            >The Weekly Likes</a
+          <NuxtLink
+            to="/info"
+            class="menu-item | menu-link"
+            :class="{ '--active': isInfo }"
           >
+            Info
+          </NuxtLink>
+          <span>, </span>
+          <NuxtLink
+            to="/"
+            class="menu-item | menu-link"
+            :class="{ '--active': !isInfo }"
+          >
+            The Weekly Likes
+          </NuxtLink>
         </div>
       </div>
       <div class="header__cta | col" data-grid="df:12 sm:6 md:3">

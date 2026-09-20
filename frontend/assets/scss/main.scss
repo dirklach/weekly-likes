@@ -87,6 +87,14 @@ a {
   position: relative;
   align-self: start;
 
+  &:focus {
+    outline: 0;
+  }
+
+  &:focus-visible {
+    outline: 1px solid red;
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -399,15 +407,6 @@ html.dark .edition:hover {
   font-size: 2rem;
 }
 
-.dimmer {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(255, 255, 255, 1);
-  z-index: 99;
-  pointer-events: none;
-  opacity: 0;
-}
-
 .newsletter-form {
   width: 100%;
 }
@@ -496,11 +495,31 @@ input::placeholder {
     grid-template-rows 0.75s cubic-bezier(0.625, 0.05, 0, 1),
     margin-bottom 0.75s cubic-bezier(0.625, 0.05, 0, 1);
 
+  @include bp(md) {
+    font-size: 3rem;
+  }
+
+  @include bp(lg) {
+    font-size: 4rem;
+  }
+
   > .col {
     overflow: hidden;
     min-height: 0;
     transition: opacity 0.1s ease;
   }
+}
+
+.intro.--info {
+  font-size: 4rem;
+}
+
+.intro.--info p {
+  margin-bottom: var(--space-4);
+}
+
+.text-indent {
+  text-indent: 8.6vw;
 }
 
 .button--zoom {
