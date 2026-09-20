@@ -314,9 +314,10 @@ html.dark .edition:hover {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
   flex-direction: row;
   gap: var(--space-1);
+  padding-right: var(--space-2);
 }
 
 .button {
