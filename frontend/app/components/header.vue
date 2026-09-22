@@ -42,24 +42,18 @@ onMounted(() => {
         <NuxtLink to="/">Aetyc</NuxtLink><br />
       </div>
       <div class="header__desc | col" data-grid="df:12 sm:6 md:3">
-        (Catalog of visual culture)
+        EXPLORING VISUAL CULTURE
       </div>
       <div class="header__meta | col" data-grid="df:12 sm:6 md:5">
         <div class="menu">
-          <NuxtLink
-            to="/info"
-            class="menu-item | menu-link"
-            :class="{ '--active': isInfo }"
-          >
-            Info
+          <NuxtLink to="/info" class="menu-item | menu-link"> Info </NuxtLink>
+          <span>, </span>
+          <NuxtLink to="/weekly" class="menu-item | menu-link">
+            Weekly
           </NuxtLink>
           <span>, </span>
-          <NuxtLink
-            to="/"
-            class="menu-item | menu-link"
-            :class="{ '--active': !isInfo }"
-          >
-            The Weekly Likes
+          <NuxtLink to="/submit" class="menu-item | menu-link">
+            Submit
           </NuxtLink>
         </div>
       </div>

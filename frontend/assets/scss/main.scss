@@ -21,7 +21,12 @@ body {
 body::-webkit-scrollbar,
 body::-webkit-scrollbar-button {
   display: none;
-} /* Chrome */
+}
+
+u {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2ch;
+}
 
 a {
   text-decoration: none;
@@ -115,7 +120,7 @@ a {
     }
   }
 
-  &.--active {
+  &.router-link-active {
     &::before {
       width: 100%;
       left: 0;
@@ -508,6 +513,11 @@ input::placeholder {
     min-height: 0;
     transition: opacity 0.1s ease;
   }
+}
+
+.intro--home {
+  font-size: 10rem;
+  line-height: 1.1;
 }
 
 .intro.--info {
