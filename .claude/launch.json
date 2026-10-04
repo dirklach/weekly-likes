@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "frontend-preview",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "frontend/.output/server/index.mjs"
+      ],
+      "port": 3417,
+      "env": {
+        "PORT": "3417"
+      }
+    },
+    {
+      "name": "frontend-preview-filter",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "frontend/.output/server/index.mjs"
+      ],
+      "port": 3418,
+      "autoPort": true
+    }
+  ]
+}

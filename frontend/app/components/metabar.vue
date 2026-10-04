@@ -17,14 +17,13 @@ const props = withDefaults(
 );
 
 const route = useRoute();
-const cameFromOverview = useState("cameFromOverview", () => false);
 
 function goBackToOverview() {
   const edition = route.params.edition;
-  if (cameFromOverview.value && typeof edition === "string" && edition) {
-    return navigateTo({ path: "/", hash: `#${edition}` });
+  if (typeof edition === "string" && edition) {
+    return navigateTo({ path: "/weekly", hash: `#${edition}` });
   }
-  return navigateTo("/");
+  return navigateTo("/weekly");
 }
 
 useHead({

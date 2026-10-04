@@ -3,18 +3,9 @@ import { gsap } from "gsap";
 
 const lenis = useLenis();
 const router = useRouter();
-const cameFromOverview = useState("cameFromOverview", () => false);
 
 function getDimmer() {
   return document.getElementById("page-dimmer");
-}
-
-function isOverview(route: { path: string; matched: unknown[] }) {
-  return route.path === "/" && route.matched.length > 0;
-}
-
-function isPick(route: { name?: unknown }) {
-  return route.name?.toString().startsWith("edition-slug") ?? false;
 }
 
 function scrollToHash(hash: string) {
@@ -39,11 +30,7 @@ nuxtApp.hook("page:loading:end", () => {
   });
 });
 
-router.beforeEach((to, from) => {
-  if (isPick(to)) {
-    cameFromOverview.value = isOverview(from);
-  }
-
+router.beforeEach(() => {
   return new Promise<void>((resolve) => {
     gsap.to(getDimmer(), {
       opacity: 1,

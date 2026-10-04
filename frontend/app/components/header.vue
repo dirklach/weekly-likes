@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const { zoomedOut, canZoom } = useSitePrefs();
-const isOverview = computed(() => route.path === "/");
+const isOverview = computed(() => route.path === "/weekly");
 const isInfo = computed(() => route.path === "/info");
 const collapsed = computed(
   () => canZoom.value && zoomedOut.value && isOverview.value,

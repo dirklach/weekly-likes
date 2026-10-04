@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const { zoomedOut } = useSitePrefs();
-const isOverview = computed(() => route.path === "/");
+const isOverview = computed(() => route.path === "/weekly");
 const isPick = computed(() =>
   route.name?.toString().startsWith("edition-slug"),
 );

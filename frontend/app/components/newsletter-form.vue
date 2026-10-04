@@ -30,7 +30,7 @@ async function submit() {
     @submit.prevent="submit"
   >
     <div class="newsletter-form__row">
-      <div class="newsletter-form__label">Newsletter</div>
+      <div class="newsletter-form__label">Weekly Newsletter</div>
       <div class="newsletter-form__input-wrapper">
         <input
           v-model="email"
