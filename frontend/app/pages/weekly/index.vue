@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type {Category, Edition, EditionPick} from "~/types/content"
+import PickCard from "~/components/pick-card.vue"
 
 const { hideCredits, zoomedOut } = useSitePrefs();
 const creditsHidden = computed(() => hideCredits.value);
@@ -106,32 +107,16 @@ function toggleCategory(slug: string) {
       :class="{ 'edition-section--zoomed-out': zoomedOut }"
     >
       <div class="edition-group | grid">
-        <NuxtLink
+        <PickCard
           v-for="({ edition, pick, anchor }, index) in filteredPicks"
           :key="`${edition._id}-${pick._key}`"
           :id="anchor ? edition.number : undefined"
-          :to="pickHref(edition, pick)"
-          class="edition edition--flat | col"
+          :edition="edition"
+          :pick="pick"
+          class="edition--flat"
           data-grid="df:12 sm:4 md:4"
-        >
-          <div class="edition-image-container">
-            <PickImage
-              v-if="pick.image?.asset?._ref"
-              :asset-id="pick.image.asset._ref"
-              :alt="pick.image.alt || pick.title"
-              class="edition-image"
-              sizes="(min-width: 768px) 33vw, 100vw"
-              :loading="index < 3 ? 'eager' : 'lazy'"
-            />
-          </div>
-          <div class="edition-text" :class="{ hide: creditsHidden }">
-            <div class="edition-text__inner">
-              <span class="edition-name">{{ pick.title }}</span>
-              <span class="edition-author">{{ authorNames(pick) }}</span>
-              <span class="edition-category">{{ pick.category?.name }}</span>
-            </div>
-          </div>
-        </NuxtLink>
+          :loading="index < 3 ? 'eager' : 'lazy'"
+        />
       </div>
     </section>
   </div>
@@ -156,31 +141,14 @@ function toggleCategory(slug: string) {
             Week {{ edition.number }}
           </div>
         </div>
-        <NuxtLink
+        <PickCard
           v-for="pick in edition.picks || []"
           :key="pick._key"
-          :to="pickHref(edition, pick)"
-          class="edition | col"
+          :edition="edition"
+          :pick="pick"
           data-grid="df:12 sm:4 md:4"
-        >
-          <div class="edition-image-container">
-            <PickImage
-              v-if="pick.image?.asset?._ref"
-              :asset-id="pick.image.asset._ref"
-              :alt="pick.image.alt || pick.title"
-              class="edition-image"
-              sizes="(min-width: 768px) 33vw, 100vw"
-              :loading="editionIndex === 0 ? 'eager' : 'lazy'"
-            />
-          </div>
-          <div class="edition-text" :class="{ hide: creditsHidden }">
-            <div class="edition-text__inner">
-              <span class="edition-name">{{ pick.title }}</span>
-              <span class="edition-author">{{ authorNames(pick) }}</span>
-              <span class="edition-category">{{ pick.category?.name }}</span>
-            </div>
-          </div>
-        </NuxtLink>
+          :loading="editionIndex === 0 ? 'eager' : 'lazy'"
+        />
       </div>
     </section>
   </div>

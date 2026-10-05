@@ -1,38 +1,51 @@
 <script setup lang="ts">
+import PickCard from "~/components/pick-card.vue"
+
+const PICK_COUNT = 6;
+const FONT_COUNT = 6;
+
 const { hideCredits } = useSitePrefs();
 const creditsHidden = computed(() => hideCredits.value);
-const { data: editions } = await useEditions();
+const [{ data: editions }, { data: fonts }] = await Promise.all([useEditions(), useFonts()]);
 
-// Pick keys are chosen once on the server and reused on the client to avoid hydration mismatches.
-const randomKeys = useState<string[]>("random-picks", () => {
-  const keys = (editions.value || []).flatMap((edition) =>
-    (edition.picks || []).map((pick) => `${edition._id}:${pick._key}`),
-  );
-  for (let i = keys.length - 1; i > 0; i--) {
+function shuffled<T>(items: T[]) {
+  const result = [...items];
+  for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [keys[i], keys[j]] = [keys[j]!, keys[i]!];
+    [result[i], result[j]] = [result[j]!, result[i]!];
   }
-  return keys.slice(0, 3);
-});
+  return result;
+}
+
+// Keys are chosen once on the server per request and reused on the client to avoid hydration
+// mismatches, so every reload shows a new selection.
+const randomPickKeys = useState<string[]>("random-picks", () =>
+  shuffled(
+    (editions.value || []).flatMap((edition) =>
+      (edition.picks || []).map((pick) => `${edition._id}:${pick._key}`),
+    ),
+  ).slice(0, PICK_COUNT),
+);
+
+const randomFontIds = useState<string[]>("random-fonts", () =>
+  shuffled((fonts.value || []).map((font) => font._id)).slice(0, FONT_COUNT),
+);
 
 const randomPicks = computed(() =>
-  randomKeys.value.flatMap((key) => {
+  randomPickKeys.value.flatMap((key) => {
     const [editionId, pickKey] = key.split(":");
     const edition = editions.value?.find((e) => e._id === editionId);
     const pick = edition?.picks?.find((p) => p._key === pickKey);
     return edition && pick ? [{ edition, pick }] : [];
   }),
 );
+
+const randomFonts = computed(() =>
+  randomFontIds.value.flatMap((id) => fonts.value?.find((font) => font._id === id) ?? []),
+);
 </script>
 
 <template>
-  <div class="intro intro--home | grid">
-    <div class="col">
-      <div class="intro intro--home">
-        <h1>A discovery platform visual culture.</h1>
-      </div>
-    </div>
-  </div>
   <section class="section edition-section">
     <div class="edition-group | grid">
       <div
@@ -41,39 +54,70 @@ const randomPicks = computed(() =>
         :class="{ hide: creditsHidden }"
       >
         <div class="edition-group__title-inner">
-          <h1>• Weekly Likes</h1>
-          <h2>
-            Every week, we add three picks from design, art, and architecture to
-            our archive of inspiration, and sometimes something more unexpected.
-            Here are three random picks.
-          </h2>
+          <h1>Discover Weekly Likes</h1>
         </div>
       </div>
-      <NuxtLink
+      <PickCard
         v-for="{ edition, pick } in randomPicks"
         :key="pick._key"
-        :to="pickHref(edition, pick)"
-        class="edition | col"
+        :edition="edition"
+        :pick="pick"
         data-grid="df:12 sm:4 md:4"
+        loading="eager"
+      />
+      <div class="home-more | col" data-grid="df:12">
+        <NuxtLink to="/weekly" class="button">View all</NuxtLink>
+      </div>
+    </div>
+  </section>
+
+  <section v-if="randomFonts.length" class="section home-fonts">
+    <div class="grid">
+      <div
+        class="edition-group__title | col"
+        data-grid="df:12"
+        :class="{ hide: creditsHidden }"
       >
-        <div class="edition-image-container">
-          <PickImage
-            v-if="pick.image?.asset?._ref"
-            :asset-id="pick.image.asset._ref"
-            :alt="pick.image.alt || pick.title"
-            class="edition-image"
-            sizes="(min-width: 768px) 33vw, 100vw"
-            loading="eager"
-          />
+        <div class="edition-group__title-inner">
+          <h2>Discover Fonts</h2>
         </div>
-        <div class="edition-text" :class="{ hide: creditsHidden }">
-          <div class="edition-text__inner">
-            <span class="edition-name">{{ pick.title }}</span>
-            <span class="edition-author">{{ authorNames(pick) }}</span>
-            <span class="edition-category">{{ pick.category?.name }}</span>
-          </div>
+      </div>
+      <div class="col" data-grid="df:12">
+        <div class="home-fonts__grid">
+          <FontCard v-for="font in randomFonts" :key="font._id" :font="font" />
         </div>
-      </NuxtLink>
+      </div>
+      <div class="home-more | col" data-grid="df:12">
+        <NuxtLink to="/fonts" class="button">View all</NuxtLink>
+      </div>
     </div>
   </section>
 </template>
+
+<style scoped lang="scss">
+@use "~~/assets/scss/2-tools" as *;
+
+.home-more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-2);
+}
+
+.home-fonts {
+  margin-top: var(--space-5);
+}
+
+.home-fonts__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+
+  @include bp(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include bp(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+</style>

@@ -20,6 +20,17 @@
       ],
       "port": 3418,
       "autoPort": true
+    },
+    {
+      "name": "frontend-preview-home",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "frontend/.output/server/index.mjs"
+      ],
+      "port": 3419,
+      "env": {
+        "PORT": "3419"
+      }
     }
   ]
 }

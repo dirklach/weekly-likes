@@ -52,6 +52,10 @@ onMounted(() => {
             Weekly
           </NuxtLink>
           <span>, </span>
+          <NuxtLink to="/fonts" class="menu-item | menu-link">
+            Fonts
+          </NuxtLink>
+          <span>, </span>
           <NuxtLink to="/submit" class="menu-item | menu-link">
             Submit
           </NuxtLink>

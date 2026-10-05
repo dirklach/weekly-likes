@@ -8,3 +8,8 @@ html.dark {
   --color-edition-image: #1e1e1e;
   --color-edition: #666;
 }
+
+// Font previews are black SVG wordmarks.
+html.dark .font-preview {
+  filter: invert(1);
+}

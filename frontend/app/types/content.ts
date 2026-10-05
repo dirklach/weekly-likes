@@ -31,3 +31,24 @@ export type Edition = {
   number: string
   picks: EditionPick[] | null
 }
+
+export type Foundry = {
+  _id: string
+  name: string
+  url: string | null
+}
+
+export type Font = {
+  _id: string
+  name: string
+  slug: string
+  category: string
+  license: "Commercial" | "Free"
+  url: string
+  foundry: Foundry | null
+  preview: {
+    url: string
+    width: number
+    height: number
+  } | null
+}

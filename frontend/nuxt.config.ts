@@ -7,6 +7,17 @@ export default defineNuxtConfig({
       title: "Aetyc | Weekly Design Inspiration by Dirk Lach",
     },
   },
+  runtimeConfig: {
+    // Server-only secrets, set via NUXT_LEMONSQUEEZY_API_KEY etc.
+    lemonsqueezyApiKey: "",
+    lemonsqueezyStoreId: "",
+    lemonsqueezyVariantId: "",
+    lemonsqueezyWebhookSecret: "",
+    sanityWriteToken: "",
+    public: {
+      siteUrl: "",
+    },
+  },
   sanity: {
     projectId: "bl19dtug",
     dataset: "production",
