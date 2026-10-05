@@ -2,7 +2,8 @@
 const route = useRoute();
 const { zoomedOut, canZoom } = useSitePrefs();
 const isOverview = computed(() => route.path === "/weekly");
-const isInfo = computed(() => route.path === "/info");
+const isHome = computed(() => route.name === "index");
+const isInfo =computed(() => route.path === "/info");
 const collapsed = computed(
   () => canZoom.value && zoomedOut.value && isOverview.value,
 );
@@ -41,7 +42,11 @@ onMounted(() => {
       <div class="header__logo | col" data-grid="sm:6 md:1">
         <NuxtLink to="/">Aetyc</NuxtLink><br />
       </div>
-      <div class="header__desc --claim | col" data-grid="df:12 sm:6 md:3">
+      <div
+        class="header__desc --claim | col"
+        data-grid="df:12 sm:6 md:3"
+        :style="{ visibility: isHome ? 'hidden' : undefined }"
+      >
         EXPLORING VISUAL CULTURE
       </div>
       <div class="header__meta | col" data-grid="df:12 sm:6 md:5">
