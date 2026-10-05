@@ -520,12 +520,12 @@ input::placeholder {
   container-type: inline-size;
   line-height: 1;
   text-align: left;
-  margin-top: var(--space-5);
+  margin-top: var(--space-6);
   margin-bottom: var(--space-8);
 
   // "visual culture." is ~6.44em wide in Suisse Medium, so 15cqi fills ~97% of the grid width.
   > .col {
-    font-size: 12cqi;
+    font-size: clamp(1rem, 10cqi, 20rem);
   }
 }
 

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type {Font} from "~/types/content"
+import type { Font } from "~/types/content";
 
 withDefaults(
   defineProps<{
-    font: Font
-    loading?: "lazy" | "eager"
+    font: Font;
+    loading?: "lazy" | "eager";
   }>(),
   { loading: "lazy" },
-)
+);
 </script>
 
 <template>
@@ -16,7 +16,9 @@ withDefaults(
     class="font-card"
     :data-category="font.category"
     :data-license="font.license"
-    :aria-label="font.foundry ? `${font.name} by ${font.foundry.name}` : font.name"
+    :aria-label="
+      font.foundry ? `${font.name} by ${font.foundry.name}` : font.name
+    "
   >
     <img
       v-if="font.preview"
@@ -47,10 +49,6 @@ withDefaults(
   transition:
     transform 0.4s,
     background-color 0.5s ease-out;
-
-  &:hover {
-    transform: scale(1.02);
-  }
 
   .font-preview {
     height: 80px;
