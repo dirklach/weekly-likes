@@ -494,6 +494,7 @@ input::placeholder {
 .intro {
   font-size: 2rem;
   margin-bottom: var(--space-5);
+
   grid-template-rows: 1fr;
   min-height: 0;
   transition:
@@ -515,9 +516,17 @@ input::placeholder {
   }
 }
 
-.intro--home {
-  font-size: 8rem;
-  line-height: 1.05;
+.intro.--home {
+  container-type: inline-size;
+  line-height: 1;
+  text-align: left;
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-8);
+
+  // "visual culture." is ~6.44em wide in Suisse Medium, so 15cqi fills ~97% of the grid width.
+  > .col {
+    font-size: 12cqi;
+  }
 }
 
 .intro.--info {

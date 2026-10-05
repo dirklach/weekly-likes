@@ -81,11 +81,13 @@ const moreFonts = computed(() => {
         <span>More fonts</span>
         <NuxtLink to="/fonts" class="text-link">Show all</NuxtLink>
       </div>
-      <div class="col" data-grid="df:12">
-        <div class="font-more">
-          <FontCard v-for="item in moreFonts" :key="item._id" :font="item" />
-        </div>
-      </div>
+      <FontCard
+        v-for="item in moreFonts"
+        :key="item._id"
+        :font="item"
+        class="col"
+        data-grid="df:12 sm:6 md:3"
+      />
     </div>
   </section>
 </template>
@@ -139,17 +141,4 @@ const moreFonts = computed(() => {
   margin-bottom: var(--space-1);
 }
 
-.font-more {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-2);
-
-  @include bp(sm) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @include bp(md) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
 </style>

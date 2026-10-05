@@ -1,5 +1,8 @@
 const ZOOM_QUERY = "(min-width: 768px)";
 
+export const FONT_COLUMN_OPTIONS = [2, 3, 4, 5];
+const DEFAULT_FONT_COLUMNS = 4;
+
 let zoomViewportBound = false;
 
 function bindZoomViewport(canZoom: Ref<boolean>) {
@@ -33,6 +36,16 @@ export function useSitePrefs() {
     encode: (value) => String(value),
   });
 
+  const fontColumns = useCookie<number>("wl-font-columns", {
+    default: () => DEFAULT_FONT_COLUMNS,
+    sameSite: "lax",
+    decode: (value) => {
+      const count = Number(value);
+      return FONT_COLUMN_OPTIONS.includes(count) ? count : DEFAULT_FONT_COLUMNS;
+    },
+    encode: (value) => String(value),
+  });
+
   const zoomedOut = useState("wl-zoomed-out", () => false);
   const canZoom = useState("wl-can-zoom", () => false);
 
@@ -56,6 +69,7 @@ export function useSitePrefs() {
   return {
     hideCredits,
     darkMode,
+    fontColumns,
     zoomedOut,
     canZoom,
     toggleCredits,

@@ -17,11 +17,10 @@ export default defineEventHandler(async (event) => {
   const workUrl = clean(body?.workUrl, 2048)
   const submitterName = clean(body?.submitterName)
   const submitterEmail = clean(body?.submitterEmail)
-  const authorWebsite = clean(body?.authorWebsite, 2048)
-  const authorNames = (Array.isArray(body?.authorNames) ? body.authorNames : [])
-    .map((name: unknown) => clean(name))
-    .filter(Boolean)
-    .slice(0, 10)
+  const authors = (Array.isArray(body?.authors) ? body.authors : [])
+    .map((author: any) => ({name: clean(author?.name), website: clean(author?.website, 2048)}))
+    .filter((author: {name: string}) => author.name)
+    .slice(0, 10) as {name: string; website: string}[]
 
   const errors: Record<string, string> = {}
   if (!isHttpUrl(workUrl)) errors.workUrl = 'Please enter a valid URL (https://…)'
@@ -29,10 +28,12 @@ export default defineEventHandler(async (event) => {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(submitterEmail)) {
     errors.submitterEmail = 'Please enter a valid email address'
   }
-  if (!authorNames.length) errors.authorNames = 'Please name at least one author'
-  if (authorWebsite && !isHttpUrl(authorWebsite)) {
-    errors.authorWebsite = 'Please enter a valid URL (https://…)'
-  }
+  if (!authors.length) errors.authors = 'Please name at least one author'
+  authors.forEach((author, index) => {
+    if (author.website && !isHttpUrl(author.website)) {
+      errors[`authors.${index}.website`] = 'Please enter a valid URL (https://…)'
+    }
+  })
   if (Object.keys(errors).length) {
     throw createError({statusCode: 400, message: 'Please check the form', data: {errors}})
   }
@@ -49,8 +50,12 @@ export default defineEventHandler(async (event) => {
         workUrl,
         submitterName,
         submitterEmail,
-        authorNames,
-        ...(authorWebsite ? {authorWebsite} : {}),
+        authors: authors.map(({name, website}, index) => ({
+          _key: `author${index}`,
+          _type: 'submissionAuthor',
+          name,
+          ...(website ? {website} : {}),
+        })),
         status: 'pending',
         submittedAt: new Date().toISOString(),
       },

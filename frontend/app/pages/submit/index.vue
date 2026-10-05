@@ -1,14 +1,15 @@
 <script setup lang="ts">
-type Field = "workUrl" | "submitterName" | "submitterEmail" | "authorNames" | "authorWebsite";
+const MAX_AUTHORS = 10;
+const emptyAuthor = () => ({ name: "", website: "" });
 
 const form = reactive({
   workUrl: "",
   submitterName: "",
   submitterEmail: "",
-  authorNames: [""],
-  authorWebsite: "",
+  authors: [emptyAuthor()],
 });
-const errors = ref<Partial<Record<Field, string>>>({});
+// Keys: workUrl, submitterName, submitterEmail, authors, authors.<index>.website
+const errors = ref<Record<string, string>>({});
 const state = ref<"idle" | "loading" | "error">("idle");
 const errorMessage = ref("");
 
@@ -22,28 +23,32 @@ const isHttpUrl = (value: string) => {
 };
 
 function validate() {
-  const next: Partial<Record<Field, string>> = {};
+  const next: Record<string, string> = {};
   if (!isHttpUrl(form.workUrl.trim())) next.workUrl = "Please enter a valid URL (https://…)";
   if (!form.submitterName.trim()) next.submitterName = "Please enter your name";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.submitterEmail.trim())) {
     next.submitterEmail = "Please enter a valid email address";
   }
-  if (!form.authorNames.some((name) => name.trim())) {
-    next.authorNames = "Please name at least one author";
+  if (!form.authors.some((author) => author.name.trim())) {
+    next.authors = "Please name at least one author";
   }
-  if (form.authorWebsite.trim() && !isHttpUrl(form.authorWebsite.trim())) {
-    next.authorWebsite = "Please enter a valid URL (https://…)";
-  }
+  form.authors.forEach((author, index) => {
+    const website = author.website.trim();
+    if (website && !isHttpUrl(website)) {
+      next[`authors.${index}.website`] = "Please enter a valid URL (https://…)";
+    }
+  });
   errors.value = next;
   return Object.keys(next).length === 0;
 }
 
 function addAuthor() {
-  if (form.authorNames.length < 10) form.authorNames.push("");
+  if (form.authors.length < MAX_AUTHORS) form.authors.push(emptyAuthor());
 }
 
 function removeAuthor(index: number) {
-  form.authorNames.splice(index, 1);
+  form.authors.splice(index, 1);
+  errors.value = {};
 }
 
 async function submit() {
@@ -56,7 +61,9 @@ async function submit() {
       method: "POST",
       body: {
         ...form,
-        authorNames: form.authorNames.map((name) => name.trim()).filter(Boolean),
+        authors: form.authors
+          .map((author) => ({ name: author.name.trim(), website: author.website.trim() }))
+          .filter((author) => author.name),
       },
     });
     if (!url) throw new Error("Missing checkout URL");
@@ -98,52 +105,63 @@ useHead({ title: "Submit to Weekly Likes | Aetyc" });
           <span v-if="errors.workUrl" class="submit-form__error">{{ errors.workUrl }}</span>
         </label>
 
-        <fieldset class="submit-form__field">
-          <legend class="newsletter-form__label">Author(s)</legend>
-          <div v-for="(_, index) in form.authorNames" :key="index" class="submit-form__author">
+        <fieldset
+          v-for="(author, index) in form.authors"
+          :key="index"
+          class="submit-form__group"
+        >
+          <legend class="newsletter-form__label">
+            {{ form.authors.length > 1 ? `Author ${index + 1}` : "Author" }}
+          </legend>
+          <label class="submit-form__field">
+            <span class="newsletter-form__label">Name</span>
             <span class="newsletter-form__input-wrapper">
               <input
-                v-model="form.authorNames[index]"
+                v-model="author.name"
                 class="newsletter-form__input"
                 type="text"
                 placeholder="Studio, designer or artist"
-                :aria-label="`Author ${index + 1}`"
                 :disabled="state === 'loading'"
               />
             </span>
-            <button
-              v-if="form.authorNames.length > 1"
-              class="submit-form__btn text-link"
-              type="button"
-              @click="removeAuthor(index)"
-            >
-              Remove
-            </button>
-          </div>
+          </label>
+          <label class="submit-form__field">
+            <span class="newsletter-form__label">Website (optional)</span>
+            <span class="newsletter-form__input-wrapper">
+              <input
+                v-model="author.website"
+                class="newsletter-form__input"
+                type="url"
+                placeholder="https://"
+                :disabled="state === 'loading'"
+              />
+            </span>
+            <span v-if="errors[`authors.${index}.website`]" class="submit-form__error">
+              {{ errors[`authors.${index}.website`] }}
+            </span>
+          </label>
           <button
-            v-if="form.authorNames.length < 10"
+            v-if="form.authors.length > 1"
             class="submit-form__btn text-link"
             type="button"
+            :disabled="state === 'loading'"
+            @click="removeAuthor(index)"
+          >
+            Remove author
+          </button>
+        </fieldset>
+        <div class="submit-form__field">
+          <button
+            v-if="form.authors.length < MAX_AUTHORS"
+            class="submit-form__btn text-link"
+            type="button"
+            :disabled="state === 'loading'"
             @click="addAuthor"
           >
-            Add author
+            Add another author
           </button>
-          <span v-if="errors.authorNames" class="submit-form__error">{{ errors.authorNames }}</span>
-        </fieldset>
-
-        <label class="submit-form__field">
-          <span class="newsletter-form__label">Author website (optional)</span>
-          <span class="newsletter-form__input-wrapper">
-            <input
-              v-model="form.authorWebsite"
-              class="newsletter-form__input"
-              type="url"
-              placeholder="https://"
-              :disabled="state === 'loading'"
-            />
-          </span>
-          <span v-if="errors.authorWebsite" class="submit-form__error">{{ errors.authorWebsite }}</span>
-        </label>
+          <span v-if="errors.authors" class="submit-form__error">{{ errors.authors }}</span>
+        </div>
 
         <label class="submit-form__field">
           <span class="newsletter-form__label">Your name</span>
@@ -203,13 +221,22 @@ useHead({ title: "Submit to Weekly Likes | Aetyc" });
 
 .submit-form__field .newsletter-form__input {
   width: 100%;
+  color: var(--color-primary);
+  font: inherit;
 }
 
-.submit-form__author {
+.submit-form__group {
   display: flex;
-  align-items: end;
+  flex-direction: column;
   gap: var(--space-2);
-  margin-bottom: var(--space-1);
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.submit-form__group .submit-form__btn {
+  align-self: start;
 }
 
 .submit-form__btn,

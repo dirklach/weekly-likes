@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import PickCard from "~/components/pick-card.vue"
+import PickCard from "~/components/pick-card.vue";
 
 const PICK_COUNT = 6;
 const FONT_COUNT = 6;
 
 const { hideCredits } = useSitePrefs();
 const creditsHidden = computed(() => hideCredits.value);
-const [{ data: editions }, { data: fonts }] = await Promise.all([useEditions(), useFonts()]);
+const [{ data: editions }, { data: fonts }] = await Promise.all([
+  useEditions(),
+  useFonts(),
+]);
 
 function shuffled<T>(items: T[]) {
   const result = [...items];
@@ -41,11 +44,24 @@ const randomPicks = computed(() =>
 );
 
 const randomFonts = computed(() =>
-  randomFontIds.value.flatMap((id) => fonts.value?.find((font) => font._id === id) ?? []),
+  randomFontIds.value.flatMap(
+    (id) => fonts.value?.find((font) => font._id === id) ?? [],
+  ),
 );
 </script>
 
 <template>
+  <section class="section">
+    <div class="intro --home | grid">
+      <div class="col">
+        <h1 class="heading-2">
+          Exploring<br />
+          visual culture.
+        </h1>
+      </div>
+    </div>
+  </section>
+
   <section class="section edition-section">
     <div class="edition-group | grid">
       <div
@@ -54,7 +70,7 @@ const randomFonts = computed(() =>
         :class="{ hide: creditsHidden }"
       >
         <div class="edition-group__title-inner">
-          <h1>Discover Weekly Likes</h1>
+          <h1>Weekly Design Inspiration</h1>
         </div>
       </div>
       <PickCard
@@ -79,7 +95,7 @@ const randomFonts = computed(() =>
         :class="{ hide: creditsHidden }"
       >
         <div class="edition-group__title-inner">
-          <h2>Discover Fonts</h2>
+          <h2>Font Inspiration</h2>
         </div>
       </div>
       <div class="col" data-grid="df:12">
@@ -100,7 +116,8 @@ const randomFonts = computed(() =>
 .home-more {
   display: flex;
   justify-content: center;
-  margin-top: var(--space-2);
+  margin-top: var(--space-1);
+  margin-bottom: var(--space-5);
 }
 
 .home-fonts {
@@ -110,7 +127,7 @@ const randomFonts = computed(() =>
 .home-fonts__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-2);
+  gap: var(--default-column-gap);
 
   @include bp(sm) {
     grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -5,13 +5,13 @@ useHead({ title: "Fonts | Aetyc" });
 
 const FILTERS = ["All", "Serif", "Sans Serif", "Other"] as const;
 type Filter = (typeof FILTERS)[number];
-const COLUMN_OPTIONS = [2, 3, 4, 5];
 
 const { data: fonts } = await useFonts();
 
 // Kept in memory only: survives opening a font and coming back, resets on reload.
 const activeFilter = useState<Filter>("fonts-filter", () => "All");
-const columns = useState("fonts-columns", () => 4);
+// Saved in a cookie like dark mode, so the server renders the chosen layout.
+const { fontColumns: columns } = useSitePrefs();
 
 // "Other" collects everything that is neither Serif nor Sans Serif (Display, Script, Monospace, …).
 function matches(font: Font, filter: Filter) {
@@ -52,7 +52,7 @@ const filteredFonts = computed(() =>
       </div>
       <div class="font-columns" role="group" aria-label="Columns">
         <button
-          v-for="count in COLUMN_OPTIONS"
+          v-for="count in FONT_COLUMN_OPTIONS"
           :key="count"
           type="button"
           class="font-columns__option"
@@ -84,17 +84,17 @@ const filteredFonts = computed(() =>
     </div>
   </div>
 
-  <section class="section grid">
-    <div class="col" data-grid="df:12">
-      <p v-if="!filteredFonts.length">No fonts here yet.</p>
-      <div v-else class="font-grid" :style="{ '--font-columns': columns }">
-        <FontCard
-          v-for="(font, index) in filteredFonts"
-          :key="font._id"
-          :font="font"
-          :loading="index < 12 ? 'eager' : 'lazy'"
-        />
-      </div>
+  <section class="section">
+    <p v-if="!filteredFonts.length" class="grid">
+      <span class="col" data-grid="df:12">No fonts here yet.</span>
+    </p>
+    <div v-else class="font-grid | grid" :style="{ '--font-columns': columns }">
+      <FontCard
+        v-for="(font, index) in filteredFonts"
+        :key="font._id"
+        :font="font"
+        :loading="index < 12 ? 'eager' : 'lazy'"
+      />
     </div>
   </section>
 </template>
@@ -160,10 +160,9 @@ const filteredFonts = computed(() =>
   }
 }
 
+// Gaps and page margins come from .grid, like the edition grid; only the column count differs.
 .font-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-2);
+  grid-template-columns: minmax(0, 1fr);
 
   @include bp(sm) {
     grid-template-columns: repeat(var(--font-columns), minmax(0, 1fr));
