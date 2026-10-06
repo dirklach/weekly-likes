@@ -29,7 +29,7 @@ async function main() {
     if (!foundries.has(_id)) foundries.set(_id, {_id, _type: 'foundry', name: f.title, url: f.acf?.foundry_website || undefined})
   }
 
-  const docs = fonts.map((font, i) => {
+  const docs = fonts.map((font) => {
     const slug = slugify(font.font_name)
     if (!font.svg_preview?.startsWith('<svg')) throw new Error(`${font.font_name}: no SVG preview`)
     return {
@@ -41,7 +41,6 @@ async function main() {
       license: font.license,
       foundry: {_type: 'reference', _ref: `foundry-${slugify(font.foundry[0].title)}`},
       url: font.font_link,
-      order: (i + 1) * 10,
       svg: font.svg_preview,
     }
   })

@@ -2,14 +2,14 @@
 const MORE_COUNT = 4;
 
 const route = useRoute();
-const { data: fonts } = await useFonts();
+const { data } = await useFonts();
+const fonts = computed(() => sortFontsByName(data.value || []));
 
 const index = computed(
   () =>
-    fonts.value?.findIndex((item) => item.slug === String(route.params.slug)) ??
-    -1,
+    fonts.value.findIndex((item) => item.slug === String(route.params.slug)),
 );
-const font = computed(() => fonts.value?.[index.value] ?? null);
+const font = computed(() => fonts.value[index.value] ?? null);
 
 if (!font.value) {
   throw createError({ statusCode: 404, statusMessage: "Font not found" });
@@ -17,9 +17,9 @@ if (!font.value) {
 
 useHead({ title: () => `${font.value?.name} | Aetyc` });
 
-// The fonts that follow this one in the list, wrapping around at the end.
+// The fonts that follow this one alphabetically, wrapping around at the end.
 const moreFonts = computed(() => {
-  const list = fonts.value || [];
+  const list = fonts.value;
   const count = Math.min(MORE_COUNT, list.length - 1);
   return Array.from(
     { length: count },

@@ -55,12 +55,6 @@ export const fontType = defineType({
       options: {accept: 'image/svg+xml'},
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'order',
-      type: 'number',
-      description: 'Position on /fonts, lowest first. Use a negative number to put a new font at the top.',
-      validation: (rule) => rule.required(),
-    }),
   ],
   preview: {
     select: {title: 'name', foundry: 'foundry.name', category: 'category', media: 'preview'},
@@ -68,8 +62,5 @@ export const fontType = defineType({
       return {title, subtitle: [foundry, category].filter(Boolean).join(' · '), media}
     },
   },
-  orderings: [
-    {title: 'Order on /fonts', name: 'orderAsc', by: [{field: 'order', direction: 'asc'}]},
-    {title: 'Name', name: 'nameAsc', by: [{field: 'name', direction: 'asc'}]},
-  ],
+  orderings: [{title: 'Name', name: 'nameAsc', by: [{field: 'name', direction: 'asc'}]}],
 })

@@ -22,7 +22,9 @@ function matches(font: Font, filter: Filter) {
 }
 
 const filteredFonts = computed(() =>
-  (fonts.value || []).filter((font) => matches(font, activeFilter.value)),
+  sortFontsByName(fonts.value || []).filter((font) =>
+    matches(font, activeFilter.value),
+  ),
 );
 </script>
 
