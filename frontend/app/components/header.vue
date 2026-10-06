@@ -3,10 +3,29 @@ const route = useRoute();
 const { zoomedOut, canZoom } = useSitePrefs();
 const isOverview = computed(() => route.path === "/weekly");
 const isHome = computed(() => route.name === "index");
-const isInfo =computed(() => route.path === "/info");
+const isInfo = computed(() => route.path === "/info");
 const collapsed = computed(
   () => canZoom.value && zoomedOut.value && isOverview.value,
 );
+// Detail pages aren't nested routes, so the router won't mark their menu item active on its own.
+const activeSection = computed(() => {
+  if (route.path === "/fonts" || route.path.startsWith("/fonts/"))
+    return "fonts";
+  if (
+    route.path === "/weekly" ||
+    route.path.startsWith("/weekly/") ||
+    route.name?.toString().startsWith("edition-slug")
+  )
+    return "weekly";
+  return null;
+});
+const sectionLink = (section: string) =>
+  activeSection.value === section
+    ? {
+        class: "router-link-active router-link-exact-active",
+        "aria-current": "page" as const,
+      }
+    : {};
 const header = ref<HTMLElement | null>(null);
 
 onMounted(() => {
@@ -47,17 +66,25 @@ onMounted(() => {
         data-grid="df:12 sm:6 md:3"
         :style="{ visibility: isHome ? 'hidden' : undefined }"
       >
-        EXPLORING VISUAL CULTURE
+        Exploring visual culture
       </div>
       <div class="header__meta | col" data-grid="df:12 sm:6 md:5">
         <div class="menu">
           <NuxtLink to="/info" class="menu-item | menu-link"> Info </NuxtLink>
           <span>, </span>
-          <NuxtLink to="/weekly" class="menu-item | menu-link">
+          <NuxtLink
+            to="/weekly"
+            class="menu-item | menu-link"
+            v-bind="sectionLink('weekly')"
+          >
             Weekly
           </NuxtLink>
           <span>, </span>
-          <NuxtLink to="/fonts" class="menu-item | menu-link">
+          <NuxtLink
+            to="/fonts"
+            class="menu-item | menu-link"
+            v-bind="sectionLink('fonts')"
+          >
             Fonts
           </NuxtLink>
           <span>, </span>

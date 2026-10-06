@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Font} from "~/types/content"
+import type { Font } from "~/types/content";
 
 useHead({ title: "Fonts | Aetyc" });
 
@@ -16,7 +16,8 @@ const { fontColumns: columns } = useSitePrefs();
 // "Other" collects everything that is neither Serif nor Sans Serif (Display, Script, Monospace, …).
 function matches(font: Font, filter: Filter) {
   if (filter === "All") return true;
-  if (filter === "Other") return font.category !== "Serif" && font.category !== "Sans Serif";
+  if (filter === "Other")
+    return font.category !== "Serif" && font.category !== "Sans Serif";
   return font.category === filter;
 }
 
@@ -103,7 +104,7 @@ const filteredFonts = computed(() =>
 @use "~~/assets/scss/2-tools" as *;
 
 .font-filter {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
 .font-filter__bar {

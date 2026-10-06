@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type {Category, Edition, EditionPick} from "~/types/content"
-import PickCard from "~/components/pick-card.vue"
+import type { Category, Edition, EditionPick } from "~/types/content";
+import PickCard from "~/components/pick-card.vue";
 
 const { hideCredits, zoomedOut } = useSitePrefs();
 const creditsHidden = computed(() => hideCredits.value);
@@ -34,7 +34,8 @@ const filteredPicks = computed(() => {
   for (const edition of editions.value || []) {
     let anchor = true;
     for (const pick of edition.picks || []) {
-      if (!pick.category?.name || !active.has(slugify(pick.category.name))) continue;
+      if (!pick.category?.name || !active.has(slugify(pick.category.name)))
+        continue;
       result.push({ edition, pick, anchor });
       anchor = false;
     }
@@ -51,7 +52,9 @@ function toggleCategory(slug: string) {
   setCategories(
     active.includes(slug)
       ? active.filter((item) => item !== slug)
-      : categories.value.map((c) => c.slug).filter((s) => s === slug || active.includes(s)),
+      : categories.value
+          .map((c) => c.slug)
+          .filter((s) => s === slug || active.includes(s)),
   );
 }
 </script>
@@ -91,7 +94,10 @@ function toggleCategory(slug: string) {
           {{ category.name }}
         </button>
       </div>
-      <NuxtLink to="/weekly/authors" class="category-filter__authors | text-link">
+      <NuxtLink
+        to="/weekly/authors"
+        class="category-filter__authors | text-link"
+      >
         Authors
       </NuxtLink>
     </div>
@@ -158,7 +164,7 @@ function toggleCategory(slug: string) {
 @use "~~/assets/scss/2-tools" as *;
 
 .category-filter {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
 .category-filter__bar {
