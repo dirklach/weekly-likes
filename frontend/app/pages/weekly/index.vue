@@ -6,6 +6,12 @@ const { hideCredits, zoomedOut } = useSitePrefs();
 const creditsHidden = computed(() => hideCredits.value);
 const { data: editions } = await useEditions();
 
+usePageSeo({
+  title: "Weekly Likes | Aetyc",
+  description:
+    "A weekly updated catalog of selected works in design, architecture, photography, and art. Three hand-picked works in your inbox every Friday.",
+});
+
 // Kept in memory only: survives navigating to a pick and back, resets on reload.
 const activeCategories = useState<string[]>("weekly-categories", () => []);
 

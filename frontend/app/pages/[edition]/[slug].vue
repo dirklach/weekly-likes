@@ -23,6 +23,22 @@ if (!pick.value) {
   throw createError({ statusCode: 404, statusMessage: "Pick not found" });
 }
 
+usePageSeo({
+  title: () => `${pick.value?.title} – Weekly Likes ${edition.value?.number} | Aetyc`,
+  description: () => {
+    const item = pick.value;
+    if (!item) return "";
+    const authors = authorNames(item);
+    const by = authors ? ` by ${authors}` : "";
+    const category = item.category?.name ? ` (${item.category.name})` : "";
+    return `${item.title}${by}${category}, selected for Weekly Likes ${edition.value?.number} on Aetyc.`;
+  },
+  image: () =>
+    pick.value?.image?.asset?._ref
+      ? ogImageFromAsset(pick.value.image.asset._ref)
+      : DEFAULT_OG_IMAGE,
+});
+
 const pickIndex = computed(() => {
   const index =
     edition.value?.picks?.findIndex((item) => item._key === pick.value?._key) ??

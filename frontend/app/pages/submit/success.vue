@@ -1,5 +1,6 @@
 <script setup lang="ts">
 useHead({ title: "Submission received | Aetyc" });
+useSeoMeta({ robots: "noindex" });
 </script>
 
 <template>

@@ -12,8 +12,15 @@ const props = withDefaults(
   defineProps<{
     showCredits?: boolean;
     showBack?: boolean;
+    showInfinity?: boolean;
+    infinityActive?: boolean;
   }>(),
-  { showCredits: true, showBack: false },
+  {
+    showCredits: true,
+    showBack: false,
+    showInfinity: false,
+    infinityActive: false,
+  },
 );
 
 const route = useRoute();
@@ -24,6 +31,10 @@ function goBackToOverview() {
     return navigateTo({ path: "/weekly", hash: `#${edition}` });
   }
   return navigateTo("/weekly");
+}
+
+function toggleInfinity() {
+  return navigateTo(props.infinityActive ? "/weekly" : "/weekly/infinity");
 }
 
 useHead({
@@ -48,6 +59,12 @@ function onMetabarKeydown(event: KeyboardEvent) {
   if (props.showCredits && (event.key === "c" || event.key === "C")) {
     event.preventDefault();
     toggleCredits();
+    return;
+  }
+
+  if (props.showInfinity && (event.key === "i" || event.key === "I")) {
+    event.preventDefault();
+    toggleInfinity();
     return;
   }
 
@@ -87,6 +104,14 @@ onUnmounted(() => {
       @click="toggleZoom"
     >
       (Z) {{ zoomedOut ? "Zoom in" : "Zoom out" }}
+    </div>
+    <div
+      v-if="showInfinity"
+      class="button button--toggle"
+      :class="{ active: infinityActive }"
+      @click="toggleInfinity"
+    >
+      (I) Infinity
     </div>
     <div class="button" @click="toggleDarkMode">
       (D) {{ darkMode ? "Light" : "Dark" }} Mode

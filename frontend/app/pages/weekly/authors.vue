@@ -19,7 +19,11 @@ const authors = computed(() => {
   );
 });
 
-useHead({ title: "Authors | Aetyc" });
+usePageSeo({
+  title: "Authors – Weekly Likes | Aetyc",
+  description:
+    "The studios, designers, architects, and artists behind every pick in Weekly Likes.",
+});
 </script>
 
 <template>

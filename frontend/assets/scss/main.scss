@@ -531,6 +531,11 @@ input::placeholder {
   }
 }
 
+.home-more {
+  padding-top: var(--space-2);
+  font-size: 2rem;
+}
+
 .intro.--info {
   font-size: 4rem;
 }
@@ -541,6 +546,93 @@ input::placeholder {
 
 .text-indent {
   text-indent: 8.6vw;
+}
+
+// ==================================================================
+// Intro animation (plugins/intro.client.ts)
+// ==================================================================
+
+html[data-intro="true"] {
+  .header-section .col,
+  .page > *,
+  .footer-section,
+  .metabar {
+    opacity: 0;
+  }
+}
+
+// Line masks would otherwise clip descenders at tight line heights.
+.split-line-mask {
+  padding-bottom: 0.25em;
+  margin-bottom: -0.25em;
+}
+
+// ==================================================================
+// Footer
+// ==================================================================
+
+// Bottom padding keeps the links clear of the fixed metabar.
+.footer-section {
+  margin-top: var(--space-7);
+  margin-bottom: 0;
+  padding-bottom: calc(var(--space-2) * 2 + 2rem);
+}
+
+// ==================================================================
+// Legal pages
+// ==================================================================
+
+.legal {
+  font-size: var(--size-0);
+  line-height: 1.35;
+
+  h2 {
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-1);
+    font-size: var(--size-1);
+  }
+
+  p,
+  ul {
+    margin-bottom: var(--space-2);
+  }
+
+  ul {
+    padding-left: 1.2em;
+    list-style: disc;
+  }
+
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2ch;
+  }
+}
+
+.button--toggle.active {
+  color: var(--color-secondary);
+  background-color: var(--color-primary);
+
+  &:hover {
+    background-color: var(--color-primary);
+  }
+}
+
+// The canvas fills the viewport behind the header; nothing below it to scroll to.
+.is-infinity {
+  .header-section {
+    position: relative;
+    z-index: 2;
+
+    @include bp(md) {
+      position: fixed;
+      z-index: 1337;
+    }
+  }
+
+  .footer-section {
+    display: none;
+  }
 }
 
 .button--zoom {
@@ -618,4 +710,20 @@ input::placeholder {
       transition: opacity 0.5s ease;
     }
   }
+}
+
+.section-title {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  font-size: 2rem;
+  margin-bottom: var(--space-4);
+}
+
+.section-title__heading {
+  grid-column: span 2;
+}
+
+.section-title__text {
+  grid-column: span 2;
+  max-width: 800px;
 }

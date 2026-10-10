@@ -1,5 +1,6 @@
 <script setup lang="ts">
 useHead({ title: "Payment cancelled | Aetyc" });
+useSeoMeta({ robots: "noindex" });
 </script>
 
 <template>

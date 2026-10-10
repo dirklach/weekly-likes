@@ -75,7 +75,11 @@ async function submit() {
   }
 }
 
-useHead({ title: "Submit to Weekly Likes | Aetyc" });
+usePageSeo({
+  title: "Submit to Weekly Likes | Aetyc",
+  description:
+    "Submit your work in design, art, architecture, or photography for Weekly Likes. Every submission is reviewed personally.",
+});
 </script>
 
 <template>
@@ -196,6 +200,12 @@ useHead({ title: "Submit to Weekly Likes | Aetyc" });
         <button class="submit-form__submit text-link" type="submit" :disabled="state === 'loading'">
           {{ state === "loading" ? "Redirecting to payment…" : "Continue to payment (10 EUR)" }}
         </button>
+        <p class="submit-form__note">
+          The 10 EUR is a review fee: payment doesn't guarantee publication, and
+          it can't be refunded once your work has been reviewed. Payment is
+          handled by Lemon Squeezy, see
+          <NuxtLink to="/privacy" class="text-link">Privacy</NuxtLink>.
+        </p>
         <p v-if="state === 'error'" class="submit-form__error">{{ errorMessage }}</p>
       </form>
     </div>
@@ -253,6 +263,18 @@ useHead({ title: "Submit to Weekly Likes | Aetyc" });
 .submit-form__submit:disabled {
   cursor: default;
   opacity: 0.5;
+}
+
+// Pulled up towards the pay button it belongs to.
+.submit-form__note {
+  margin-top: calc(var(--space-2) - var(--space-4));
+  max-width: 32em;
+  color: var(--color-edition);
+  line-height: 1.35;
+
+  .text-link {
+    color: var(--color-primary);
+  }
 }
 
 .submit-form__error {

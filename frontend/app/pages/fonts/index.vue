@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { Font } from "~/types/content";
 
-useHead({ title: "Fonts | Aetyc" });
+usePageSeo({
+  title: "Fonts | Aetyc",
+  description:
+    "A hand-picked collection of typefaces from independent foundries and beyond, curated for their craft and character.",
+});
 
 const FILTERS = ["All", "Serif", "Sans Serif", "Other"] as const;
 type Filter = (typeof FILTERS)[number];

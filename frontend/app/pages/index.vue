@@ -69,8 +69,17 @@ const randomFonts = computed(() =>
         data-grid="df:12"
         :class="{ hide: creditsHidden }"
       >
-        <div class="edition-group__title-inner">
-          <h1>Weekly Design Inspiration</h1>
+        <div class="section-title">
+          <div class="section-title__heading">
+            <h1>Weekly Inspiration</h1>
+          </div>
+          <div class="section-title__text">
+            <p>
+              Loorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+              erat, sed diam voluptua at.
+            </p>
+          </div>
         </div>
       </div>
       <PickCard
@@ -82,7 +91,7 @@ const randomFonts = computed(() =>
         loading="eager"
       />
       <div class="home-more | col" data-grid="df:12">
-        <NuxtLink to="/weekly" class="button">View all</NuxtLink>
+        <NuxtLink to="/weekly" class="text-link">View all</NuxtLink>
       </div>
     </div>
   </section>
@@ -94,8 +103,17 @@ const randomFonts = computed(() =>
         data-grid="df:12"
         :class="{ hide: creditsHidden }"
       >
-        <div class="edition-group__title-inner">
-          <h2>Font Inspiration</h2>
+        <div class="section-title">
+          <div class="section-title__heading">
+            <h1>Font Inspiration</h1>
+          </div>
+          <div class="section-title__text">
+            <p>
+              Loorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+              erat, sed diam voluptua at.
+            </p>
+          </div>
         </div>
       </div>
       <div class="col" data-grid="df:12">
@@ -104,7 +122,7 @@ const randomFonts = computed(() =>
         </div>
       </div>
       <div class="home-more | col" data-grid="df:12">
-        <NuxtLink to="/fonts" class="button">View all</NuxtLink>
+        <NuxtLink to="/fonts" class="text-link">View all</NuxtLink>
       </div>
     </div>
   </section>

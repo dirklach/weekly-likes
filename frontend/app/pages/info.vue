@@ -1,3 +1,11 @@
+<script setup lang="ts">
+usePageSeo({
+  title: "Info | Aetyc",
+  description:
+    "Aetyc is a platform for visual culture and a resource hub for good design essentials, founded by Dirk Lach in Dortmund, Germany.",
+});
+</script>
+
 <template>
   <div class="intro --info | grid">
     <div class="col" data-grid="md:12">

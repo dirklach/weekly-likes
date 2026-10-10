@@ -15,7 +15,18 @@ if (!font.value) {
   throw createError({ statusCode: 404, statusMessage: "Font not found" });
 }
 
-useHead({ title: () => `${font.value?.name} | Aetyc` });
+usePageSeo({
+  title: () => `${font.value?.name} – Fonts | Aetyc`,
+  description: () => {
+    const item = font.value;
+    if (!item) return "";
+    const by = item.foundry?.name ? ` by ${item.foundry.name}` : "";
+    const category = item.category ? ` ${item.category.toLowerCase()}` : "";
+    return `${item.name}, a${category} typeface${by} (${item.license} license), hand-picked for the Aetyc font collection.`;
+  },
+  image: () =>
+    font.value?.preview?.url ? ogImageFromSvgUrl(font.value.preview.url) : DEFAULT_OG_IMAGE,
+});
 
 // The fonts that follow this one alphabetically, wrapping around at the end.
 const moreFonts = computed(() => {
