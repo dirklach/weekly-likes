@@ -177,6 +177,15 @@ a {
 .header__desc {
   max-width: 80vw;
   text-wrap: balance;
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s;
+
+  // The home page has the claim as its title.
+  &.--hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .header__offset {
@@ -190,9 +199,19 @@ a {
 .header__cta {
   display: flex;
   margin-top: var(--space-4);
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s;
   @include bp(md) {
     justify-content: end;
     margin-top: 0;
+  }
+
+  // On phones the signup only shows on the home page.
+  &:not(.--home) {
+    @include maxbp(sm) {
+      display: none;
+    }
   }
 }
 
@@ -337,7 +356,13 @@ html.dark .edition:hover {
 
 .button {
   color: var(--color-primary);
-  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  // Same light grey as before on the plain page, but nearly opaque, so the label stays
+  // readable over dark images (and light ones in dark mode).
+  background: color-mix(
+    in srgb,
+    color-mix(in srgb, var(--color-primary) 10%, var(--color-secondary)) 88%,
+    transparent
+  );
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 6px 12px;
@@ -349,6 +374,13 @@ html.dark .edition:hover {
 
   &:hover {
     background-color: var(--color-secondary);
+  }
+}
+
+// Keyboard shortcut hints mean nothing on touch screens.
+@media (hover: none) and (pointer: coarse) {
+  .button__key {
+    display: none;
   }
 }
 
@@ -496,7 +528,8 @@ input::placeholder {
 .intro {
   font-size: 2rem;
   margin-bottom: var(--space-7);
-
+  max-width: 1400px;
+  text-wrap: balance;
   grid-template-rows: 1fr;
   min-height: 0;
   transition:
@@ -512,6 +545,26 @@ input::placeholder {
   }
 
   > .col {
+    overflow: hidden;
+    min-height: 0;
+    transition: opacity 0.1s ease;
+  }
+}
+
+// Collapses like .intro in zoom-out mode (see .is-zoomed-out below).
+.category-filter-wrap {
+  display: grid;
+  grid-template-rows: 1fr;
+  margin-bottom: var(--space-6);
+  transition:
+    grid-template-rows 0.75s cubic-bezier(0.625, 0.05, 0, 1),
+    margin-bottom 0.75s cubic-bezier(0.625, 0.05, 0, 1);
+
+  @include maxbp(sm) {
+    margin-bottom: var(--space-4);
+  }
+
+  > .category-filter {
     overflow: hidden;
     min-height: 0;
     transition: opacity 0.1s ease;
@@ -538,6 +591,7 @@ input::placeholder {
 
 .intro.--info {
   font-size: 4rem;
+  max-width: none;
 }
 
 .intro.--info p {
@@ -619,6 +673,20 @@ html[data-intro="true"] {
 }
 
 // The canvas fills the viewport behind the header; nothing below it to scroll to.
+// Focus is a single screen like Infinity; the footer would only peek out under the metabar.
+.is-focus {
+  .footer-section {
+    display: none;
+  }
+
+  .page {
+    padding-top: 0vh;
+    @include bp(md) {
+      padding-top: 15vh;
+    }
+  }
+}
+
 .is-infinity {
   .header-section {
     position: relative;
@@ -633,9 +701,16 @@ html[data-intro="true"] {
   .footer-section {
     display: none;
   }
+
+  .header__cta {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
-.button--zoom {
+.button--zoom,
+.button--credits {
   display: none;
 
   @include bp(sm) {
@@ -670,13 +745,20 @@ html[data-intro="true"] {
       }
     }
 
-    .intro {
+    .intro,
+    .category-filter-wrap {
       grid-template-rows: 0fr;
       margin-bottom: 0;
+      pointer-events: none;
 
-      > .col {
+      > .col,
+      > .category-filter {
         opacity: 0;
       }
+    }
+
+    .footer-section {
+      display: none;
     }
 
     .edition-section:last-child {
@@ -715,15 +797,146 @@ html[data-intro="true"] {
 .section-title {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
   font-size: 2rem;
   margin-bottom: var(--space-4);
 }
 
 .section-title__heading {
-  grid-column: span 2;
+  grid-column: span 4;
+
+  @media (min-width: 768px) {
+    grid-column: span 2;
+  }
 }
 
 .section-title__text {
-  grid-column: span 2;
+  grid-column: span 4;
   max-width: 800px;
+
+  @media (min-width: 768px) {
+    grid-column: span 2;
+  }
+}
+
+// ==================================================================
+// Phones: compact layout
+// ==================================================================
+
+@include maxbp(sm) {
+  .page {
+    padding-top: var(--space-5);
+  }
+
+  // Logo and menu share one row; the claim repeats the home title, so it's left out.
+  .header-section {
+    font-size: 1.1rem;
+
+    > .grid {
+      grid-template-columns: auto 1fr;
+      padding-top: var(--space-1);
+      // Room for the active menu underline (2px below the text); the grid clips overflow.
+      padding-bottom: 4px;
+    }
+
+    .header__logo {
+      grid-column: 1;
+    }
+
+    .header__desc {
+      display: none;
+    }
+
+    .header__meta {
+      grid-column: 2;
+      grid-row: 1;
+      text-align: right;
+    }
+
+    .header__cta {
+      grid-column: 1 / -1;
+      margin-top: var(--space-3);
+    }
+  }
+
+  .menu {
+    margin-top: 0;
+  }
+
+  .intro {
+    font-size: 1.75rem;
+    line-height: 1.1;
+    margin-bottom: var(--space-5);
+    max-width: 800px;
+  }
+
+  .intro.--home {
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .intro.--info {
+    font-size: 1.75rem;
+  }
+
+  .text-indent {
+    text-indent: 15vw;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    gap: var(--space-1);
+    margin-bottom: var(--space-3);
+  }
+
+  .section-title__text {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .edition-group__title-inner,
+  .pick-title {
+    font-size: 1.5rem;
+  }
+
+  // Two picks per row: smaller credits and less air below them.
+  .edition {
+    margin-bottom: 0;
+    font-size: 0.8rem;
+  }
+
+  .edition-text {
+    padding-bottom: var(--space-3);
+  }
+
+  .edition-category {
+    margin-top: 2px;
+  }
+
+  .home-more {
+    font-size: 1.5rem;
+  }
+
+  .pick-detail {
+    padding-top: var(--space-2);
+    row-gap: var(--space-4);
+  }
+
+  .pick__main {
+    gap: var(--space-4);
+  }
+
+  .footer-section {
+    margin-top: var(--space-5);
+  }
+
+  .metabar {
+    bottom: var(--space-1);
+    padding-right: var(--space-1);
+    gap: 6px;
+  }
+
+  .button {
+    padding: 5px 10px;
+  }
 }

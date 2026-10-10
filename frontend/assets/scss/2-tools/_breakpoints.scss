@@ -70,7 +70,13 @@ $breakpoints: (
 
 @mixin _bp($breakpoint, $type) {
   @if map-has-key($breakpoints, $breakpoint) {
-    @media (#{$type}-width: #{map-get($breakpoints, $breakpoint)}) {
+    $value: map-get($breakpoints, $breakpoint);
+    // max-width ends just below the breakpoint, so min- and max-width rules never both
+    // apply at exactly e.g. 768px.
+    @if $type == max {
+      $value: $value - 0.02px;
+    }
+    @media (#{$type}-width: #{$value}) {
       @content;
     }
   } @else {
@@ -106,7 +112,7 @@ $breakpoints: (
   @if map-has-key($breakpoints, $min-breakpoint) and
     map-has-key($breakpoints, $max-breakpoint)
   {
-    @media (min-width: #{map-get($breakpoints, $min-breakpoint)}) and (max-width: #{map-get($breakpoints, $max-breakpoint)}) {
+    @media (min-width: #{map-get($breakpoints, $min-breakpoint)}) and (max-width: #{map-get($breakpoints, $max-breakpoint) - 0.02px}) {
       @content;
     }
   } @else {

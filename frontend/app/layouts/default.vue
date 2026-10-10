@@ -6,6 +6,8 @@ const isPick = computed(() =>
   route.name?.toString().startsWith("edition-slug"),
 );
 const isInfinity = computed(() => route.path === "/weekly/infinity");
+const isFont = computed(() => route.name === "fonts-slug");
+const isFocus = computed(() => route.path === "/weekly/focus");
 </script>
 
 <template>
@@ -13,6 +15,7 @@ const isInfinity = computed(() => route.path === "/weekly/infinity");
     :class="{
       'is-zoomed-out': zoomedOut && isOverview,
       'is-infinity': isInfinity,
+      'is-focus': isFocus,
     }"
   >
     <div id="page-dimmer" class="dimmer"></div>
@@ -25,7 +28,9 @@ const isInfinity = computed(() => route.path === "/weekly/infinity");
     <Footer />
     <Metabar
       :show-credits="isOverview"
-      :show-back="isPick || isInfinity"
+      :show-back="isPick || isFont || isInfinity || isFocus"
+      :show-focus="isOverview || isFocus"
+      :focus-active="isFocus"
       :show-infinity="isOverview || isInfinity"
       :infinity-active="isInfinity"
     />

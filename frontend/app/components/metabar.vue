@@ -14,18 +14,23 @@ const props = withDefaults(
     showBack?: boolean;
     showInfinity?: boolean;
     infinityActive?: boolean;
+    showFocus?: boolean;
+    focusActive?: boolean;
   }>(),
   {
     showCredits: true,
     showBack: false,
     showInfinity: false,
     infinityActive: false,
+    showFocus: false,
+    focusActive: false,
   },
 );
 
 const route = useRoute();
 
 function goBackToOverview() {
+  if (route.path.startsWith("/fonts/")) return navigateTo("/fonts");
   const edition = route.params.edition;
   if (typeof edition === "string" && edition) {
     return navigateTo({ path: "/weekly", hash: `#${edition}` });
@@ -35,6 +40,10 @@ function goBackToOverview() {
 
 function toggleInfinity() {
   return navigateTo(props.infinityActive ? "/weekly" : "/weekly/infinity");
+}
+
+function toggleFocus() {
+  return navigateTo(props.focusActive ? "/weekly" : "/weekly/focus");
 }
 
 useHead({
@@ -59,6 +68,12 @@ function onMetabarKeydown(event: KeyboardEvent) {
   if (props.showCredits && (event.key === "c" || event.key === "C")) {
     event.preventDefault();
     toggleCredits();
+    return;
+  }
+
+  if (props.showFocus && (event.key === "f" || event.key === "F")) {
+    event.preventDefault();
+    toggleFocus();
     return;
   }
 
@@ -92,10 +107,14 @@ onUnmounted(() => {
 <template>
   <div class="metabar">
     <div v-if="showBack" class="button" @click="goBackToOverview">
-      (ESC) Back to overview
+      <span class="button__key">(ESC) </span>Back to overview
     </div>
-    <div v-if="showCredits" class="button" @click="toggleCredits">
-      (C) {{ hideCredits ? "Show" : "Hide" }} Info
+    <div
+      v-if="showCredits"
+      class="button button--credits"
+      @click="toggleCredits"
+    >
+      <span class="button__key">(C) </span>{{ hideCredits ? "Show" : "Hide" }} Info
     </div>
     <div
       v-if="showCredits"
@@ -103,7 +122,15 @@ onUnmounted(() => {
       :class="{ active: zoomedOut }"
       @click="toggleZoom"
     >
-      (Z) {{ zoomedOut ? "Zoom in" : "Zoom out" }}
+      <span class="button__key">(Z) </span>{{ zoomedOut ? "Zoom in" : "Zoom out" }}
+    </div>
+    <div
+      v-if="showFocus"
+      class="button button--toggle"
+      :class="{ active: focusActive }"
+      @click="toggleFocus"
+    >
+      <span class="button__key">(F) </span>Focus
     </div>
     <div
       v-if="showInfinity"
@@ -111,10 +138,10 @@ onUnmounted(() => {
       :class="{ active: infinityActive }"
       @click="toggleInfinity"
     >
-      (I) Infinity
+      <span class="button__key">(I) </span>Infinity
     </div>
     <div class="button" @click="toggleDarkMode">
-      (D) {{ darkMode ? "Light" : "Dark" }} Mode
+      <span class="button__key">(D) </span>{{ darkMode ? "Light" : "Dark" }} Mode
     </div>
   </div>
 </template>

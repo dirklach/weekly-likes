@@ -34,8 +34,11 @@ export default defineNuxtPlugin((nuxtApp) => {
     const introRest = gsap.utils
       .toArray<HTMLElement>(".page .intro .col > *")
       .filter((el) => !titles.includes(el));
+    // Skip header parts that are hidden on this page (claim on home, newsletter on Infinity).
     const header = initial
-      ? gsap.utils.toArray<HTMLElement>(".header-section .col")
+      ? gsap.utils
+          .toArray<HTMLElement>(".header-section .col")
+          .filter((el) => getComputedStyle(el).visibility !== "hidden")
       : [];
     const content = [
       ...gsap.utils

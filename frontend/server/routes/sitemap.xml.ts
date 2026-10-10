@@ -9,6 +9,7 @@ const STATIC_PATHS = [
   '/weekly',
   '/weekly/authors',
   '/weekly/infinity',
+  '/weekly/focus',
   '/fonts',
   '/info',
   '/submit',

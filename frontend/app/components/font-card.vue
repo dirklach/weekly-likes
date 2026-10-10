@@ -35,6 +35,8 @@ withDefaults(
 </template>
 
 <style scoped lang="scss">
+@use "~~/assets/scss/2-tools" as *;
+
 .font-card {
   display: flex;
   align-items: center;
@@ -55,6 +57,12 @@ withDefaults(
     max-width: 65%;
     width: auto;
     object-fit: contain;
+
+    // Two cards per row on phones.
+    @include maxbp(sm) {
+      height: 36px;
+      max-width: 75%;
+    }
   }
 }
 </style>

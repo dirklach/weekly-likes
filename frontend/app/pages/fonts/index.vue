@@ -111,6 +111,10 @@ const filteredFonts = computed(() =>
 
 .font-filter {
   margin-bottom: var(--space-6);
+
+  @include maxbp(sm) {
+    margin-bottom: var(--space-4);
+  }
 }
 
 .font-filter__bar {
@@ -169,7 +173,7 @@ const filteredFonts = computed(() =>
 
 // Gaps and page margins come from .grid, like the edition grid; only the column count differs.
 .font-grid {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
   @include bp(sm) {
     grid-template-columns: repeat(var(--font-columns), minmax(0, 1fr));

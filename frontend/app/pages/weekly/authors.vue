@@ -63,6 +63,12 @@ usePageSeo({
   margin: 0;
   padding: 0;
   columns: 1;
+  font-size: 1.5rem;
+  line-height: 1.15;
+
+  @include bp(sm) {
+    font-size: 2rem;
+  }
 
   @include bp(sm) {
     columns: 2;

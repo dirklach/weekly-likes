@@ -63,8 +63,8 @@ onMounted(() => {
       </div>
       <div
         class="header__desc --claim | col"
+        :class="{ '--hidden': isHome }"
         data-grid="df:12 sm:6 md:3"
-        :style="{ visibility: isHome ? 'hidden' : undefined }"
       >
         Exploring visual culture
       </div>
@@ -93,7 +93,11 @@ onMounted(() => {
           </NuxtLink>
         </div>
       </div>
-      <div class="header__cta | col" data-grid="df:12 sm:6 md:3">
+      <div
+        class="header__cta | col"
+        :class="{ '--home': isHome }"
+        data-grid="df:12 sm:6 md:3"
+      >
         <NewsletterForm />
       </div>
     </div>

@@ -15,6 +15,18 @@ usePageSeo({
 // Kept in memory only: survives navigating to a pick and back, resets on reload.
 const activeCategories = useState<string[]>("weekly-categories", () => []);
 
+// On phones one pick per week runs full width. Chosen at random once per page load (on the
+// server, reused on the client to avoid hydration mismatches), so every pick gets its turn.
+const featuredPicks = useState<Record<string, string>>("weekly-featured", () =>
+  Object.fromEntries(
+    (editions.value || []).flatMap((edition) => {
+      const picks = edition.picks || [];
+      const pick = picks[Math.floor(Math.random() * picks.length)];
+      return pick ? [[edition._id, pick._key]] : [];
+    }),
+  ),
+);
+
 // Every category that appears on at least one pick, alphabetically.
 const categories = computed(() => {
   const bySlug = new Map<string, Category & { slug: string }>();
@@ -75,37 +87,39 @@ function toggleCategory(slug: string) {
       </h1>
     </div>
   </div>
-  <div class="category-filter | grid">
-    <div class="category-filter__bar | col" data-grid="df:12">
-      <div class="category-filter__list">
-        <button
-          v-if="categories.length"
-          type="button"
-          class="button category-filter__button"
-          :class="{ active: !isFiltered }"
-          :aria-pressed="!isFiltered"
-          @click="setCategories([])"
+  <div class="category-filter-wrap">
+    <div class="category-filter | grid">
+      <div class="category-filter__bar | col" data-grid="df:12">
+        <div class="category-filter__list">
+          <button
+            v-if="categories.length"
+            type="button"
+            class="button category-filter__button"
+            :class="{ active: !isFiltered }"
+            :aria-pressed="!isFiltered"
+            @click="setCategories([])"
+          >
+            All
+          </button>
+          <button
+            v-for="category in categories"
+            :key="category.slug"
+            type="button"
+            class="button category-filter__button"
+            :class="{ active: activeCategories.includes(category.slug) }"
+            :aria-pressed="activeCategories.includes(category.slug)"
+            @click="toggleCategory(category.slug)"
+          >
+            {{ category.name }}
+          </button>
+        </div>
+        <NuxtLink
+          to="/weekly/authors"
+          class="category-filter__authors | text-link"
         >
-          All
-        </button>
-        <button
-          v-for="category in categories"
-          :key="category.slug"
-          type="button"
-          class="button category-filter__button"
-          :class="{ active: activeCategories.includes(category.slug) }"
-          :aria-pressed="activeCategories.includes(category.slug)"
-          @click="toggleCategory(category.slug)"
-        >
-          {{ category.name }}
-        </button>
+          Authors
+        </NuxtLink>
       </div>
-      <NuxtLink
-        to="/weekly/authors"
-        class="category-filter__authors | text-link"
-      >
-        Authors
-      </NuxtLink>
     </div>
   </div>
   <div v-if="isFiltered">
@@ -126,7 +140,7 @@ function toggleCategory(slug: string) {
           :edition="edition"
           :pick="pick"
           class="edition--flat"
-          data-grid="df:12 sm:4 md:4"
+          data-grid="df:6 sm:4 md:4"
           :loading="index < 3 ? 'eager' : 'lazy'"
         />
       </div>
@@ -158,7 +172,10 @@ function toggleCategory(slug: string) {
           :key="pick._key"
           :edition="edition"
           :pick="pick"
-          data-grid="df:12 sm:4 md:4"
+          :class="{
+            'edition--featured': featuredPicks[edition._id] === pick._key,
+          }"
+          data-grid="df:6 sm:4 md:4"
           :loading="editionIndex === 0 ? 'eager' : 'lazy'"
         />
       </div>
@@ -168,10 +185,6 @@ function toggleCategory(slug: string) {
 
 <style scoped lang="scss">
 @use "~~/assets/scss/2-tools" as *;
-
-.category-filter {
-  margin-bottom: var(--space-6);
-}
 
 .category-filter__bar {
   display: flex;
@@ -189,7 +202,25 @@ function toggleCategory(slug: string) {
 .category-filter__list {
   display: flex;
   flex-wrap: wrap;
+  min-width: 0;
   gap: var(--space-1);
+
+  // Phones: one row that scrolls sideways instead of four rows of pills.
+  @include maxbp(sm) {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-left: calc(var(--default-page-padding) * -1);
+    padding-left: var(--default-page-padding);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > * {
+      flex-shrink: 0;
+    }
+  }
 }
 
 .category-filter__button {
@@ -208,5 +239,18 @@ function toggleCategory(slug: string) {
 
 .edition--flat {
   scroll-margin-top: var(--overview-anchor-offset);
+}
+
+// Phones show two picks per row; with three per week the featured one runs full width,
+// right below the week title.
+@include maxbp(sm) {
+  .edition-group__title {
+    order: -2;
+  }
+
+  .edition--featured {
+    order: -1;
+    grid-column: span 12 / span 12;
+  }
 }
 </style>

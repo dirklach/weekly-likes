@@ -11,15 +11,6 @@ const [{ data: editions }, { data: fonts }] = await Promise.all([
   useFonts(),
 ]);
 
-function shuffled<T>(items: T[]) {
-  const result = [...items];
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j]!, result[i]!];
-  }
-  return result;
-}
-
 // Keys are chosen once on the server per request and reused on the client to avoid hydration
 // mismatches, so every reload shows a new selection.
 const randomPickKeys = useState<string[]>("random-picks", () =>
@@ -87,7 +78,7 @@ const randomFonts = computed(() =>
         :key="pick._key"
         :edition="edition"
         :pick="pick"
-        data-grid="df:12 sm:4 md:4"
+        data-grid="df:6 sm:4 md:4"
         loading="eager"
       />
       <div class="home-more | col" data-grid="df:12">
@@ -144,7 +135,7 @@ const randomFonts = computed(() =>
 
 .home-fonts__grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--default-column-gap);
 
   @include bp(sm) {

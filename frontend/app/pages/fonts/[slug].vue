@@ -121,7 +121,7 @@ const moreFonts = computed(() => {
         :key="item._id"
         :font="item"
         class="col"
-        data-grid="df:12 sm:6 md:3"
+        data-grid="df:6 sm:6 md:3"
       />
     </div>
   </section>
