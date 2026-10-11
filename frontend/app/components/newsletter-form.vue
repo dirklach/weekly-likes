@@ -30,7 +30,6 @@ async function submit() {
     @submit.prevent="submit"
   >
     <div class="newsletter-form__row">
-      <div class="newsletter-form__label">Weekly Newsletter</div>
       <div class="newsletter-form__input-wrapper">
         <input
           v-model="email"
@@ -47,7 +46,9 @@ async function submit() {
         type="submit"
         :disabled="state === 'loading'"
       >
-        {{ state === "loading" ? "Subscribing…" : "Subscribe" }}
+        {{
+          state === "loading" ? "Subscribing…" : "Subscribe Weekly Newsletter"
+        }}
       </button>
     </div>
     <p v-if="state === 'error'" class="newsletter-form__error">

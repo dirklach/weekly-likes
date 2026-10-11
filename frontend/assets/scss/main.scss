@@ -343,6 +343,7 @@ html.dark .edition:hover {
 .metabar {
   position: fixed;
   left: 0;
+  pointer-events: none;
   right: 0;
   bottom: var(--space-2);
   margin: 0 auto;
@@ -615,8 +616,9 @@ html[data-intro="true"] {
   }
 }
 
-// Line masks would otherwise clip descenders at tight line heights.
-.split-line-mask {
+// Line and word masks would otherwise clip descenders at tight line heights.
+.split-line-mask,
+.split-word-mask {
   padding-bottom: 0.25em;
   margin-bottom: -0.25em;
 }
@@ -627,9 +629,10 @@ html[data-intro="true"] {
 
 // Bottom padding keeps the links clear of the fixed metabar.
 .footer-section {
-  margin-top: var(--space-7);
+  margin-top: var(--space-4);
   margin-bottom: 0;
-  padding-bottom: calc(var(--space-2) * 2 + 2rem);
+
+  padding-bottom: var(--space-4);
 }
 
 // ==================================================================
@@ -795,9 +798,6 @@ html[data-intro="true"] {
 }
 
 .section-title {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: var(--space-3);
   font-size: 2rem;
   margin-bottom: var(--space-4);
 }
@@ -806,7 +806,7 @@ html[data-intro="true"] {
   grid-column: span 4;
 
   @media (min-width: 768px) {
-    grid-column: span 2;
+    grid-column: span 8;
   }
 }
 
@@ -815,7 +815,8 @@ html[data-intro="true"] {
   max-width: 800px;
 
   @media (min-width: 768px) {
-    grid-column: span 2;
+    grid-column: span 4;
+    font-size: 1rem;
   }
 }
 
@@ -932,6 +933,7 @@ html[data-intro="true"] {
   .metabar {
     bottom: var(--space-1);
     padding-right: var(--space-1);
+    pointer-events: none;
     gap: 6px;
   }
 
@@ -949,7 +951,6 @@ html[data-intro="true"] {
 
   @include bp(sm) {
     font-size: 3rem;
-    line-height: normal;
   }
 
   @include bp(md) {

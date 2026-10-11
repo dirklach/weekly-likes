@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: false,
     head: {
-      title: "Aetyc | Weekly Design Inspiration by Dirk Lach",
+      title: "Aetyc • Exploring visual culture",
     },
   },
   runtimeConfig: {

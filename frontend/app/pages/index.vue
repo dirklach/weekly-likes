@@ -74,7 +74,7 @@ const randomFonts = computed(() =>
 );
 
 const introductionText = ref<HTMLElement | null>(null);
-useSplitReveal(introductionText);
+useSplitReveal(introductionText, { type: "words" });
 </script>
 
 <template>
@@ -96,7 +96,7 @@ useSplitReveal(introductionText);
   <section class="section">
     <div class="introduction | grid">
       <div class="col">
-        <p class="introduction-text">
+        <p ref="introductionText" class="introduction-text">
           Aetyc is a digital gallery dedicated to global visual culture.<br /><br />
 
           We showcase exceptional works across design, art, and architecture to
@@ -113,7 +113,7 @@ useSplitReveal(introductionText);
         data-grid="df:12"
         :class="{ hide: creditsHidden }"
       >
-        <div class="section-title">
+        <div class="section-title | grid">
           <div class="section-title__heading">
             <h1>Weekly Inspiration</h1>
           </div>
@@ -147,7 +147,7 @@ useSplitReveal(introductionText);
         data-grid="df:12"
         :class="{ hide: creditsHidden }"
       >
-        <div class="section-title">
+        <div class="section-title | grid">
           <div class="section-title__heading">
             <h1>Font Inspiration</h1>
           </div>
