@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type {Edition, EditionPick} from "~/types/content"
+import type { Edition, EditionPick } from "~/types/content";
 
 withDefaults(
   defineProps<{
-    edition: Edition
-    pick: EditionPick
-    loading?: "lazy" | "eager"
+    edition: Edition;
+    pick: EditionPick;
+    loading?: "lazy" | "eager";
   }>(),
   { loading: "lazy" },
-)
+);
 
 const { hideCredits } = useSitePrefs();
 </script>

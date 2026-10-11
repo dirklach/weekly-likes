@@ -576,7 +576,7 @@ input::placeholder {
   line-height: 1;
   text-align: left;
   margin-top: var(--space-6);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-7);
 
   // "visual culture." is ~6.44em wide in Suisse Medium, so 15cqi fills ~97% of the grid width.
   > .col {
@@ -796,7 +796,7 @@ html[data-intro="true"] {
 
 .section-title {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: var(--space-3);
   font-size: 2rem;
   margin-bottom: var(--space-4);
@@ -871,8 +871,7 @@ html[data-intro="true"] {
   }
 
   .intro.--home {
-    margin-top: var(--space-4);
-    margin-bottom: var(--space-6);
+    margin-top: var(--space-6);
   }
 
   .intro.--info {
@@ -939,4 +938,11 @@ html[data-intro="true"] {
   .button {
     padding: 5px 10px;
   }
+}
+
+.introduction {
+  font-size: 4rem;
+  margin-bottom: var(--space-8);
+  max-width: 1200px;
+  text-wrap: balance;
 }

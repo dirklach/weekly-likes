@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import PickCard from "~/components/pick-card.vue";
+import type { MarqueeItem } from "~/components/home-marquee.vue";
 
 const PICK_COUNT = 6;
 const FONT_COUNT = 6;
+// Ends on a run of 4 so the loop continues 3, 1, 4, 1, … across copies.
+const MARQUEE_RUNS = [3, 4, 3, 4];
 
 const { hideCredits } = useSitePrefs();
 const creditsHidden = computed(() => hideCredits.value);
@@ -25,6 +28,36 @@ const randomFontIds = useState<string[]>("random-fonts", () =>
   shuffled((fonts.value || []).map((font) => font._id)).slice(0, FONT_COUNT),
 );
 
+// Pick and font keys for the marquee: runs of picks (MARQUEE_RUNS) each followed by one font.
+// Chosen on the server like the ones above.
+const marqueeKeys = useState<string[]>("marquee-items", () => {
+  const pickKeys = shuffled(
+    (editions.value || []).flatMap((edition) =>
+      (edition.picks || []).map((pick) => `pick:${edition._id}:${pick._key}`),
+    ),
+  );
+  const fontKeys = shuffled(
+    (fonts.value || []).map((font) => `font:${font._id}`),
+  );
+  return MARQUEE_RUNS.flatMap((run, i) => [
+    ...pickKeys.splice(0, run),
+    ...(fontKeys[i] ? [fontKeys[i]] : []),
+  ]);
+});
+
+const marqueeItems = computed(() =>
+  marqueeKeys.value.flatMap((key): MarqueeItem[] => {
+    const [type, id, pickKey] = key.split(":");
+    if (type === "font") {
+      const font = fonts.value?.find((f) => f._id === id);
+      return font ? [{ type: "font", font }] : [];
+    }
+    const edition = editions.value?.find((e) => e._id === id);
+    const pick = edition?.picks?.find((p) => p._key === pickKey);
+    return edition && pick ? [{ type: "pick", edition, pick }] : [];
+  }),
+);
+
 const randomPicks = computed(() =>
   randomPickKeys.value.flatMap((key) => {
     const [editionId, pickKey] = key.split(":");
@@ -39,6 +72,9 @@ const randomFonts = computed(() =>
     (id) => fonts.value?.find((font) => font._id === id) ?? [],
   ),
 );
+
+const introductionText = ref<HTMLElement | null>(null);
+useSplitReveal(introductionText);
 </script>
 
 <template>
@@ -49,6 +85,23 @@ const randomFonts = computed(() =>
           Exploring<br />
           visual culture.
         </h1>
+      </div>
+    </div>
+  </section>
+
+  <section v-if="marqueeItems.length" class="section">
+    <HomeMarquee :items="marqueeItems" />
+  </section>
+
+  <section class="section">
+    <div class="introduction | grid">
+      <div class="col">
+        <p class="introduction-text">
+          Aetyc is a digital gallery dedicated to global visual culture.<br /><br />
+
+          We showcase exceptional works across design, art, and architecture to
+          build a thoughtful creative space in a digital world full of noise.
+        </p>
       </div>
     </div>
   </section>
@@ -126,7 +179,7 @@ const randomFonts = computed(() =>
   display: flex;
   justify-content: center;
   margin-top: var(--space-1);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-8);
 }
 
 .home-fonts {
