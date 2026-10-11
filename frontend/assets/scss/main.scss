@@ -941,8 +941,19 @@ html[data-intro="true"] {
 }
 
 .introduction {
-  font-size: 4rem;
-  margin-bottom: var(--space-8);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  margin-bottom: var(--space-6);
   max-width: 1200px;
   text-wrap: balance;
+
+  @include bp(sm) {
+    font-size: 3rem;
+    line-height: normal;
+  }
+
+  @include bp(md) {
+    font-size: 4rem;
+    margin-bottom: var(--space-8);
+  }
 }
