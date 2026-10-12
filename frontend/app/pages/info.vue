@@ -3,6 +3,7 @@ usePageSeo({
   title: "Info | Aetyc",
   description:
     "Aetyc is a platform for visual culture and a resource hub for good design essentials, founded by Dirk Lach in Dortmund, Germany.",
+  image: SITE_OG_IMAGE,
 });
 </script>
 

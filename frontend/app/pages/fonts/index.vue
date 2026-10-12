@@ -5,6 +5,7 @@ usePageSeo({
   title: "Fonts | Aetyc",
   description:
     "A hand-picked collection of typefaces from independent foundries and beyond, curated for their craft and character.",
+  image: SITE_OG_IMAGE,
 });
 
 const FILTERS = ["All", "Serif", "Sans Serif", "Other"] as const;

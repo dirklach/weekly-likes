@@ -2,6 +2,8 @@
 import PickCard from "~/components/pick-card.vue";
 import type { MarqueeItem } from "~/components/home-marquee.vue";
 
+usePageSeo({ image: SITE_OG_IMAGE });
+
 const PICK_COUNT = 6;
 const FONT_COUNT = 6;
 // Ends on a run of 4 so the loop continues 3, 1, 4, 1, … across copies.

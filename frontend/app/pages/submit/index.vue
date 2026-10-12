@@ -79,6 +79,7 @@ usePageSeo({
   title: "Submit to Weekly Likes | Aetyc",
   description:
     "Submit your work in design, art, architecture, or photography for Weekly Likes. Every submission is reviewed personally.",
+  image: SITE_OG_IMAGE,
 });
 </script>
 

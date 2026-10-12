@@ -10,6 +10,7 @@ usePageSeo({
   title: "Weekly Likes | Aetyc",
   description:
     "A weekly updated catalog of selected works in design, architecture, photography, and art. Three hand-picked works in your inbox every Friday.",
+  image: SITE_OG_IMAGE,
 });
 
 // Kept in memory only: survives navigating to a pick and back, resets on reload.

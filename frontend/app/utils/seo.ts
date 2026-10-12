@@ -29,3 +29,6 @@ export function ogImageFromSvgUrl(url: string) {
 }
 
 export const DEFAULT_OG_IMAGE = ogImageFromAsset(DEFAULT_OG_ASSET);
+
+// Branded share image (public/og.png) for the main section pages: home, weekly, fonts, submit, info.
+export const SITE_OG_IMAGE = `${SITE_URL}/og.png`;
