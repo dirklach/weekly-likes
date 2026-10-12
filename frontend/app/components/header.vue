@@ -88,6 +88,10 @@ onMounted(() => {
             Fonts
           </NuxtLink>
           <span>, </span>
+          <NuxtLink to="/colors" class="menu-item | menu-link">
+            Colors
+          </NuxtLink>
+          <span>, </span>
           <NuxtLink to="/submit" class="menu-item | menu-link">
             Submit
           </NuxtLink>
