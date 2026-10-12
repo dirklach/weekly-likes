@@ -40,10 +40,14 @@ export default defineNuxtPlugin((nuxtApp) => {
           .toArray<HTMLElement>(".header-section .col")
           .filter((el) => getComputedStyle(el).visibility !== "hidden")
       : [];
+    // Blocks that rise in with the title instead of with the rest of the page (home marquee).
+    const withTitle = gsap.utils.toArray<HTMLElement>(
+      '.page > [data-reveal="with-title"]',
+    );
     const content = [
       ...gsap.utils
         .toArray<HTMLElement>(".page > *")
-        .filter((el) => !introBlocks.includes(el)),
+        .filter((el) => !introBlocks.includes(el) && !withTitle.includes(el)),
       ...(initial
         ? gsap.utils.toArray<HTMLElement>(".footer-section, .metabar")
         : []),
@@ -59,6 +63,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     // No rise when jumping to an anchor, so the hash scroll lands on the final position.
     const rise = nuxtApp.$router.currentRoute.value.hash ? 0 : 24;
     gsap.set([...introRest, ...content], { opacity: 0, y: rise });
+    gsap.set(withTitle, { opacity: 0, y: rise * 6.5 });
     // Past 100% so nothing peeks through the mask's descender padding.
     gsap.set(split.lines, { yPercent: 130 });
     gsap.set(introBlocks, { opacity: 1 });
@@ -67,9 +72,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     const finish = () => {
       // Back to plain text so the title rewraps naturally on resize.
       split.revert();
-      gsap.set([...header, ...introRest, ...content, ...introBlocks], {
-        clearProps: "opacity,transform",
-      });
+      gsap.set(
+        [...header, ...introRest, ...withTitle, ...content, ...introBlocks],
+        { clearProps: "opacity,transform" },
+      );
       current = null;
     };
 
@@ -77,11 +83,32 @@ export default defineNuxtPlugin((nuxtApp) => {
     const offset = initial ? 0 : 0.1;
     const timeline = gsap
       .timeline({ defaults: { ease: "power3.out" }, onComplete: finish })
-      .to(header, { opacity: 1, duration: 0.8, stagger: 0.08 }, 0)
+      .set(header, { y: 20 })
+      .to(
+        header,
+        {
+          opacity: 1,
+          y: 0,
+          ease: "power3.inOut",
+          duration: 0.8,
+          stagger: 0.08,
+        },
+        0,
+      )
       .to(
         split.lines,
-        { yPercent: 0, duration: 1.1, stagger: 0.1, ease: "power4.out" },
+        {
+          yPercent: 0,
+          duration: 1.55,
+          stagger: 0.2,
+          ease: "power3.inOut",
+        },
         offset + 0.15,
+      )
+      .to(
+        withTitle,
+        { opacity: 1, y: 0, duration: 1.55, ease: "power3.inOut" },
+        offset + 0.35,
       )
       .to(
         [...introRest, ...content],

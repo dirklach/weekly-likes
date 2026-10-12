@@ -268,8 +268,8 @@ a {
     --size: 8px;
     content: "";
     display: none;
-    width: var(--size);
-    height: var(--size);
+    width: 4px;
+    height: 4px;
     background: var(--color-primary);
     border-radius: 50%;
   }
@@ -578,10 +578,11 @@ input::placeholder {
   text-align: left;
   margin-top: var(--space-6);
   margin-bottom: var(--space-7);
+  max-width: none;
 
   // "visual culture." is ~6.44em wide in Suisse Medium, so 15cqi fills ~97% of the grid width.
   > .col {
-    font-size: clamp(1rem, 10cqi, 20rem);
+    font-size: clamp(1rem, 12cqi, 18rem);
   }
 }
 
@@ -800,10 +801,15 @@ html[data-intro="true"] {
 .section-title {
   font-size: 2rem;
   margin-bottom: var(--space-4);
+  gap: var(--space-2) !important;
+
+  @media (min-width: 768px) {
+    gap: var(--space-2);
+  }
 }
 
 .section-title__heading {
-  grid-column: span 4;
+  grid-column: span 12;
 
   @media (min-width: 768px) {
     grid-column: span 8;
@@ -811,12 +817,26 @@ html[data-intro="true"] {
 }
 
 .section-title__text {
-  grid-column: span 4;
+  grid-column: span 12;
   max-width: 800px;
 
   @media (min-width: 768px) {
     grid-column: span 4;
     font-size: 1rem;
+    max-width: 600px;
+  }
+
+  & p::before {
+    content: "";
+    position: relative;
+    display: inline-block;
+    --size: 5px;
+    width: var(--size);
+    height: var(--size);
+    background: var(--color-primary);
+    border-radius: 50%;
+    margin-bottom: 2px;
+    margin-right: 6px;
   }
 }
 

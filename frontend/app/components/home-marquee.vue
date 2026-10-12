@@ -112,13 +112,13 @@ onUnmounted(() => {
         :key="copy"
         class="marquee__collection"
         :aria-hidden="copy > 1 ? 'true' : undefined"
-        :inert="copy > 1 ? true : undefined"
       >
         <div v-for="item in items" :key="itemKey(item)" class="marquee__item">
           <NuxtLink
             v-if="item.type === 'pick'"
             :to="pickHref(item.edition, item.pick)"
             class="marquee__pick"
+            :tabindex="copy > 1 ? -1 : undefined"
           >
             <PickImage
               v-if="item.pick.image?.asset?._ref"
@@ -127,7 +127,22 @@ onUnmounted(() => {
               sizes="50vw"
             />
           </NuxtLink>
-          <FontCard v-else :font="item.font" />
+          <FontCard
+            v-else
+            :font="item.font"
+            :tabindex="copy > 1 ? -1 : undefined"
+          />
+          <!-- Hover-only extra; the links already carry the same info for screen readers. -->
+          <div class="marquee__info" aria-hidden="true">
+            <template v-if="item.type === 'pick'">
+              <span>{{ item.pick.title }}</span>
+              <span>{{ authorNames(item.pick) }}</span>
+            </template>
+            <template v-else>
+              <span>{{ item.font.name }}</span>
+              <span v-if="item.font.foundry">{{ item.font.foundry.name }}</span>
+            </template>
+          </div>
         </div>
       </div>
     </div>
@@ -138,12 +153,12 @@ onUnmounted(() => {
 @use "~~/assets/scss/2-tools" as *;
 
 .marquee {
-  overflow: hidden;
+  // Clip sideways only, so the hover info below the items stays visible.
+  overflow-x: clip;
   width: 100%;
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-9);
 
   @include maxbp(sm) {
-    margin-top: var(--space-6);
     margin-bottom: var(--space-8);
   }
 }
@@ -167,6 +182,7 @@ onUnmounted(() => {
 // Every item shares one height; widths follow each image's own aspect ratio.
 .marquee__item {
   --marquee-item-height: clamp(16rem, 10vw, 34rem);
+  position: relative;
   flex: none;
   height: var(--marquee-item-height);
 
@@ -190,5 +206,27 @@ onUnmounted(() => {
     height: 100%;
     width: auto;
   }
+}
+.marquee__info {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-1);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+@media (hover: hover) {
+  .marquee__item:hover .marquee__info {
+    opacity: 1;
+  }
+}
+
+.marquee__item:focus-within .marquee__info {
+  opacity: 1;
 }
 </style>

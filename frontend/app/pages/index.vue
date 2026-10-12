@@ -91,7 +91,11 @@ useSplitReveal(introductionText, { type: "words" });
     </div>
   </section>
 
-  <section v-if="marqueeItems.length" class="section">
+  <section
+    v-if="marqueeItems.length"
+    class="section"
+    data-reveal="with-title"
+  >
     <HomeMarquee :items="marqueeItems" />
   </section>
 
