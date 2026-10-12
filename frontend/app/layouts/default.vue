@@ -34,5 +34,6 @@ const isFocus = computed(() => route.path === "/weekly/focus");
       :show-infinity="isOverview || isInfinity"
       :infinity-active="isInfinity"
     />
+    <TextCursor />
   </div>
 </template>

@@ -55,11 +55,7 @@ export type Font = {
 
 export type Palette = {
   _id: string
-  title: string | null
+  number: number
   // Hex codes (#RRGGBB), 2 to 4 of them.
   colors: string[]
-  credit: {
-    name: string | null
-    url: string | null
-  } | null
 }

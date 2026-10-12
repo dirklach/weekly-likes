@@ -2,6 +2,11 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const HEX_COLOR = /^#[0-9a-fA-F]{6}$/
 
+// Shown on the site as AEC–01, AEC–02, … (AE = Aetyc, C = Color).
+export function paletteId(number?: number) {
+  return number ? `AEC–${String(number).padStart(2, '0')}` : 'AEC–??'
+}
+
 // A color combination on /colors; the page filters by how many colors it has (2, 3 or 4).
 export const paletteType = defineType({
   name: 'palette',
@@ -9,9 +14,30 @@ export const paletteType = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      type: 'string',
-      description: 'Optional, e.g. what the colors were taken from.',
+      name: 'number',
+      type: 'number',
+      description: 'Assigned automatically (highest so far + 1).',
+      readOnly: true,
+      initialValue: async (_params, {getClient}) => {
+        const max = await getClient({apiVersion: '2024-01-01'}).fetch<number | null>(
+          'math::max(*[_type == "palette"].number)',
+        )
+        return (max ?? 0) + 1
+      },
+      validation: (rule) =>
+        rule
+          .required()
+          .integer()
+          .positive()
+          .custom(async (number, {document, getClient}) => {
+            if (!number) return true
+            const id = document?._id.replace(/^drafts\./, '')
+            const taken = await getClient({apiVersion: '2024-01-01'}).fetch<number>(
+              'count(*[_type == "palette" && number == $number && !(_id in [$id, $draft])])',
+              {number, id, draft: `drafts.${id}`},
+            )
+            return taken ? `${paletteId(number)} is already taken` : true
+          }),
     }),
     defineField({
       name: 'colors',
@@ -26,27 +52,15 @@ export const paletteType = defineType({
       ],
       validation: (rule) => rule.required().min(2).max(4),
     }),
-    defineField({
-      name: 'credit',
-      type: 'object',
-      description: 'Optional: who made the work these colors come from.',
-      fields: [
-        defineField({name: 'name', type: 'string'}),
-        defineField({
-          name: 'url',
-          type: 'url',
-          validation: (rule) =>
-            rule.uri({scheme: ['http', 'https']}).error('Must start with http:// or https://'),
-        }),
-      ],
-    }),
   ],
   preview: {
-    select: {title: 'title', colors: 'colors', credit: 'credit.name'},
-    prepare({title, colors, credit}) {
-      const hexes = (colors as string[] | undefined)?.join(' ') || 'No colors'
-      return {title: title || hexes, subtitle: [title ? hexes : null, credit].filter(Boolean).join(' · ')}
+    select: {number: 'number', colors: 'colors'},
+    prepare({number, colors}) {
+      return {
+        title: paletteId(number),
+        subtitle: (colors as string[] | undefined)?.join(' ') || 'No colors',
+      }
     },
   },
-  orderings: [{title: 'Newest', name: 'createdDesc', by: [{field: '_createdAt', direction: 'desc'}]}],
+  orderings: [{title: 'Number', name: 'numberDesc', by: [{field: 'number', direction: 'desc'}]}],
 })

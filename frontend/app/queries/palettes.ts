@@ -1,10 +1,9 @@
 import {defineQuery} from "groq"
 
 export const PALETTES_QUERY = defineQuery(/* groq */ `
-  *[_type == "palette" && count(colors) >= 2] | order(_createdAt desc) {
+  *[_type == "palette" && defined(number) && count(colors) >= 2] | order(number desc) {
     _id,
-    title,
-    colors,
-    credit
+    number,
+    colors
   }
 `)

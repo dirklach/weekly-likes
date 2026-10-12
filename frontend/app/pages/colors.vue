@@ -104,6 +104,10 @@ onUnmounted(() => clearTimeout(copiedTimer));
             class="palette__color"
             :style="{ background: hex, color: readableTextColor(hex) }"
             :aria-label="`Copy ${hex.toUpperCase()}`"
+            data-cursor-hover
+            :data-cursor-text="
+              copied === `${palette._id}:${index}` ? 'Copied' : 'Copy color'
+            "
             @click="copy(palette._id, index, hex.toUpperCase())"
           >
             <span class="palette__hex" aria-live="polite">
@@ -115,22 +119,8 @@ onUnmounted(() => clearTimeout(copiedTimer));
             </span>
           </button>
         </div>
-        <figcaption
-          v-if="palette.title || palette.credit?.name"
-          class="palette__caption"
-        >
-          <span v-if="palette.title">{{ palette.title }}</span>
-          <span v-if="palette.credit?.name">
-            <a
-              v-if="palette.credit.url"
-              :href="palette.credit.url"
-              target="_blank"
-              rel="noopener"
-              class="text-link"
-              >{{ palette.credit.name }}</a
-            >
-            <template v-else>{{ palette.credit.name }}</template>
-          </span>
+        <figcaption class="palette__caption">
+          {{ paletteId(palette.number) }}
         </figcaption>
       </figure>
     </div>
@@ -203,7 +193,7 @@ onUnmounted(() => clearTimeout(copiedTimer));
   border: 0;
   font: inherit;
   text-align: left;
-  cursor: copy;
+  cursor: pointer;
 
   &:focus-visible {
     outline: 2px solid var(--color-primary);
@@ -228,8 +218,6 @@ onUnmounted(() => clearTimeout(copiedTimer));
 }
 
 .palette__caption {
-  display: flex;
-  flex-direction: column;
   margin-top: var(--space-1);
 }
 </style>

@@ -12,3 +12,8 @@ export function readableTextColor(hex: string) {
   const l = luminance(hex)
   return (l + 0.05) / 0.05 >= 1.05 / (l + 0.05) ? "#000" : "#fff"
 }
+
+// AEC–01, AEC–02, … (AE = Aetyc, C = Color), same as in the studio.
+export function paletteId(number: number) {
+  return `AEC–${String(number).padStart(2, "0")}`
+}
