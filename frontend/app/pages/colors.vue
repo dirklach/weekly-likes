@@ -29,7 +29,8 @@ function setCount(count: number | null) {
 
 const filteredPalettes = computed(() =>
   (palettes.value || []).filter(
-    (palette) => !activeCount.value || palette.colors.length === activeCount.value,
+    (palette) =>
+      !activeCount.value || palette.colors.length === activeCount.value,
   ),
 );
 
@@ -176,6 +177,11 @@ onUnmounted(() => clearTimeout(copiedTimer));
   min-width: 0;
   // On the card rather than the caption, so palettes without one keep the same gap.
   padding-bottom: var(--space-3);
+  transition: 0.6s ease opacity;
+}
+
+.palette-grid:has(.palette:hover) .palette:not(:hover) {
+  opacity: 0.2;
 }
 
 // Equal-width color blocks, one card shape no matter how many colors.
