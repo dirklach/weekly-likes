@@ -149,17 +149,18 @@ a {
 
 .menu-submenu {
   position: absolute;
-  top: 120%;
+  // Flush with the toggle (spacing lives in padding-top), so the cursor never crosses a gap
+  // on the way down that would close and reopen the menu.
+  top: 100%;
   left: 0;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: start;
   gap: 8px;
-  padding: 0.75em 0.75em 0.5em 0;
+  padding: 1em 0.75em 0.5em 0;
   text-align: left;
   white-space: nowrap;
-  background: var(--color-secondary);
   opacity: 0;
   visibility: hidden;
   transition:
