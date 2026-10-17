@@ -951,7 +951,7 @@ html[data-intro="true"] {
     padding-top: var(--space-5);
   }
 
-  // Logo and menu share one row; the claim repeats the home title, so it's left out.
+  // Logo and burger share one row; the claim repeats the home title, so it's left out.
   .header-section {
     font-size: 1.1rem;
 
@@ -970,10 +970,14 @@ html[data-intro="true"] {
       display: none;
     }
 
+    // The burger (mobile-menu.vue) takes the menu's place.
     .header__meta {
+      display: none;
+    }
+
+    .mobile-menu {
       grid-column: 2;
       grid-row: 1;
-      text-align: right;
     }
 
     .header__cta {

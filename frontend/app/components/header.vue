@@ -169,6 +169,7 @@ onMounted(() => {
           </NuxtLink>
         </div>
       </div>
+      <MobileMenu />
       <div
         class="header__cta | col"
         :class="{ '--home': isHome }"
