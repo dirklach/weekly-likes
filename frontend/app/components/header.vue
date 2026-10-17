@@ -9,8 +9,12 @@ const collapsed = computed(
 );
 // Detail pages aren't nested routes, so the router won't mark their menu item active on its own.
 const activeSection = computed(() => {
-  if (route.path === "/fonts" || route.path.startsWith("/fonts/"))
-    return "fonts";
+  if (
+    route.path === "/fonts" ||
+    route.path.startsWith("/fonts/") ||
+    route.path === "/colors"
+  )
+    return "resources";
   if (
     route.path === "/weekly" ||
     route.path.startsWith("/weekly/") ||
@@ -28,7 +32,53 @@ const sectionLink = (section: string) =>
     : {};
 const header = ref<HTMLElement | null>(null);
 
+// Resources submenu: opens on mouse hover, keyboard focus, or tap/Enter on its toggle.
+const resources = ref<HTMLElement | null>(null);
+const resourcesOpen = ref(false);
+let lastPointer = "";
+let restoringFocus = false;
+
+const onResourcesPointerEnter = (e: PointerEvent) => {
+  if (e.pointerType === "mouse") resourcesOpen.value = true;
+};
+const onResourcesPointerLeave = (e: PointerEvent) => {
+  if (e.pointerType === "mouse") resourcesOpen.value = false;
+};
+const onResourcesFocusIn = (e: FocusEvent) => {
+  if (!restoringFocus && (e.target as HTMLElement).matches(":focus-visible"))
+    resourcesOpen.value = true;
+};
+const onResourcesFocusOut = (e: FocusEvent) => {
+  if (!resources.value?.contains(e.relatedTarget as Node | null))
+    resourcesOpen.value = false;
+};
+// A mouse click lands while the hover has already opened the menu, so it shouldn't close it again.
+const onResourcesToggle = () => {
+  resourcesOpen.value = lastPointer === "mouse" ? true : !resourcesOpen.value;
+  lastPointer = "";
+};
+const onResourcesKeydown = (e: KeyboardEvent) => {
+  if (e.key !== "Escape" || !resourcesOpen.value) return;
+  resourcesOpen.value = false;
+  restoringFocus = true;
+  resources.value?.querySelector<HTMLElement>(".menu-toggle")?.focus();
+  restoringFocus = false;
+};
+const onDocumentPointerDown = (e: PointerEvent) => {
+  if (!resources.value?.contains(e.target as Node)) resourcesOpen.value = false;
+};
+
+watch(
+  () => route.path,
+  () => (resourcesOpen.value = false),
+);
+
 onMounted(() => {
+  document.addEventListener("pointerdown", onDocumentPointerDown);
+  onUnmounted(() =>
+    document.removeEventListener("pointerdown", onDocumentPointerDown),
+  );
+
   const el = header.value;
   if (!el) return;
 
@@ -71,7 +121,6 @@ onMounted(() => {
       <div class="header__meta | col" data-grid="df:12 sm:6 md:5">
         <div class="menu">
           <NuxtLink to="/info" class="menu-item | menu-link"> Info </NuxtLink>
-          <span>, </span>
           <NuxtLink
             to="/weekly"
             class="menu-item | menu-link"
@@ -79,19 +128,42 @@ onMounted(() => {
           >
             Weekly
           </NuxtLink>
-          <span>, </span>
-          <NuxtLink
-            to="/fonts"
-            class="menu-item | menu-link"
-            v-bind="sectionLink('fonts')"
+          <div
+            ref="resources"
+            class="menu-group"
+            :class="{ '--open': resourcesOpen }"
+            @pointerenter="onResourcesPointerEnter"
+            @pointerleave="onResourcesPointerLeave"
+            @focusin="onResourcesFocusIn"
+            @focusout="onResourcesFocusOut"
+            @keydown="onResourcesKeydown"
           >
-            Fonts
-          </NuxtLink>
-          <span>, </span>
-          <NuxtLink to="/colors" class="menu-item | menu-link">
-            Colors
-          </NuxtLink>
-          <span>, </span>
+            <button
+              type="button"
+              class="menu-item | menu-link | menu-toggle"
+              aria-controls="menu-resources"
+              :aria-expanded="resourcesOpen"
+              :class="{ 'router-link-active': activeSection === 'resources' }"
+              @pointerdown="lastPointer = $event.pointerType"
+              @click="onResourcesToggle"
+            >
+              Supply
+            </button>
+            <div id="menu-resources" class="menu-submenu">
+              <NuxtLink
+                to="/fonts"
+                class="menu-item | menu-link"
+                :class="{
+                  'router-link-active': route.path.startsWith('/fonts/'),
+                }"
+              >
+                Fonts
+              </NuxtLink>
+              <NuxtLink to="/colors" class="menu-item | menu-link">
+                Colors
+              </NuxtLink>
+            </div>
+          </div>
           <NuxtLink to="/submit" class="menu-item | menu-link">
             Submit
           </NuxtLink>

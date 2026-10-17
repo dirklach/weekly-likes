@@ -81,9 +81,12 @@ a {
 
 .menu {
   margin-top: var(--space-4);
+  display: flex;
+  gap: var(--space-2);
   @include bp(md) {
-    justify-content: end;
+    justify-content: start;
     margin-top: 0;
+    gap: var(--space-4);
   }
 }
 
@@ -97,7 +100,7 @@ a {
   }
 
   &:focus-visible {
-    outline: 1px solid red;
+    outline: 0;
   }
 
   &::before {
@@ -129,6 +132,68 @@ a {
   }
 }
 
+// Parent item with a submenu (header.vue: Resources).
+.menu-group {
+  display: inline-block;
+  position: relative;
+}
+
+.menu-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.menu-submenu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
+  padding: 0.75em 0.75em 0.5em 0;
+  text-align: left;
+  white-space: nowrap;
+  background: var(--color-secondary);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.5s ease,
+    visibility 0.2s;
+
+  .menu-group.--open > & {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // Items fade in one after another on open; on close they fade out together.
+  > .menu-item {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .menu-group.--open > & > .menu-item {
+    opacity: 1;
+    transition: opacity 1.75s ease;
+
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        transition-delay: #{($i - 1) * 0.1}s;
+      }
+    }
+  }
+}
+
+// The header grid clips overflow for its collapse transition; let an open submenu hang out below.
+.header-section:has(.menu-group.--open) > .grid {
+  overflow: visible;
+}
+
 // ==================================================================
 // Header Test :)=
 // ==================================================================
@@ -145,7 +210,6 @@ a {
   display: grid;
   grid-template-rows: 1fr;
   font-size: 1.35rem;
-
   min-height: 0;
   transition:
     grid-template-rows 0.75s cubic-bezier(0.625, 0.05, 0, 1),
@@ -515,6 +579,12 @@ input::placeholder {
   width: 100%;
   text-align: left;
   color: var(--color-primary);
+  border-bottom: 1px solid var(--color-primary);
+  outline: 0px;
+
+  &::before {
+    display: none;
+  }
 }
 
 .newsletter-form__label {

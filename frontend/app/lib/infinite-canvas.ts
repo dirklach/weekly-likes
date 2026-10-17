@@ -28,6 +28,8 @@ const KEYBOARD_SPEED = 0.18;
 const VELOCITY_LERP = 0.16;
 const VELOCITY_DECAY = 0.9;
 const INITIAL_CAMERA_Z = 50;
+// Constant slow flight forward (units per second) so the canvas is never still.
+const AUTO_ZOOM_SPEED = 8.4;
 const CLICK_TOLERANCE = 6;
 // Blur ramps up from BLUR_START units in front of the camera to full strength at BLUR_FULL.
 const BLUR_START = 35;
@@ -488,7 +490,11 @@ export function createInfiniteCanvas(
       releaseLarge(plane);
     }
 
-    const blurTarget = clamp((BLUR_START - ahead) / (BLUR_START - BLUR_FULL), 0, 1);
+    const blurTarget = clamp(
+      (BLUR_START - ahead) / (BLUR_START - BLUR_FULL),
+      0,
+      1,
+    );
     plane.blur.value = lerp(plane.blur.value, blurTarget * blurTarget, 0.2);
     const gridFade =
       dist <= RENDER_DISTANCE
@@ -499,7 +505,8 @@ export function createInfiniteCanvas(
         ? 1
         : Math.max(
             0,
-            1 - (depth - DEPTH_FADE_START) / (DEPTH_FADE_END - DEPTH_FADE_START),
+            1 -
+              (depth - DEPTH_FADE_START) / (DEPTH_FADE_END - DEPTH_FADE_START),
           );
     const target = Math.min(gridFade, depthFade * depthFade);
     plane.opacity =
@@ -515,7 +522,10 @@ export function createInfiniteCanvas(
   }
 
   let frame = 0;
+  let lastFrame = 0;
   let lastChunkUpdate = 0;
+  const autoZoom = !window.matchMedia("(prefers-reduced-motion: reduce)")
+    .matches;
   let pendingChunk: [number, number, number] | null = null;
 
   function tick(now: number) {
@@ -531,18 +541,34 @@ export function createInfiniteCanvas(
     const driftAmount = 8 * zoomFactor;
     const driftLerp = isZooming ? 0.2 : 0.12;
     if (!s.isDragging) {
-      s.drift.x = lerp(s.drift.x, isTouch ? 0 : s.mouse.x * driftAmount, driftLerp);
-      s.drift.y = lerp(s.drift.y, isTouch ? 0 : s.mouse.y * driftAmount, driftLerp);
+      s.drift.x = lerp(
+        s.drift.x,
+        isTouch ? 0 : s.mouse.x * driftAmount,
+        driftLerp,
+      );
+      s.drift.y = lerp(
+        s.drift.y,
+        isTouch ? 0 : s.mouse.y * driftAmount,
+        driftLerp,
+      );
     }
 
     s.targetVel.z += s.scrollAccum;
     s.scrollAccum *= 0.8;
     for (const axis of ["x", "y", "z"] as const) {
       s.targetVel[axis] = clamp(s.targetVel[axis], -MAX_VELOCITY, MAX_VELOCITY);
-      s.velocity[axis] = lerp(s.velocity[axis], s.targetVel[axis], VELOCITY_LERP);
+      s.velocity[axis] = lerp(
+        s.velocity[axis],
+        s.targetVel[axis],
+        VELOCITY_LERP,
+      );
       s.basePos[axis] += s.velocity[axis];
       s.targetVel[axis] *= VELOCITY_DECAY;
     }
+    // Capped so a background tab doesn't jump ahead on return.
+    const dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.1) : 0;
+    lastFrame = now;
+    if (autoZoom) s.basePos.z -= AUTO_ZOOM_SPEED * dt;
     camera.position.set(
       s.basePos.x + s.drift.x,
       s.basePos.y + s.drift.y,

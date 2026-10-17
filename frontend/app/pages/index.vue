@@ -91,11 +91,7 @@ useSplitReveal(introductionText, { type: "words" });
     </div>
   </section>
 
-  <section
-    v-if="marqueeItems.length"
-    class="section"
-    data-reveal="with-title"
-  >
+  <section v-if="marqueeItems.length" class="section" data-reveal="with-title">
     <HomeMarquee :items="marqueeItems" />
   </section>
 
@@ -103,7 +99,8 @@ useSplitReveal(introductionText, { type: "words" });
     <div class="introduction | grid">
       <div class="col">
         <p ref="introductionText" class="introduction-text">
-          Aetyc is a digital gallery dedicated to global visual culture.<br /><br />
+          Aetyc is a platform for visual culture dedicated to beautiful work
+          made with care.<br /><br />
 
           We showcase exceptional works across design, art, and architecture to
           build a thoughtful creative space in a digital world full of noise.
