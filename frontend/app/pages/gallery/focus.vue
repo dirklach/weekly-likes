@@ -4,7 +4,7 @@ import type { Edition, EditionPick } from "~/types/content";
 const SWIPE_THRESHOLD = 50;
 
 usePageSeo({
-  title: "Focus – Weekly Likes | Aetyc",
+  title: "Focus – Gallery | Aetyc",
   description:
     "One Weekly Likes pick at a time, picked at random. Browse through every work in design, art, architecture, and photography.",
 });

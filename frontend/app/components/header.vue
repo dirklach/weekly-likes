@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const { zoomedOut, canZoom } = useSitePrefs();
-const isOverview = computed(() => route.path === "/weekly");
+const isOverview = computed(() => route.path === "/gallery");
 const isHome = computed(() => route.name === "index");
 const isInfo = computed(() => route.path === "/info");
 const collapsed = computed(
@@ -16,11 +16,11 @@ const activeSection = computed(() => {
   )
     return "resources";
   if (
-    route.path === "/weekly" ||
-    route.path.startsWith("/weekly/") ||
+    route.path === "/gallery" ||
+    route.path.startsWith("/gallery/") ||
     route.name?.toString().startsWith("edition-slug")
   )
-    return "weekly";
+    return "gallery";
   return null;
 });
 const sectionLink = (section: string) =>
@@ -122,11 +122,11 @@ onMounted(() => {
         <div class="menu">
           <NuxtLink to="/info" class="menu-item | menu-link"> Info </NuxtLink>
           <NuxtLink
-            to="/weekly"
+            to="/gallery"
             class="menu-item | menu-link"
-            v-bind="sectionLink('weekly')"
+            v-bind="sectionLink('gallery')"
           >
-            Weekly
+            Gallery
           </NuxtLink>
           <div
             ref="resources"

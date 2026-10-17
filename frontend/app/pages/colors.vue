@@ -159,8 +159,9 @@ onUnmounted(() => clearTimeout(copiedTimer));
   }
 }
 
-// Gaps and page margins come from .grid, like the font grid; only the column count differs.
+// Page margins come from .grid; the palettes get a wider gap than the font grid.
 .palette-grid {
+  gap: 4rem;
   grid-template-columns: minmax(0, 1fr);
 
   @include bp(xs) {
@@ -175,19 +176,24 @@ onUnmounted(() => clearTimeout(copiedTimer));
 .palette {
   margin: 0;
   min-width: 0;
-  // On the card rather than the caption, so palettes without one keep the same gap.
-  padding-bottom: var(--space-3);
   transition: 0.6s ease opacity;
 }
 
+/*
 .palette-grid:has(.palette:hover) .palette:not(:hover) {
   opacity: 0.2;
 }
+*/
 
 // Equal-width color blocks, one card shape no matter how many colors.
 .palette__colors {
   display: flex;
-  aspect-ratio: 4 / 3;
+  // Half as tall in the single-column phone layout, so 2–3 palettes fit on screen.
+  aspect-ratio: 8 / 3;
+
+  @include bp(xs) {
+    aspect-ratio: 4 / 3;
+  }
 }
 
 .palette__color {

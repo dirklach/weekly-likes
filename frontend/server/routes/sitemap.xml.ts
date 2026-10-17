@@ -6,10 +6,10 @@ const SITE_URL = 'https://www.aetyc.com'
 
 const STATIC_PATHS = [
   '/',
-  '/weekly',
-  '/weekly/authors',
-  '/weekly/infinity',
-  '/weekly/focus',
+  '/gallery',
+  '/gallery/authors',
+  '/gallery/infinity',
+  '/gallery/focus',
   '/fonts',
   '/info',
   '/submit',

@@ -1,13 +1,14 @@
 <script setup lang="ts">
 const route = useRoute();
 const { zoomedOut } = useSitePrefs();
-const isOverview = computed(() => route.path === "/weekly");
+const isOverview = computed(() => route.path === "/gallery");
 const isPick = computed(() =>
   route.name?.toString().startsWith("edition-slug"),
 );
-const isInfinity = computed(() => route.path === "/weekly/infinity");
+const isInfinity = computed(() => route.path === "/gallery/infinity");
 const isFont = computed(() => route.name === "fonts-slug");
-const isFocus = computed(() => route.path === "/weekly/focus");
+const isFontsOverview = computed(() => route.path === "/fonts");
+const isFocus = computed(() => route.path === "/gallery/focus");
 </script>
 
 <template>
@@ -33,6 +34,7 @@ const isFocus = computed(() => route.path === "/weekly/focus");
       :focus-active="isFocus"
       :show-infinity="isOverview || isInfinity"
       :infinity-active="isInfinity"
+      :show-grid="isFontsOverview"
     />
     <TextCursor />
   </div>

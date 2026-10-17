@@ -484,6 +484,15 @@ html.dark .edition:hover {
   }
 }
 
+// "More fonts" / "More picks" heading row below a detail page.
+.more-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 16rem;
+  margin-bottom: var(--space-1);
+}
+
 .pick__image {
   display: flex;
   flex-direction: column;
@@ -805,7 +814,8 @@ html[data-intro="true"] {
 }
 
 .button--zoom,
-.button--credits {
+.button--credits,
+.button--grid {
   display: none;
 
   @include bp(sm) {

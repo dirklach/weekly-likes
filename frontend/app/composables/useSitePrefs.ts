@@ -61,6 +61,13 @@ export function useSitePrefs() {
     darkMode.value = !darkMode.value;
   }
 
+  // 2 → 3 → 4 → 5 → 2 …
+  function cycleFontColumns() {
+    const index = FONT_COLUMN_OPTIONS.indexOf(fontColumns.value);
+    fontColumns.value =
+      FONT_COLUMN_OPTIONS[(index + 1) % FONT_COLUMN_OPTIONS.length]!;
+  }
+
   function toggleZoom() {
     if (!isZoomViewport()) return;
     zoomedOut.value = !zoomedOut.value;
@@ -75,5 +82,6 @@ export function useSitePrefs() {
     toggleCredits,
     toggleDarkMode,
     toggleZoom,
+    cycleFontColumns,
   };
 }

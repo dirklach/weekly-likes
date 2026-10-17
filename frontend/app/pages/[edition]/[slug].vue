@@ -39,6 +39,30 @@ usePageSeo({
       : DEFAULT_OG_IMAGE,
 });
 
+const MORE_COUNT = 4;
+
+// Random other picks. Keys are chosen once on the server per page and reused on the client to
+// avoid hydration mismatches.
+const morePickKeys = useState<string[]>(`more-picks:${route.path}`, () => {
+  const current = `${edition.value?._id}:${pick.value?._key}`;
+  return shuffled(
+    (editions.value || []).flatMap((item) =>
+      (item.picks || []).map((p) => `${item._id}:${p._key}`),
+    ),
+  )
+    .filter((key) => key !== current)
+    .slice(0, MORE_COUNT);
+});
+
+const morePicks = computed(() =>
+  morePickKeys.value.flatMap((key) => {
+    const [editionId, pickKey] = key.split(":");
+    const item = editions.value?.find((e) => e._id === editionId);
+    const p = item?.picks?.find((entry) => entry._key === pickKey);
+    return item && p ? [{ edition: item, pick: p }] : [];
+  }),
+);
+
 const pickIndex = computed(() => {
   const index =
     edition.value?.picks?.findIndex((item) => item._key === pick.value?._key) ??
@@ -129,6 +153,22 @@ const pickIndex = computed(() => {
           />
         </div>
       </div>
+    </div>
+  </section>
+
+  <section v-if="morePicks.length" class="section">
+    <div class="grid">
+      <div class="more-title | col" data-grid="df:12">
+        <span>More picks</span>
+        <NuxtLink to="/gallery" class="text-link">Show all</NuxtLink>
+      </div>
+      <PickCard
+        v-for="item in morePicks"
+        :key="`${item.edition._id}:${item.pick._key}`"
+        :edition="item.edition"
+        :pick="item.pick"
+        data-grid="df:6 sm:6 md:3"
+      />
     </div>
   </section>
 </template>

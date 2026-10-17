@@ -138,7 +138,7 @@ useSplitReveal(introductionText, { type: "words" });
         loading="eager"
       />
       <div class="home-more | col" data-grid="df:12">
-        <NuxtLink to="/weekly" class="text-link">View all</NuxtLink>
+        <NuxtLink to="/gallery" class="text-link">View all</NuxtLink>
       </div>
     </div>
   </section>

@@ -20,7 +20,7 @@ const authors = computed(() => {
 });
 
 usePageSeo({
-  title: "Authors – Weekly Likes | Aetyc",
+  title: "Authors – Gallery | Aetyc",
   description:
     "The studios, designers, architects, and artists behind every pick in Weekly Likes.",
 });

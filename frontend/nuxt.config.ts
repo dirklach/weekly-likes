@@ -15,6 +15,11 @@ export default defineNuxtConfig({
       ],
     },
   },
+  routeRules: {
+    // "Weekly" was renamed to "Gallery"; keep old links and bookmarks working.
+    "/weekly": { redirect: { to: "/gallery", statusCode: 301 } },
+    "/weekly/**": { redirect: { to: "/gallery/**", statusCode: 301 } },
+  },
   runtimeConfig: {
     // Server-only secrets, set via NUXT_LEMONSQUEEZY_API_KEY etc.
     lemonsqueezyApiKey: "",

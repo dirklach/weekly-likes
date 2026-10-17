@@ -6,6 +6,8 @@ const {
   toggleCredits,
   toggleDarkMode,
   toggleZoom,
+  fontColumns,
+  cycleFontColumns,
 } = useSitePrefs();
 
 const props = withDefaults(
@@ -16,6 +18,7 @@ const props = withDefaults(
     infinityActive?: boolean;
     showFocus?: boolean;
     focusActive?: boolean;
+    showGrid?: boolean;
   }>(),
   {
     showCredits: true,
@@ -24,6 +27,7 @@ const props = withDefaults(
     infinityActive: false,
     showFocus: false,
     focusActive: false,
+    showGrid: false,
   },
 );
 
@@ -33,17 +37,17 @@ function goBackToOverview() {
   if (route.path.startsWith("/fonts/")) return navigateTo("/fonts");
   const edition = route.params.edition;
   if (typeof edition === "string" && edition) {
-    return navigateTo({ path: "/weekly", hash: `#${edition}` });
+    return navigateTo({ path: "/gallery", hash: `#${edition}` });
   }
-  return navigateTo("/weekly");
+  return navigateTo("/gallery");
 }
 
 function toggleInfinity() {
-  return navigateTo(props.infinityActive ? "/weekly" : "/weekly/infinity");
+  return navigateTo(props.infinityActive ? "/gallery" : "/gallery/infinity");
 }
 
 function toggleFocus() {
-  return navigateTo(props.focusActive ? "/weekly" : "/weekly/focus");
+  return navigateTo(props.focusActive ? "/gallery" : "/gallery/focus");
 }
 
 useHead({
@@ -80,6 +84,12 @@ function onMetabarKeydown(event: KeyboardEvent) {
   if (props.showInfinity && (event.key === "i" || event.key === "I")) {
     event.preventDefault();
     toggleInfinity();
+    return;
+  }
+
+  if (props.showGrid && (event.key === "g" || event.key === "G")) {
+    event.preventDefault();
+    cycleFontColumns();
     return;
   }
 
@@ -139,6 +149,9 @@ onUnmounted(() => {
       @click="toggleInfinity"
     >
       <span class="button__key">(I) </span>Infinity
+    </div>
+    <div v-if="showGrid" class="button button--grid" @click="cycleFontColumns">
+      <span class="button__key">(G) </span>Grid: {{ fontColumns }}
     </div>
     <div class="button" @click="toggleDarkMode">
       <span class="button__key">(D) </span>{{ darkMode ? "Light" : "Dark" }} Mode

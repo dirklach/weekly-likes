@@ -7,7 +7,7 @@ const creditsHidden = computed(() => hideCredits.value);
 const { data: editions } = await useEditions();
 
 usePageSeo({
-  title: "Weekly Likes | Aetyc",
+  title: "Gallery | Aetyc",
   description:
     "A weekly updated catalog of selected works in design, architecture, photography, and art. Three hand-picked works in your inbox every Friday.",
   image: SITE_OG_IMAGE,
@@ -115,7 +115,7 @@ function toggleCategory(slug: string) {
           </button>
         </div>
         <NuxtLink
-          to="/weekly/authors"
+          to="/gallery/authors"
           class="category-filter__authors | text-link"
         >
           Authors

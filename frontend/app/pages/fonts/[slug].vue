@@ -28,15 +28,19 @@ usePageSeo({
     font.value?.preview?.url ? ogImageFromSvgUrl(font.value.preview.url) : DEFAULT_OG_IMAGE,
 });
 
-// The fonts that follow this one alphabetically, wrapping around at the end.
-const moreFonts = computed(() => {
-  const list = fonts.value;
-  const count = Math.min(MORE_COUNT, list.length - 1);
-  return Array.from(
-    { length: count },
-    (_, i) => list[(index.value + i + 1) % list.length]!,
-  );
-});
+// Random other fonts. Ids are chosen once on the server per page and reused on the client to
+// avoid hydration mismatches.
+const moreFontIds = useState<string[]>(`more-fonts:${route.path}`, () =>
+  shuffled(fonts.value.map((item) => item._id))
+    .filter((id) => id !== font.value?._id)
+    .slice(0, MORE_COUNT),
+);
+
+const moreFonts = computed(() =>
+  moreFontIds.value.flatMap(
+    (id) => fonts.value.find((item) => item._id === id) ?? [],
+  ),
+);
 </script>
 
 <template>
@@ -112,7 +116,7 @@ const moreFonts = computed(() => {
 
   <section v-if="moreFonts.length" class="section">
     <div class="grid">
-      <div class="font-more__title | col" data-grid="df:12">
+      <div class="more-title | col" data-grid="df:12">
         <span>More fonts</span>
         <NuxtLink to="/fonts" class="text-link">Show all</NuxtLink>
       </div>
@@ -134,13 +138,5 @@ const moreFonts = computed(() => {
   height: 30%;
   max-width: 70%;
   object-fit: contain;
-}
-
-.font-more__title {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-top: var(--space-6);
-  margin-bottom: var(--space-1);
 }
 </style>

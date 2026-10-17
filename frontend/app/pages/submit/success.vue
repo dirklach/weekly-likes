@@ -10,7 +10,7 @@ useSeoMeta({ robots: "noindex" });
         Thank you — your submission and payment were received. You'll get a
         receipt by email, and I'll be in touch once your work has been reviewed.
       </h1>
-      <p><NuxtLink to="/weekly" class="text-link">Back to Weekly Likes</NuxtLink></p>
+      <p><NuxtLink to="/gallery" class="text-link">Back to the Gallery</NuxtLink></p>
     </div>
   </div>
 </template>

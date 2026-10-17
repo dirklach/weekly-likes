@@ -15,7 +15,8 @@ const { data: fonts } = await useFonts();
 
 // Kept in memory only: survives opening a font and coming back, resets on reload.
 const activeFilter = useState<Filter>("fonts-filter", () => "All");
-// Saved in a cookie like dark mode, so the server renders the chosen layout.
+// Set from the metabar's Grid button; saved in a cookie like dark mode, so the server renders
+// the chosen layout.
 const { fontColumns: columns } = useSitePrefs();
 
 // "Other" collects everything that is neither Serif nor Sans Serif (Display, Script, Monospace, …).
@@ -56,37 +57,6 @@ const filteredFonts = computed(() =>
           @click="activeFilter = filter"
         >
           {{ filter }}
-        </button>
-      </div>
-      <div class="font-columns" role="group" aria-label="Columns">
-        <button
-          v-for="count in FONT_COLUMN_OPTIONS"
-          :key="count"
-          type="button"
-          class="font-columns__option"
-          :class="{ active: columns === count }"
-          :aria-pressed="columns === count"
-          :aria-label="`${count} columns`"
-          @click="columns = count"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            :width="count * 15 - 3"
-            height="12"
-            :viewBox="`0 0 ${count * 15 - 3} 12`"
-            fill="none"
-            aria-hidden="true"
-          >
-            <rect
-              v-for="i in count"
-              :key="i"
-              :x="(i - 1) * 15"
-              width="12"
-              height="12"
-              rx="2"
-              fill="currentColor"
-            />
-          </svg>
         </button>
       </div>
     </div>
@@ -142,33 +112,6 @@ const filteredFonts = computed(() =>
     &:hover {
       background-color: var(--color-primary);
     }
-  }
-}
-
-// Column switcher only makes sense where the grid has more than one column.
-.font-columns {
-  display: none;
-
-  @include bp(sm) {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-  }
-}
-
-.font-columns__option {
-  display: flex;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--color-primary);
-  cursor: pointer;
-  opacity: 0.3;
-  transition: opacity var(--speed-fast);
-
-  &:hover,
-  &.active {
-    opacity: 1;
   }
 }
 

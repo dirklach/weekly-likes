@@ -6,7 +6,7 @@ const TEXTURE_WIDTH = 640;
 const TEXTURE_WIDTH_LARGE = 1280;
 
 usePageSeo({
-  title: "Infinity – Weekly Likes | Aetyc",
+  title: "Infinity – Gallery | Aetyc",
   description:
     "Every Weekly Likes pick on one endless canvas. Drag to explore, scroll to fly through.",
 });
