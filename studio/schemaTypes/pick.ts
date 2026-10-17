@@ -58,7 +58,7 @@ export const pickType = defineType({
           ],
         }),
       ],
-      options: {layout: 'grid'},
+      // List layout: every row gets a drag handle (reorder) and a ⋯ menu (remove).
     }),
     defineField({
       name: 'url',

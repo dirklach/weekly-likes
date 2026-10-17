@@ -5,6 +5,14 @@ export default defineNuxtConfig({
     pageTransition: false,
     head: {
       title: "Aetyc • Exploring visual culture",
+      script: [
+        // Umami analytics
+        {
+          src: "https://cloud.umami.is/script.js",
+          defer: true,
+          "data-website-id": "a761e967-1f38-4a42-a56e-8de0a826dcc6",
+        },
+      ],
     },
   },
   runtimeConfig: {
