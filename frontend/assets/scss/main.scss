@@ -417,6 +417,13 @@ html.dark .edition:hover {
   flex-direction: row;
   gap: var(--space-1);
   padding-right: var(--space-2);
+  // Above fixed page layers (e.g. the Infinity canvas), below the page dimmer.
+  z-index: 10;
+
+  // The bar itself lets taps through to the page; only its buttons catch them.
+  > .button {
+    pointer-events: auto;
+  }
 }
 
 .button {
