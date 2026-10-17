@@ -117,6 +117,17 @@ const pickIndex = computed(() => {
             loading="eager"
           />
         </div>
+        <div
+          v-for="image in pick.gallery || []"
+          :key="image._key"
+          class="pick-image__inner"
+        >
+          <PickImage
+            :asset-id="image.asset!._ref"
+            :alt="image.alt || pick.title"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+        </div>
       </div>
     </div>
   </section>

@@ -24,6 +24,8 @@ export type EditionPick = {
   authors: Author[] | null
   category: Category | null
   image: PickImage | null
+  // Optional extra images, shown on the pick page only.
+  gallery: (PickImage & { _key: string })[] | null
 }
 
 export type Edition = {

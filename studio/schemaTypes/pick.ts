@@ -39,6 +39,28 @@ export const pickType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'gallery',
+      title: 'More images',
+      description:
+        'Optional. Shown below the main image on the pick page; the main image stays the one used everywhere else.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: {hotspot: true},
+          fields: [
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative text',
+              validation: (rule) => rule.warning('Add alt text for accessibility'),
+            }),
+          ],
+        }),
+      ],
+      options: {layout: 'grid'},
+    }),
+    defineField({
       name: 'url',
       title: 'URL',
       type: 'url',

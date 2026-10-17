@@ -474,6 +474,20 @@ html.dark .edition:hover {
   flex-direction: column;
   gap: var(--space-6);
   text-wrap: balance;
+
+  // Desktop: the info column stays put where it starts while the image column scrolls past.
+  @include bp(md) {
+    position: sticky;
+    // Page padding + .pick-detail padding, i.e. its resting position, so it never jumps.
+    top: calc(25vh + clamp(5dvh, 7rem, 25dvh));
+    align-self: start;
+  }
+}
+
+.pick__image {
+  display: flex;
+  flex-direction: column;
+  gap: var(--default-row-gap);
 }
 
 .pick-meta {

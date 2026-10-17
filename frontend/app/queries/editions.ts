@@ -15,6 +15,11 @@ const pickProjection = /* groq */ `
   image {
     alt,
     asset
+  },
+  gallery[defined(asset)] {
+    _key,
+    alt,
+    asset
   }
 `
 
