@@ -19,6 +19,7 @@ const props = withDefaults(
     showFocus?: boolean;
     focusActive?: boolean;
     showGrid?: boolean;
+    showAutoplay?: boolean;
   }>(),
   {
     showCredits: true,
@@ -28,10 +29,17 @@ const props = withDefaults(
     showFocus: false,
     focusActive: false,
     showGrid: false,
+    showAutoplay: false,
   },
 );
 
 const route = useRoute();
+
+// Shared with the focus page, which runs the slideshow.
+const autoplay = useState("focus-autoplay", () => true);
+function toggleAutoplay() {
+  autoplay.value = !autoplay.value;
+}
 
 function goBackToOverview() {
   if (route.path.startsWith("/fonts/")) return navigateTo("/fonts");
@@ -78,6 +86,12 @@ function onMetabarKeydown(event: KeyboardEvent) {
   if (props.showFocus && (event.key === "f" || event.key === "F")) {
     event.preventDefault();
     toggleFocus();
+    return;
+  }
+
+  if (props.showAutoplay && (event.key === "a" || event.key === "A")) {
+    event.preventDefault();
+    toggleAutoplay();
     return;
   }
 
@@ -141,6 +155,14 @@ onUnmounted(() => {
       @click="toggleFocus"
     >
       <span class="button__key">(F) </span>Focus
+    </div>
+    <div
+      v-if="showAutoplay"
+      class="button button--toggle"
+      :class="{ active: autoplay }"
+      @click="toggleAutoplay"
+    >
+      <span class="button__key">(A) </span>Autoplay
     </div>
     <div
       v-if="showInfinity"

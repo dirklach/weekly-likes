@@ -32,10 +32,12 @@ const isFocus = computed(() => route.path === "/gallery/focus");
       :show-back="isPick || isFont || isInfinity || isFocus"
       :show-focus="isOverview || isFocus"
       :focus-active="isFocus"
+      :show-autoplay="isFocus"
       :show-infinity="isOverview || isInfinity"
       :infinity-active="isInfinity"
       :show-grid="isFontsOverview"
     />
+    <SearchOverlay />
     <TextCursor />
   </div>
 </template>

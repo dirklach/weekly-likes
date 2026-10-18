@@ -6,8 +6,10 @@ withDefaults(
     edition: Edition;
     pick: EditionPick;
     loading?: "lazy" | "eager";
+    // Adds "Week 051" below the category, for lists that mix weeks (search results).
+    showWeek?: boolean;
   }>(),
-  { loading: "lazy" },
+  { loading: "lazy", showWeek: false },
 );
 
 const { hideCredits } = useSitePrefs();
@@ -30,6 +32,7 @@ const { hideCredits } = useSitePrefs();
         <span class="edition-name">{{ pick.title }}</span>
         <span class="edition-author">{{ authorNames(pick) }}</span>
         <span class="edition-category">{{ pick.category?.name }}</span>
+        <span v-if="showWeek" class="edition-week">Week {{ edition.number }}</span>
       </div>
     </div>
   </NuxtLink>

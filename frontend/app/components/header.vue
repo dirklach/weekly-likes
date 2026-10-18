@@ -31,6 +31,7 @@ const sectionLink = (section: string) =>
       }
     : {};
 const header = ref<HTMLElement | null>(null);
+const { openSearch } = useSearch();
 
 // Resources submenu: opens on mouse hover, keyboard focus, or tap/Enter on its toggle.
 const resources = ref<HTMLElement | null>(null);
@@ -167,6 +168,14 @@ onMounted(() => {
           <NuxtLink to="/submit" class="menu-item | menu-link">
             Submit
           </NuxtLink>
+          <button
+            type="button"
+            class="menu-item | menu-link | menu-toggle"
+            aria-haspopup="dialog"
+            @click="openSearch"
+          >
+            Search
+          </button>
         </div>
       </div>
       <MobileMenu />

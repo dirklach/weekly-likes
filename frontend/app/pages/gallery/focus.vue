@@ -2,6 +2,7 @@
 import type { Edition, EditionPick } from "~/types/content";
 
 const SWIPE_THRESHOLD = 50;
+const AUTOPLAY_MS = 6000;
 
 usePageSeo({
   title: "Focus – Gallery | Aetyc",
@@ -54,6 +55,10 @@ const details = (entry: { edition: Edition; pick: EditionPick }) => {
     `Week ${entry.edition.number}`,
   ].filter(Boolean);
 };
+
+// On by default and toggled from the metabar; the progress bar's animation drives the
+// timing (its end steps on), so pausing it pauses autoplay and every step restarts it.
+const autoplay = useState("focus-autoplay", () => true);
 
 const direction = ref<"next" | "prev">("next");
 function step(offset: 1 | -1) {
@@ -173,6 +178,22 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
     <!-- From 1024px: fixed to the screen edges; teleported so page transitions don't
          move them. -->
     <Teleport to="body">
+      <!-- Level with the metabar from 1024px, just above it on smaller screens. -->
+      <div
+        v-if="current"
+        class="focus__progress"
+        :class="{ 'is-paused': !autoplay }"
+        :style="{ '--autoplay-duration': `${AUTOPLAY_MS}ms` }"
+        aria-hidden="true"
+      >
+        <div class="focus__progress-track">
+          <span
+            :key="current.key"
+            class="focus__progress-fill"
+            @animationend="step(1)"
+          />
+        </div>
+      </div>
       <button
         type="button"
         class="button focus__arrow focus__arrow--edge focus__arrow--prev"
@@ -229,6 +250,77 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
   // to the screen edges.
   @include bp(md) {
     width: min(100%, calc((100dvh - 20vh - 7rem) * 16 / 9));
+  }
+}
+
+// No backdrop here: the image itself fills the container's full height.
+.focus__image {
+  background-color: transparent;
+
+  :deep(img) {
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+// A box the size of a metabar button (same offset, padding and line height), so the
+// bar centres on the buttons; below 1024px it moves up and sits on the box's floor.
+.focus__progress {
+  position: fixed;
+  left: 50%;
+  bottom: var(--space-2);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  width: min(200px, calc(100% - 2 * var(--default-page-padding)));
+  padding: 6px 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+
+  // Line-height strut, like the button labels.
+  &::before {
+    content: "\200b";
+    width: 0;
+  }
+
+  @include maxbp(md) {
+    align-items: flex-end;
+    transform: translate(-50%, calc(-100% - var(--space-1)));
+  }
+
+  @include maxbp(sm) {
+    bottom: var(--space-1);
+    padding: 5px 0;
+  }
+}
+
+// 2px grey track that fills with black until the next pick.
+.focus__progress-track {
+  display: flex;
+  flex: 1;
+  height: 2px;
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+}
+
+.focus__progress-fill {
+  width: 100%;
+  background: var(--color-primary);
+  transform-origin: left;
+  animation: focus-progress var(--autoplay-duration) linear forwards;
+
+  .is-paused & {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes focus-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
 

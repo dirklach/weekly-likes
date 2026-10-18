@@ -11,6 +11,7 @@ const LINKS = [
 
 const route = useRoute();
 const lenis = useLenis();
+const { openSearch } = useSearch();
 
 const open = ref(false);
 const burger = ref<HTMLButtonElement | null>(null);
@@ -24,6 +25,11 @@ function isActive(to: string) {
 
 function close() {
   open.value = false;
+}
+
+function search() {
+  close();
+  openSearch();
 }
 
 const onKeydown = (e: KeyboardEvent) => {
@@ -102,6 +108,16 @@ onUnmounted(() => {
                 >
                   {{ link.label }}
                 </NuxtLink>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="mobile-menu__link"
+                  aria-haspopup="dialog"
+                  @click="search"
+                >
+                  Search
+                </button>
               </li>
             </ul>
           </nav>
@@ -208,6 +224,11 @@ $ease: cubic-bezier(0.625, 0.05, 0, 1);
 }
 
 .mobile-menu__link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
   color: inherit;
   text-decoration: none;
   opacity: 0.45;

@@ -12,15 +12,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  scrollbar-width: none;
-} /* Firefox */
-body {
-  -ms-overflow-style: none;
-} /* IE and Edge */
-body::-webkit-scrollbar,
-body::-webkit-scrollbar-button {
-  display: none;
+// Scrollbars are hidden everywhere (page, overlays, scroll rows); scrolling itself still works
+// with wheel, touch, trackpad and keyboard.
+* {
+  scrollbar-width: none; // Firefox, Chrome 121+, Safari 18.2+
+  -ms-overflow-style: none; // legacy Edge
+}
+
+*::-webkit-scrollbar {
+  display: none; // older Chrome / Safari
 }
 
 u {
