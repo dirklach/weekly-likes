@@ -6,7 +6,7 @@ const LINKS = [
   { to: "/gallery", label: "Gallery" },
   { to: "/fonts", label: "Fonts" },
   { to: "/colors", label: "Colors" },
-  { to: "/submit", label: "Submit" },
+  ...(SUBMIT_ENABLED ? [{ to: "/submit", label: "Submit" }] : []),
 ];
 
 const route = useRoute();

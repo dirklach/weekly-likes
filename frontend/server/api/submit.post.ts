@@ -1,3 +1,5 @@
+import {SUBMIT_ENABLED} from '../../app/utils/features'
+
 const isHttpUrl = (value: unknown): value is string => {
   if (typeof value !== 'string' || value.length > 2048) return false
   try {
@@ -12,6 +14,8 @@ const clean = (value: unknown, max = 200) =>
   typeof value === 'string' ? value.trim().slice(0, max) : ''
 
 export default defineEventHandler(async (event) => {
+  if (!SUBMIT_ENABLED) throw createError({ statusCode: 404, statusMessage: 'Not found' })
+
   const body = await readBody(event)
 
   const workUrl = clean(body?.workUrl, 2048)

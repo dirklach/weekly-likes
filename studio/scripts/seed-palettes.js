@@ -1,6 +1,7 @@
 // Creates the first ten color palettes for /colors (AEC–01 … AEC–10). Skips any that exist.
 // Run: npx sanity exec scripts/seed-palettes.js --with-user-token
 import {getCliClient} from 'sanity/cli'
+import {colorValue} from './color-value.js'
 
 const client = getCliClient({apiVersion: '2024-01-01'})
 
@@ -27,7 +28,7 @@ PALETTES.forEach((colors, i) => {
     _id: `palette-aec-${String(number).padStart(2, '0')}`,
     _type: 'palette',
     number,
-    colors,
+    colors: colors.map(colorValue),
   })
 })
 const result = await transaction.commit()

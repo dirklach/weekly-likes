@@ -556,11 +556,19 @@ html.dark .edition:hover {
 .newsletter-form__input {
   position: relative;
   background: transparent;
+  color: var(--color-primary);
+  caret-color: var(--color-primary);
   outline: 0;
   border: 0;
   margin: 0;
   padding: 0;
   padding-bottom: 8px;
+
+  // Browser autofill paints its own text color and background; keep both on theme.
+  &:-webkit-autofill {
+    -webkit-text-fill-color: var(--color-primary);
+    transition: background-color 9999s ease-out;
+  }
 }
 
 .newsletter-form__input-wrapper {

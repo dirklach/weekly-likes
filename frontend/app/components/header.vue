@@ -165,7 +165,11 @@ onMounted(() => {
               </NuxtLink>
             </div>
           </div>
-          <NuxtLink to="/submit" class="menu-item | menu-link">
+          <NuxtLink
+            v-if="SUBMIT_ENABLED"
+            to="/submit"
+            class="menu-item | menu-link"
+          >
             Submit
           </NuxtLink>
           <button

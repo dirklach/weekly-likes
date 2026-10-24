@@ -102,7 +102,8 @@ usePageSeo({
         <h2>8. Submissions and payment</h2>
         <p>
           When you submit work via the
-          <NuxtLink to="/submit">Submit</NuxtLink> form, I process the
+          <NuxtLink v-if="SUBMIT_ENABLED" to="/submit">Submit</NuxtLink
+          ><template v-else>Submit</template> form, I process the
           following data: the link to the work, the names and websites of its
           authors, your name, your email address, the time of submission and
           its review and payment status. This data is stored in Sanity (see

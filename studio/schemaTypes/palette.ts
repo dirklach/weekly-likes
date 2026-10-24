@@ -1,3 +1,4 @@
+import {createElement} from 'react'
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const HEX_COLOR = /^#[0-9a-fA-F]{6}$/
@@ -5,6 +6,22 @@ export const HEX_COLOR = /^#[0-9a-fA-F]{6}$/
 // Shown on the site as AEC–01, AEC–02, … (AE = Aetyc, C = Color).
 export function paletteId(number?: number) {
   return number ? `AEC–${String(number).padStart(2, '0')}` : 'AEC–??'
+}
+
+// Palettes saved before the color picker hold plain hex strings; scripts/migrate-palette-colors.js converts them.
+type PaletteColor = string | {hex?: string}
+
+function hexOf(color: PaletteColor) {
+  return typeof color === 'string' ? color : color?.hex
+}
+
+// The palette's colors as equal stripes, used as the list thumbnail.
+function Swatches({colors}: {colors: string[]}) {
+  return createElement(
+    'div',
+    {style: {display: 'flex', width: '100%', height: '100%'}},
+    colors.map((hex, i) => createElement('div', {key: i, style: {flex: 1, background: hex}})),
+  )
 }
 
 // A color combination on /colors; the page filters by how many colors it has (2, 3 or 4).
@@ -42,12 +59,17 @@ export const paletteType = defineType({
     defineField({
       name: 'colors',
       type: 'array',
-      description: 'Two to four colors as hex codes (#RRGGBB), in display order.',
+      description: 'Two to four colors, in display order.',
       of: [
         defineArrayMember({
-          type: 'string',
+          type: 'color',
+          options: {disableAlpha: true},
           validation: (rule) =>
-            rule.required().regex(HEX_COLOR, {name: 'hex color'}).error('Use #RRGGBB, e.g. #1A2B3C'),
+            rule
+              .required()
+              .custom((color: {hex?: string} | undefined) =>
+                !color?.hex || HEX_COLOR.test(color.hex) ? true : 'Use #RRGGBB, e.g. #1A2B3C',
+              ),
         }),
       ],
       validation: (rule) => rule.required().min(2).max(4),
@@ -56,9 +78,13 @@ export const paletteType = defineType({
   preview: {
     select: {number: 'number', colors: 'colors'},
     prepare({number, colors}) {
+      const hexes = ((colors as PaletteColor[] | undefined) ?? [])
+        .map(hexOf)
+        .filter((hex): hex is string => Boolean(hex))
       return {
         title: paletteId(number),
-        subtitle: (colors as string[] | undefined)?.join(' ') || 'No colors',
+        subtitle: hexes.join(' ').toUpperCase() || 'No colors',
+        media: hexes.length ? createElement(Swatches, {colors: hexes}) : undefined,
       }
     },
   },

@@ -1,6 +1,7 @@
 import {EDITIONS_QUERY} from '../../app/queries/editions'
 import {pickHref} from '../../app/utils/slug'
 import type {Edition} from '../../app/types/content'
+import {SUBMIT_ENABLED} from '../../app/utils/features'
 
 const SITE_URL = 'https://www.aetyc.com'
 
@@ -12,7 +13,7 @@ const STATIC_PATHS = [
   '/gallery/focus',
   '/fonts',
   '/info',
-  '/submit',
+  ...(SUBMIT_ENABLED ? ['/submit'] : []),
   '/imprint',
   '/privacy',
 ]
