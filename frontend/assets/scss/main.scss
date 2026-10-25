@@ -1092,3 +1092,16 @@ html[data-intro="true"] {
     margin-bottom: var(--space-8);
   }
 }
+
+.footer__meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-1);
+  max-width: 40ch;
+  margin: 0 auto;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-2);
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+}
