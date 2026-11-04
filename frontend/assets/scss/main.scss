@@ -711,11 +711,22 @@ input::placeholder {
 
 .text-indent {
   text-indent: 8.6vw;
+
+  // Split lines (intro.client.ts) are blocks that inherit the indent; only the first keeps it.
+  > div:not(:first-child) {
+    text-indent: 0;
+  }
 }
 
 // ==================================================================
 // Intro animation (plugins/intro.client.ts)
 // ==================================================================
+
+// SplitText wraps words in inline-blocks while it measures lines, which breaks differently from
+// text-wrap: balance. Inline wrappers keep the browser's own line breaks (intro texts on Info).
+.split-word-inline {
+  display: inline !important;
+}
 
 html[data-intro="true"] {
   .header-section .col,
@@ -731,6 +742,12 @@ html[data-intro="true"] {
 .split-word-mask {
   padding-bottom: 0.25em;
   margin-bottom: -0.25em;
+}
+
+// Without this the last line mask's negative margin collapses through its parent, so the split
+// text is 0.25em taller than the plain text and everything below jumps up when it's reverted.
+:where(:has(> .split-line-mask)) {
+  display: flow-root;
 }
 
 // ==================================================================

@@ -5,6 +5,24 @@ gsap.registerPlugin(SplitText);
 // Not every page has a title, header or footer to animate; empty target lists are expected.
 gsap.config({ nullTargetWarn: false });
 
+// SplitText keeps a multi-word inline element (an underlined link text) on one line even where
+// the browser wraps inside it. One element per word renders the same (the space stays inside, so
+// the underline continues across it) and lets each word land on its own line.
+function sliceInlineElements(root: HTMLElement) {
+  root.querySelectorAll<HTMLElement>("*").forEach((el) => {
+    if (el.children.length) return;
+    const words = el.textContent?.trim().split(/\s+/) ?? [];
+    if (words.length < 2) return;
+    el.replaceWith(
+      ...words.map((word, i) => {
+        const part = el.cloneNode() as HTMLElement;
+        part.textContent = i < words.length - 1 ? `${word} ` : word;
+        return part;
+      }),
+    );
+  });
+}
+
 // Intro title (line by line) and page content fade in on every page. On the initial load the
 // header, footer and metabar join in; until then html[data-intro="true"] keeps everything
 // hidden (see main.scss).
@@ -31,9 +49,13 @@ export default defineNuxtPlugin((nuxtApp) => {
     const introBlocks = gsap.utils
       .toArray<HTMLElement>(".page > *")
       .filter((el) => el.matches(".intro") || el.querySelector(".intro"));
+    // Intro texts that come in line by line like the title instead of fading (Info page).
+    const texts = gsap.utils.toArray<HTMLElement>(
+      '.page .intro [data-reveal="lines"]',
+    );
     const introRest = gsap.utils
       .toArray<HTMLElement>(".page .intro .col > *")
-      .filter((el) => !titles.includes(el));
+      .filter((el) => !titles.includes(el) && !texts.includes(el));
     // Skip header parts that are hidden on this page (claim on home, newsletter on Infinity).
     const header = initial
       ? gsap.utils
@@ -58,6 +80,14 @@ export default defineNuxtPlugin((nuxtApp) => {
       mask: "lines",
       linesClass: "split-line",
     });
+    texts.forEach(sliceInlineElements);
+    const textSplit = SplitText.create(texts, {
+      type: "lines",
+      mask: "lines",
+      linesClass: "split-line",
+      // Kept inline (see main.scss) so the measured lines match the balanced wrap.
+      wordsClass: "split-word-inline",
+    });
 
     gsap.set(header, { opacity: 0 });
     // No rise when jumping to an anchor, so the hash scroll lands on the final position.
@@ -65,13 +95,14 @@ export default defineNuxtPlugin((nuxtApp) => {
     gsap.set([...introRest, ...content], { opacity: 0, y: rise });
     gsap.set(withTitle, { opacity: 0, y: rise * 6.5 });
     // Past 100% so nothing peeks through the mask's descender padding.
-    gsap.set(split.lines, { yPercent: 130 });
+    gsap.set([...split.lines, ...textSplit.lines], { yPercent: 130 });
     gsap.set(introBlocks, { opacity: 1 });
     if (initial) reveal();
 
     const finish = () => {
       // Back to plain text so the title rewraps naturally on resize.
       split.revert();
+      textSplit.revert();
       gsap.set(
         [...header, ...introRest, ...withTitle, ...content, ...introBlocks],
         { clearProps: "opacity,transform" },
@@ -101,6 +132,17 @@ export default defineNuxtPlugin((nuxtApp) => {
           yPercent: 0,
           duration: 1.55,
           stagger: 0.2,
+          ease: "power3.inOut",
+        },
+        offset + 0.15,
+      )
+      // One stagger across all paragraphs, so each one follows the previous in reading order.
+      .to(
+        textSplit.lines,
+        {
+          yPercent: 0,
+          duration: 1.3,
+          stagger: 0.08,
           ease: "power3.inOut",
         },
         offset + 0.15,
