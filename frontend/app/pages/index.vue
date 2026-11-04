@@ -122,9 +122,8 @@ useSplitReveal(introductionText, { type: "words" });
           </div>
           <div class="section-title__text">
             <p>
-              Loorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua at.
+              Every Friday, the Weekly Gallery shows three hand-picked works of
+              visual culture.
             </p>
           </div>
         </div>
@@ -156,9 +155,8 @@ useSplitReveal(introductionText, { type: "words" });
           </div>
           <div class="section-title__text">
             <p>
-              Loorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua at.
+              A collection of beautiful typefaces from type foundries around the
+              world.
             </p>
           </div>
         </div>
